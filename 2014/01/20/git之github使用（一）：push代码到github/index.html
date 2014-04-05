@@ -1,0 +1,422 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Git之Github使用（一）：Push代码到Github | ZhongMaiNeng&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="钟买能">
+    
+    <meta name="description" content="github 一直都是在上面拿资源。感觉有点愧对大众。是不是应该奉献自己的力量给 github 来推动开源的发展呢。在两个月前第一次在 github 新建项目，并且 push 了一套比赛的源码。但。。。今天竟然忘了怎么用 git 了。又复习了一次。所以这次打算在这里作个笔记。给自己做个的或是给 git 新手做的也好吧。为互联网贡献一点力量。
+一：安装 git 和配置就不说了。
+二：进入到等下要 push 的代码的目录文件夹，打开 bash
+进入到等下要 push 的代码的目录文件夹，打开 bash
+初始化
+    git init
+初始化后在本地代码库会自动创建一个.git 隐藏文件，这个就是本地代码库">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.jpg">
+    
+    
+    <link rel="apple-touch-icon" href="/img/me.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/me.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="ZhongMaiNeng&#39;s blog" title="ZhongMaiNeng&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ZhongMaiNeng&#39;s blog">ZhongMaiNeng&#39;s blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/About">About</a></li>
+					
+						<li><a href="/Works">Works</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/01/20/git之github使用（一）：push代码到github/" title="Git之Github使用（一）：Push代码到Github" itemprop="url">Git之Github使用（一）：Push代码到Github</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://hackeris.me" title="钟买能">钟买能</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-01-20T15:07:26.000Z" itemprop="datePublished">Jan 20 2014</time>
+    Updated:<time datetime="2014-04-05T06:01:57.000Z" itemprop="dateModified">Apr 5 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>github 一直都是在上面拿资源。感觉有点愧对大众。是不是应该奉献自己的力量给 github 来推动开源的发展呢。<br>在两个月前第一次在 github 新建项目，并且 push 了一套比赛的源码。但。。。今天竟然忘了怎么用 git 了。又复习了一次。所以这次打算在这里作个笔记。给自己做个的或是给 git 新手做的也好吧。为互联网贡献一点力量。</p>
+<p>一：<br>安装 git 和配置就不说了。</p>
+<p>二：<br>进入到等下要 push 的代码的目录文件夹，打开 bash<br><a href="http://segmentfault.com/img/bVbN91/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbN91" alt=" 请输入图片描述 "></a></p>
+<p><pre>进入到等下要 push 的代码的目录文件夹，打开 bash</pre><br><a href="http://segmentfault.com/img/bVbN97/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbN97" alt=" 请输入图片描述 "></a></p>
+<p><pre>初始化</pre></p>
+<p><pre>    git init</pre></p>
+<p><pre>初始化后在本地代码库会自动创建一个.git 隐藏文件，这个就是本地代码库<br><a id="more"></a></pre><br>三：<br>加载文件</p>
+<p><pre>    git add .</pre><br>. 是把文件夹里面的所有文件都加载进来</p>
+<p>还可以单个加载</p>
+<p><pre>    git add index.html,test.html</pre><br>四：</p>
+<p>提交文件，创建时间点</p>
+<p><pre>    git commit -m “init commit”</pre><br>-m “这里的文件是注释”</p>
+<p>创建之后可以随时回到这个时间点，可以看到有 4 个文件被修改了，47 个插入，51 个删除<br><a href="http://segmentfault.com/img/bVbOam/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOam" alt=" 请输入图片描述 "></a></p>
+<p>可以随时用</p>
+<p><pre>git status</pre><br>查看 git 的状态</p>
+<p>五：<br>推送代码</p>
+<p>第一次推送的时候要添加远程的代码库到配置</p>
+<p><pre>git remote add origin <a href="https://github.com/zhong635725959/droplook.git" target="_blank">https://github.com/zhong635725959/droplook.git</a></pre><br>origin 可变，随自己喜欢</p>
+<p>推送代码：</p>
+<p><pre>git push origin master</pre><br>然后会要求输入 github 的帐号和密码（不可见的）<br><a href="http://segmentfault.com/img/bVbOaz/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOaz" alt=" 请输入图片描述 "></a><br>OK, 成功</p>
+<p>问题：<br>在这成功之前遇到了一个问题。update were rejected because the tip of your current branch is behind ….</p>
+<p>原因是远程的的代码库比我本地的代码库要新。所以需要在远程代码库 pull 一次下来。再修改代码。再 push。成功。解决了。<br><a href="http://segmentfault.com/img/bVbOaA/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOaA" alt=" 请输入图片描述 "></a></p>
+<p>—————————————华丽的分割线——————————————————————</p>
+<p>这是我第一次写技术博客。不知道这种算不算是技术博客呢。欢迎吐槽哈。应该有好多问题的。</p>
+<p>之前在 csdn 看到一牛人的一个提升自我能力的一个建议就是写技术博客。</p>
+<p>已经想动手久了。但一直没动。这次终于动手了。希望可以坚持下去。加油</p>
+<p>—————————————华丽的分割线——————————————————————</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/git/">git</a><a href="/tags/github/">github</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/git版本控制/">git版本控制</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://hackeris.me/2014/01/20/git之github使用（一）：push代码到github/" data-title="Git之Github使用（一）：Push代码到Github | ZhongMaiNeng&#39;s blog" data-tsina="2162115292" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/01/24/adnroid-viewpager制作app第一次使用时出现的导航介绍/" title="Adnroid——View Pager制作App第一次使用时出现的导航介绍">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Adnroid——View Pager制作App第一次使用时出现的导航介绍</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/01/19/最后一个寒假-这几天的感想/"  title="最后一个寒假——这几天的感想">
+ <strong>NEXT:</strong><br/> 
+ <span>最后一个寒假——这几天的感想
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/git版本控制/" title="git版本控制">git版本控制<sup>3</sup></a></li>
+		
+			<li><a href="/categories/安卓前端开发/" title="安卓前端开发">安卓前端开发<sup>2</sup></a></li>
+		
+			<li><a href="/categories/安卓开发杂锦/" title="安卓开发杂锦">安卓开发杂锦<sup>2</sup></a></li>
+		
+			<li><a href="/categories/生活点滴/" title="生活点滴">生活点滴<sup>4</sup></a></li>
+		
+			<li><a href="/categories/电脑常识杂锦/" title="电脑常识杂锦">电脑常识杂锦<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Git权威指南/" title="Git权威指南">Git权威指南<sup>2</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
+		
+			<li><a href="/tags/github/" title="github">github<sup>2</sup></a></li>
+		
+			<li><a href="/tags/兼职/" title="兼职">兼职<sup>2</sup></a></li>
+		
+			<li><a href="/tags/大学/" title="大学">大学<sup>1</sup></a></li>
+		
+			<li><a href="/tags/安卓/" title="安卓">安卓<sup>4</sup></a></li>
+		
+			<li><a href="/tags/感悟/" title="感悟">感悟<sup>3</sup></a></li>
+		
+			<li><a href="/tags/生活/" title="生活">生活<sup>4</sup></a></li>
+		
+			<li><a href="/tags/翻墙/" title="翻墙">翻墙<sup>1</sup></a></li>
+		
+			<li><a href="/tags/青春/" title="青春">青春<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi ^_^  I am ZhongMaiNeng . I love to share anything here. <br/>
+			for my collage . for coding . for traveling . for all my life.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2162115292" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/zhongbaitu" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://hackeris.me" target="_blank" title="钟买能">钟买能</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+  </body>
+</html>
