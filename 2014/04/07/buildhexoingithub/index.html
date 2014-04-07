@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>最后一个寒假——这几天的感想 | 钟买能个人博客</title>
+    <title>使用Github搭建静态博客（Hexo） | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="这个博客原本应该在学校的时候就已经要开的了。但开着还要等着审核就懒了，然后那晚写的学期总结就放了在印象笔记。
-这两天想着自己做一个个人博客，头绪也有了，思路也有了，但想着后台那些逻辑就又不想折腾了。好吧，用 wordpress，做个界面就算了，但 wordpress 又没怎么接触过，它的界面应该如何开发呢？还是只是换个主题？ 纯碎换个主题的话又太没意思了。又算了，还是在 segmentfault 开个博客好了，选择这里的其中一个原因就是，我很喜欢这个平台的风格——小清新。
-3 号放假，5 号回家，9 号到了长隆打兼职上班。这个寒假的蓝图我想得非常美好，白天去上班，下班和馥聊聊天，晚上还可以敲代码。一个寒假下来，可以把下一个学期的伙食 + 娱乐 + 实习需要的费用（租房子）都赚够了。
-原本是打着服务员的头号去干的，可惜入世不深的我，误会了这个服务员的意思。。。感觉没有什么服务性质，只是一个清洁工而已。至工作有多卑微也不想再谈了，打了这个多次兼职，这次的最糟糕。每天上班空虚度过、做着呢卑微的工作，很委屈自己似的、感觉什么都没得到，除了钱。但有着馥的鼓励、加油，多空虚都补充回来了。
-&nbsp;">
+    <meta name="description" content="Why
+之前我一直在使用wordpress（下称 wp），就在前些日子，我爱上了 markdown，但在 wp 上又没找到完美一点兼容 markdown 的插件。慢慢地，越来越觉得 wp 很臃肿，最终，我选择了放弃它了。现在，我选择了一个基于 node.js 的小萝莉hexo。
+
+静态博客
+hexo">
     
     
     
@@ -73,15 +73,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/01/19/最后一个寒假-这几天的感想/" title="最后一个寒假——这几天的感想" itemprop="url">最后一个寒假——这几天的感想</a>
+      <a href="/2014/04/07/buildhexoingithub/" title="使用Github搭建静态博客（Hexo）" itemprop="url">使用Github搭建静态博客（Hexo）</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-01-19T15:01:13.000Z" itemprop="datePublished">Jan 19 2014</time>
-    Updated:<time datetime="2014-04-05T06:01:57.000Z" itemprop="dateModified">Apr 5 2014</time>
+    <time datetime="2014-04-07T12:39:32.000Z" itemprop="datePublished">Apr 7 2014</time>
+    Updated:<time datetime="2014-04-07T12:42:19.000Z" itemprop="dateModified">Apr 7 2014</time>
     
   </p>
 </header>
@@ -90,50 +90,91 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-number">1.</span> <span class="toc-text">Why</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 静态博客 "><span class="toc-number">2.</span> <span class="toc-text">静态博客</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 开始 hexo"><span class="toc-number">3.</span> <span class="toc-text">开始 hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 部署到 github"><span class="toc-number">4.</span> <span class="toc-text">部署到 github</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 绑定个性域名 "><span class="toc-number">5.</span> <span class="toc-text">绑定个性域名</span></a></li></ol>
 		</div>
 		
-		<p>这个博客原本应该在学校的时候就已经要开的了。但开着还要等着审核就懒了，然后那晚写的学期总结就放了在印象笔记。</p>
-<p>这两天想着自己做一个个人博客，头绪也有了，思路也有了，但想着后台那些逻辑就又不想折腾了。好吧，用 wordpress，做个界面就算了，但 wordpress 又没怎么接触过，它的界面应该如何开发呢？还是只是换个主题？ 纯碎换个主题的话又太没意思了。又算了，还是在 segmentfault 开个博客好了，选择这里的其中一个原因就是，我很喜欢这个平台的风格——小清新。</p>
-<p>3 号放假，5 号回家，9 号到了长隆打兼职上班。这个寒假的蓝图我想得非常美好，白天去上班，下班和馥聊聊天，晚上还可以敲代码。一个寒假下来，可以把下一个学期的伙食 + 娱乐 + 实习需要的费用（租房子）都赚够了。</p>
-<p>原本是打着服务员的头号去干的，可惜入世不深的我，误会了这个服务员的意思。。。感觉没有什么服务性质，只是一个清洁工而已。至工作有多卑微也不想再谈了，打了这个多次兼职，这次的最糟糕。每天上班空虚度过、做着呢卑微的工作，很委屈自己似的、感觉什么都没得到，除了钱。但有着馥的鼓励、加油，多空虚都补充回来了。</p>
-<p>&nbsp;</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2244.jpg" alt=""></p>
-<p><a id="more"></a>直至第五天，发生了过于严重的问题·。一把火冲上头就去主管那里辞职了。</p>
-<p>到了更衣室见到基龙，他说我怎么这么突然 ，好像把他吓坏了。因为才认识他一天，准确来说 24 小时都还不够。这时候他赶着要回城职拿东西。</p>
-<p>到了外面等车，看着发光的二家姐头像，也和她说了。理所当然的，会问我为什么。然后我如常说了。这时候我承认我自己有点自大，我觉得自己可以利用这些时间做一些更有意义的事情，我现在比以前会的东西更多，我有得选择。她说我沉不住气，怎么不能忍一忍。但我觉得我这个忍的时间过了。我的这个时间在早两年就过了，好多苦我都熬过了。以前，我别无选择，现在，我可以选择。</p>
-<p>有时候，我也会拿自己和里面一起工作的临时工比较一下，为什么他们可以熬下去，而我就不能呢？ 然后我给我自己的答案就是，他们（都是一些没工作做的社会青年）的知识很有限，他们要是不留在这里的话，他们也没其他地方去。我。就和他们不同于这里。我不知道我这个想法对不对，不知道应不应该这样想，但我就是这么想了。</p>
-<p>晚上回到宿舍。馥没有问太多我，她说随我喜欢咯。其实我想你问多一点，哪怕是一点。不过就算你问了我也不会说太多。因为我知道我说了你也会不开心。不知道你现在是不是在想，我是因为吃不了苦的那种，然后就容易放弃了。</p>
-<p>晚上，到了宿舍管理处那里问关于退宿舍的事情，这时候和里面的一个阿姨聊了起来（她主要是看我这么快就退宿舍了，问了下原因），我也如实说了，那时候我还不知道她是谁，也没避忌太多，就把心里的都说了出来。最后，她竟然赞我很有想法，再然后她暴露自己的身份，她是 ** 公司（世界 500 强）的总经理，这个宿舍管理公司是她们公司的子公司之一。在了解我专业情况之下。她说她在金鼎那边有个餐厅，打算向着网络订餐化发展，（应该又是想搞传说中的 O2O 的了）。她想先招我进去她们那里做着服务员，先了解公司、餐厅的运作流程。到实习的时候就过去实习帮她忙。</p>
-<p>这时候我心开了一朵花。哈哈。我说我今天出门遇贵人了，她问我有么有作品之类的，刚好我带了笔记本，她说我好像有备而来，机会是留给有准备的人的，就这样，我就在旁边的桌子上坐了下来面试了。</p>
-<p>最终。我拿着简历表说，我回去考虑一下，考虑清楚了就填了表再拿下来给你。然后她还叫秘书留了电话给我。（非常感谢你这么看得起我）</p>
-<p>最终没去的原因有几个，1、实习或者毕业后回珠海工作的想法没怎么想过。反而更想留在广州或者甚至是深圳（因为馥）。2、餐厅有点远，她说，地点没有远和不远，只有离梦想远和不远。我非常赞同这句话。但，例如，我也不可能说去北京就是为了做一个服务员吧。3、谢谢经理这么看得起我，如果我真的有那么大的能力，我想趁这个时间继续给我自己充实深造一下。4、5、、、、、</p>
-<p>&nbsp;</p>
-<p>好吧，剩下的寒假时间，主要是准备中国软件杯，加强英语，继续深入了解安卓开发，参与开源，养成写技术博客的习惯（就在这个博客开始）。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2234.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2238.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2251.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2256.jpg" alt=""></p>
+		<h1 id="Why">Why</h1>
+<p>之前我一直在使用<code>wordpress</code>（下称 wp），就在前些日子，我爱上了 markdown，但在 wp 上又没找到完美一点兼容 markdown 的插件。慢慢地，越来越觉得 wp 很臃肿，最终，我选择了放弃它了。现在，我选择了一个基于 node.js 的小萝莉<code>hexo</code>。</p>
+<hr>
+<h1 id=" 静态博客 ">静态博客</h1>
+<p>hexo 相对于 wp，最大的区别就是它是一个静态博客。静态博客有什么特点？</p>
+<ul>
+<li>不用配置服务器</li>
+<li>不用数据库</li>
+<li>访问速度相当快</li>
+<li>没有安全性可言</li>
+<li>使用户可更注重博客内容</li>
+<li>支持 markdown</li>
+</ul>
+<p>然而，现在我们还是使用<code>github pages</code>来搭建，意味着什么？就是免费。娃哈哈。当然，<code>七牛</code>等一系列云产品也是可以搭建的。</p>
+<p>以上说的都是有点，至于缺点呢。缺点就不说那么多了，总得来说就是麻烦一些。</p>
+<p>静态博客也有很多，例如<code>github pages</code> 推荐使用的<code>jekyll</code>。</p>
+<p>而 hexo 相对而言还是轻巧一些的，生成文章的速度也较快（静态博客生成页面时都是要整站生成，所以，页面越多，速度就越慢）。</p>
+<hr>
+<h1 id=" 开始 hexo">开始 hexo</h1>
+<p>首先本地得装上了<code>node.js</code>、<code>gi</code>t 和<code>hexo</code></p>
+<p>吓？这么火爆的 nodejs 和最流行的版本控制器 git 都不知道？ 没关系，经过这次，多少也会了解到一点点点，也可自行谷歌看看去。</p>
+<p>安装 git：<a href="http://git-scm.com/" target="_blank">git</a>       </p>
+<p>安装 nodejs：<a href="http://nodejs.org/" target="_blank">node.js 官网</a></p>
+<p>hexo：<a href="http://hexo.io/" target="_blank">hexo 官网</a></p>
+<p>hexo 使用 npm 安装，Quick Start 说得很清楚，我这里就不复制黏贴了。</p>
+<p>Install —&gt; Setup —&gt; Generate —&gt; 启动 Server</p>
+<p>默认监听<code>4000</code>端口，现在，打开浏览器，输入 <code>localhost:4000</code> 就可以看到一个漂亮的博客出现在你眼前啦，耶~~~。</p>
+<p><code>hexo</code>的使用可参详官网的文档。</p>
+<hr>
+<h1 id=" 部署到 github">部署到 github</h1>
+<p>首先，配置文件<code>_config.yml</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="label">deploy:</span>
+  type: github
+  repository: git@github<span class="preprocessor">.com</span>:A-limon/a-limon<span class="preprocessor">.github</span><span class="preprocessor">.com</span><span class="preprocessor">.git</span>
+  branch: master
+</pre></td></tr></table></figure>
+
+<p>然后执行命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>hexo clean
+hexo <span class="keyword">generate</span>
+hexo deploy
+</pre></td></tr></table></figure>
+
+<p>此时，在博客的根目录下会生成一个文件夹：<code>.deploy</code></p>
+<p>现在，到<code>github</code>新建一个项目，项目名为：<code>你的用户名.github.io</code><strong>必须为这个名字</strong></p>
+<p>然后我们把这个文件夹里面的文件都<code>push</code>到刚才新建那个项目就 OK 了。几分钟过后，就可以打开<code>你的用户名.github.io</code>看到你的博客了。</p>
+<hr>
+<h1 id=" 绑定个性域名 ">绑定个性域名</h1>
+<p>在项目的根目录，新建名为<code>CNAME</code>的文件，内容为：<code>你的域名</code>，例如我的就是：hackeris.me</p>
+<p>再到把你的域名指向<code>你的用户名.github.io</code>，几分钟过后，就可以看到成功的诞生了。</p>
+<hr>
+<blockquote>
+<p>我的博客</p>
+<p><a href="http://www.hackeris.me" target="_blank">hackeris.me</a></p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/兼职/">兼职</a><a href="/tags/感悟/">感悟</a><a href="/tags/生活/">生活</a>
+  <span></span> <a href="/tags/github/">github</a><a href="/tags/hexo/">hexo</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
+  <a class="article-category-link" href="/categories/电脑常识杂锦/">电脑常识杂锦</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/01/19/最后一个寒假-这几天的感想/" data-title="最后一个寒假——这几天的感想 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/04/07/buildhexoingithub/" data-title="使用Github搭建静态博客（Hexo） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -142,14 +183,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/01/20/git之github使用（一）：push代码到github/" title="Git之Github使用（一）：Push代码到Github">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Git之Github使用（一）：Push代码到Github</span>
+
+<div class="next">
+<a href="/2014/04/06/talkingcallback/"  title="谈回调函数(基于Java)">
+ <strong>NEXT:</strong><br/> 
+ <span>谈回调函数(基于Java)
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -163,7 +204,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-number">1.</span> <span class="toc-text">Why</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 静态博客 "><span class="toc-number">2.</span> <span class="toc-text">静态博客</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 开始 hexo"><span class="toc-number">3.</span> <span class="toc-text">开始 hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 部署到 github"><span class="toc-number">4.</span> <span class="toc-text">部署到 github</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 绑定个性域名 "><span class="toc-number">5.</span> <span class="toc-text">绑定个性域名</span></a></li></ol>
   </div>
 
 <div id="asidepart">
