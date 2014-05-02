@@ -4,17 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Git学习——Git对象及游标的简单介绍 | 钟买能个人博客</title>
+    <title>Git学习——Git重置 | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="读《Git 权威指南》——笔记[sourcecode language=”plain”]git log -1 —pretty=raw[/sourcecode]可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交
-我们可以用命令
-[sourcecode language=”plain”]git cat-file -t 9c0ac[/sourcecode]
-来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只需输入前面一小段不冲突的字符)
-[caption width=”500” align=”alignnone”] 图 1[/caption]
-[caption width=”500” align=”alignnone”] 图 2[/caption]">
+    <meta name="description" content="读《Git 权威指南》——笔记
+书上是在这一章介绍游标 HEAD 的，但我觉得在上一章讲对象的时候介绍更为适合。
+游标。当所在的分支有了新的提交的时候，游标会自动指向该提交。
+可以向前移动，当然，也可以向后。才能称得上为游标。
+首先，介绍一下重置。（即 reset）
+reset a.txt```1
+">
     
     
     
@@ -74,15 +75,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/02/15/git学习-git对象及游标的简单介绍/" title="Git学习——Git对象及游标的简单介绍" itemprop="url">Git学习——Git对象及游标的简单介绍</a>
+      <a href="/2014/02/17/git_reset/" title="Git学习——Git重置" itemprop="url">Git学习——Git重置</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-02-15T07:30:19.000Z" itemprop="datePublished">Feb 15 2014</time>
-    Updated:<time datetime="2014-04-05T06:01:57.000Z" itemprop="dateModified">Apr 5 2014</time>
+    <time datetime="2014-02-17T03:02:43.000Z" itemprop="datePublished">Feb 17 2014</time>
+    Updated:<time datetime="2014-05-02T02:48:41.000Z" itemprop="dateModified">May 2 2014</time>
     
   </p>
 </header>
@@ -94,36 +95,85 @@
 		
 		</div>
 		
-		<p>读《Git 权威指南》——笔记<br>[sourcecode language=”plain”]git log -1 —pretty=raw[/sourcecode]<br>可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交</p>
-<p>我们可以用命令</p>
-<p>[sourcecode language=”plain”]git cat-file -t 9c0ac[/sourcecode]</p>
-<p>来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只需输入前面一小段不冲突的字符)</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/1.png" alt=" 图 1"> 图 1[/caption]</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/2.png" alt=" 图 2"> 图 2[/caption]<br><a id="more"></a><br>用<br>[sourcecode language=”plain”]git cat-file -p 9c0ac[/sourcecode]</p>
-<p>查看该对象的内容</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/3.png" alt=" 图 3"> 图 3[/caption]</p>
-<p>当查看 tree 的对象的时候，发现里面还包含这另外一个对象 blob, 这个对象保存着 a.txt 的内容。我们查看一下</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/4.png" alt=" 图 4"> 图 4[/caption]</p>
-<p>[sourcecode language=”plain”][/code]git log —pretty=raw —graph 9c0ac[/sourcecode]</p>
-<p>可以查看该对象的父提交的跟踪链，到了最后一个的时候便没有 parent 对象。</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/5.png" alt=" 图 5"> 图 5[/caption]</p>
-<p>[sourcecode language=”plain”]git branch[/sourcecode]<br>查看分支</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/6.png" alt=" 图 6"> 图 6[/caption]</p>
-<p>可见，当前有两个分支。一个是 master, 和 pre 分支</p>
-<p>[sourcecode language=”plain”]git log HEAD -1 [/sourcecode]<br>查看当前游标的指向。（HEAD 称为游标，用于指向不同分支中的不同提交。下面会详细说明）<br>[sourcecode language=”plain”]git log master -1 [/sourcecode]<br>查看当前 master 的提交标识<br>[sourcecode language=”plain”]git log pre -1 [/sourcecode]<br>查看当前 pre 的提交标识</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/7.png" alt=" 图 7"> 图 7[/caption]</p>
-<p>若加上参数 —pretty=oneline 则显示精简模式</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/8.png" alt=" 图 8"> 图 8[/caption]</p>
-<p>可见，当前的 HEAD 游标和 master 的指向是一样的，所以当前的 HEAD 是指向 master 的最后一个提交</p>
-<p>现在我们切换一下分支<br>查看当前 master 的提交标识<br>[sourcecode language=”plain”]git checkout pre [/sourcecode]</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/9.png" alt=" 图 9"> 图 9[/caption]</p>
-<p>可见，切换分支之后，游标 HEAD 就指向 pre 的最新的提交了。</p>
-<p>下面我们来看看这些对象都存放了在哪里</p>
-<p>[sourcecode language=”plain”]find .git -name HEAD -o -name master -o -name pre[/sourcecode]<br>再把他们输出查看<br>[sourcecode language=”plain”]cat .git/HEAD[/sourcecode]<br>[sourcecode language=”plain”]cat .git/refs/heads/master[/sourcecode]<br>[sourcecode language=”plain”]cat .git/refs/heads/pre[/sourcecode]</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/10.png" alt=" 图 10"> 图 10[/caption]</p>
-<p>可见，HEAD 是指向了 refs/heads/master（而不是一个具体的哈希值）。与上面一一对应。完全相同。</p>
-<p>还介绍多一个底层命令，用语查看引用对应的提交 ID（哈希值）：<br>[sourcecode language=”plain”]git rev-parse HEAD[/sourcecode]</p>
-<p>[caption width=”500” align=”alignnone”]<img src="http://zhongsir.qiniudn.com/2014-2-15-git/11.png" alt=" 图 11"> 图 11[/caption]</p>
+		<p>读《Git 权威指南》——笔记</p>
+<p>书上是在这一章介绍游标 HEAD 的，但我觉得在上一章讲对象的时候介绍更为适合。</p>
+<p>游标。当所在的分支有了新的提交的时候，游标会自动指向该提交。</p>
+<p>可以向前移动，当然，也可以向后。才能称得上为游标。</p>
+<p>首先，介绍一下重置。（即 reset）</p>
+<figure class="highlight git"><figcaption><span>reset a.txt```</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>
+把刚 add 到暂存区的文件撤出暂存区
+
+![](http://zhongsir.qiniudn.com/2014-2-17-git/1.png)
+<span class="comment">&lt;!--more--&gt;</span>
+
+```git reset HEAD^
+</pre></td></tr></table></figure>
+
+<p>等同</p>
+<figure class="highlight git"><figcaption><span>reset --mixed HEAD^```</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>
+工作区不变，暂存区退回到现在的引用的父提交，引用也会退一次。
+
+<span class="escape">``</span><span class="escape">`g</span>it reset --soft HEAD^
+</pre></td></tr></table></figure>
+
+<p>引用退回上一次提交（即父提交），工作区和暂存区不变</p>
+<figure class="highlight git"><figcaption><span>reset --hard HEAD^```</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>
+替换引用、暂存区、工作区
+
+当重置了的时候，用 git <span class="keyword">log</span> 查看日志的时候发现，日志也一同消失了。
+
+这个时候需要用到  reflog   来挽救错误的动作
+
+<span class="string">``</span><span class="string">`git reflog</span>
+</pre></td></tr></table></figure>
+
+<p>可以查看全部的操作记录。当然，也可以显示单一分支的操作记录</p>
+<figure class="highlight git"><figcaption><span>reflog show master```</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>
+![](http:<span class="regexp">//zhongsir</span>.qiniudn.com/<span class="number">2014</span>-<span class="number">2</span>-<span class="number">17</span>-git/<span class="number">3</span>png.png)
+
+这里我们看到一个很不错的表达式： &<span class="keyword">lt</span>;refname&<span class="keyword">gt</span>;@{&<span class="keyword">lt</span>;n&<span class="keyword">gt</span>;}  ，这个表达式的含义是引用 &<span class="keyword">lt</span>;refnamw&<span class="keyword">gt</span>; 之前第 &<span class="keyword">lt</span>;n&<span class="keyword">gt</span>; 次改变的 SHA1 哈希值。
+
+当然，在第一行也有响应的哈希值。
+
+现在我们想还原到哪个提交都可以了。
+
+<span class="string">``</span><span class="string">`git reset master@{1}</span>
+</pre></td></tr></table></figure>
+
+<p>或者</p>
+<p><code>git reflog show dbd3fa8</code></p>
+<p>就可以还原到该提交了。</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-2-17-git/4.png" alt=""></p>
+<p>相应的操作也会记录到日志中</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -143,7 +193,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/02/15/git学习-git对象及游标的简单介绍/" data-title="Git学习——Git对象及游标的简单介绍 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/02/17/git_reset/" data-title="Git学习——Git重置 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -153,18 +203,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/02/16/个人博客，第一文/" title="个人博客，第一文">
+ <a href="/2014/02/19/github_host/" title="关于今天Git Hub的Css/Js文件给墙了的解决方法">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  个人博客，第一文</span>
+  关于今天Git Hub的Css/Js文件给墙了的解决方法</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/02/02/android-processesthreadasynctask（未完，待续。）/"  title="Android——Processes,Thread,Async Task（未完，待续。）">
+<a href="/2014/02/16/firstBlog/"  title="个人博客，第一文">
  <strong>NEXT:</strong><br/> 
- <span>Android——Processes,Thread,Async Task（未完，待续。）
+ <span>个人博客，第一文
 </span>
 </a>
 </div>

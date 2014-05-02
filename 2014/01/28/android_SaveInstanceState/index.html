@@ -9,8 +9,7 @@
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="在学院科技文化节的时候做了一个安卓小应用，实现了：加载图片——人脸分析——添加搞怪表情。问题：加载了图片或者添加了表情之后，锁屏，解锁，界面回到了原始状态（图片丢失了）。原因：当解锁的时候，自动调用了一次 oncreat，变量们都重新 new 了一次，所以就回到原始状态了。解决：当解锁屏幕的时候，方法调用如下图我们需要做的是，重写 onSaveInstanceState 方法。
-To save additional state information for your activity, you must implement onSaveInstanceState() and add key-value pairs to the Bundle object——android 官网">
+    <meta name="description" content="在学院科技文化节的时候做了一个安卓小应用，实现了：加载图片——人脸分析——添加搞怪表情。问题：加载了图片或者添加了表情之后，锁屏，解锁，界面回到了原始状态（图片丢失了）。原因：当解锁的时候，自动调用了一次 oncreat，变量们都重新 new 了一次，所以就回到原始状态了。解决：当解锁屏幕的时候，方">
     
     
     
@@ -70,7 +69,7 @@ To save additional state information for your activity, you must implement onSav
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/01/28/android保存当前活动状态/" title="Android保存当前活动状态" itemprop="url">Android保存当前活动状态</a>
+      <a href="/2014/01/28/android_SaveInstanceState/" title="Android保存当前活动状态" itemprop="url">Android保存当前活动状态</a>
   </h1>
   <p class="article-author">By
     
@@ -78,7 +77,7 @@ To save additional state information for your activity, you must implement onSav
     </p>
   <p class="article-time">
     <time datetime="2014-01-28T15:16:47.000Z" itemprop="datePublished">Jan 28 2014</time>
-    Updated:<time datetime="2014-04-05T06:01:57.000Z" itemprop="dateModified">Apr 5 2014</time>
+    Updated:<time datetime="2014-05-02T03:10:48.000Z" itemprop="dateModified">May 2 2014</time>
     
   </p>
 </header>
@@ -91,31 +90,162 @@ To save additional state information for your activity, you must implement onSav
 		</div>
 		
 		<p>在学院科技文化节的时候做了一个安卓小应用，实现了：加载图片——人脸分析——添加搞怪表情。<br>问题：<br>加载了图片或者添加了表情之后，锁屏，解锁，界面回到了原始状态（图片丢失了）。<br>原因：<br>当解锁的时候，自动调用了一次 oncreat，变量们都重新 new 了一次，所以就回到原始状态了。<br>解决：<br>当解锁屏幕的时候，方法调用如下图<br><a href="http://segmentfault.com/img/bVbQoI/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbQoI" alt=" 请输入图片描述 "></a><br>我们需要做的是，重写 onSaveInstanceState 方法。</p>
+<blockquote>
 <p>To save additional state information for your activity, you must implement onSaveInstanceState() and add key-value pairs to the Bundle object——android 官网</p>
-<a id="more"></a>
+</blockquote>
+<p>代码如下：</p>
+<figure class="highlight @Override"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre>    protected void onSaveInstanceState(Bundle outState) {        // 保存状态，防止锁屏后图片丢失
+        // TODO Auto-generated method stub
+        outState<span class="preprocessor">.putParcelable</span>(<span class="string">"NewBitmap"</span>,NewBitmap)<span class="comment">;</span>
+        outState<span class="preprocessor">.putParcelable</span>(<span class="string">"img"</span>, img)<span class="comment">;</span>
+        outState<span class="preprocessor">.putParcelable</span>(<span class="string">"bitmap"</span>, bitmap)<span class="comment">;</span>
+        outState<span class="preprocessor">.putInt</span>(<span class="string">"ifLoaded"</span>, ifLoaded)<span class="comment">;</span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"eye_left_x"</span>, eye_left_x)<span class="comment">;</span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"eye_left_y"</span>, eye_left_y)<span class="comment">;</span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"eye_right_x"</span>, eye_right_x)<span class="comment">;</span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"eye_right_y"</span>, eye_right_y)<span class="comment">;</span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"nose_x"</span>, nose_x)<span class="comment">;</span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"nose_y"</span>, nose_y)<span class="comment">;</span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"mouth_x"</span>, mouth_x)<span class="comment">;  </span>
+        outState<span class="preprocessor">.putFloat</span>(<span class="string">"mouth_y"</span>, mouth_y)<span class="comment">;</span>
+        System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(<span class="string">"onSaveInstanceState"</span>)<span class="comment">;</span>
+        super<span class="preprocessor">.onSaveInstanceState</span>(outState)<span class="comment">;</span>
+    }
+</pre></td></tr></table></figure>
 
-<p>代码如下：<br><pre>@Override<br>    protected void onSaveInstanceState(Bundle outState) {        // 保存状态，防止锁屏后图片丢失<br>        // TODO Auto-generated method stub<br>        outState.putParcelable(“NewBitmap”,NewBitmap);<br>        outState.putParcelable(“img”, img);<br>        outState.putParcelable(“bitmap”, bitmap);<br>        outState.putInt(“ifLoaded”, ifLoaded);<br>        outState.putFloat(“eye_left_x”, eye_left_x);<br>        outState.putFloat(“eye_left_y”, eye_left_y);<br>        outState.putFloat(“eye_right_x”, eye_right_x);<br>        outState.putFloat(“eye_right_y”, eye_right_y);<br>        outState.putFloat(“nose_x”, nose_x);<br>        outState.putFloat(“nose_y”, nose_y);<br>        outState.putFloat(“mouth_x”, mouth_x);<br>        outState.putFloat(“mouth_y”, mouth_y);<br>        System.out.println(“onSaveInstanceState”);<br>        super.onSaveInstanceState(outState);<br>    }</pre><br>把需要保存的数据都 put 进这个 Bundle 对象。</p>
+<p>把需要保存的数据都 put 进这个 Bundle 对象。</p>
 <p>我这里保存的是，bitmap，和一些用来画表情的一些坐标（眼耳口鼻）。</p>
-<p>重写 onRestoreInstanceState 把刚才保存的值取出来：<br><pre>@Override<br>    protected void onRestoreInstanceState(Bundle savedInstanceState) {    // 恢复状态数据<br>        // TODO Auto-generated method stub<br>        ifLoaded=savedInstanceState.getInt(“ifLoaded”);<br>        NewBitmap=savedInstanceState.getParcelable(“NewBitmap”);<br>        img=savedInstanceState.getParcelable(“img”);<br>        bitmap=savedInstanceState.getParcelable(“bitmap”);<br>        eye_left_x=savedInstanceState.getFloat(“eye_left_x”);<br>        eye_left_y=savedInstanceState.getFloat(“eye_left_y”);<br>        eye_right_x=savedInstanceState.getFloat(“eye_right_x”);<br>        eye_right_y=savedInstanceState.getFloat(“eye_right_y”);<br>        nose_x=savedInstanceState.getFloat(“nose_x”);<br>        nose_y=savedInstanceState.getFloat(“nose_y”);<br>        mouth_x=savedInstanceState.getFloat(“mouth_x”);<br>        mouth_y=savedInstanceState.getFloat(“mouth_y”);<br>        if(img!=null){<br>            imageView.setImageBitmap(img);<br>        }</p>
-<pre><code>    System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(<span class="string">"onRestoreInstanceState"</span>)<span class="comment">;</span>
-    super<span class="preprocessor">.onRestoreInstanceState</span>(savedInstanceState)<span class="comment">;</span>
-}&lt;/pre&gt;
-</code></pre><p>OK，问题解决了。</p>
+<p>重写 onRestoreInstanceState 把刚才保存的值取出来：</p>
+<figure class="highlight @Override"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre>    protected void onRestoreInstanceState(Bundle savedInstanceState) {    // 恢复状态数据
+        // TODO Auto-generated method stub
+        ifLoaded=savedInstanceState<span class="preprocessor">.getInt</span>(<span class="string">"ifLoaded"</span>)<span class="comment">;</span>
+        NewBitmap=savedInstanceState<span class="preprocessor">.getParcelable</span>(<span class="string">"NewBitmap"</span>)<span class="comment">;</span>
+        img=savedInstanceState<span class="preprocessor">.getParcelable</span>(<span class="string">"img"</span>)<span class="comment">;</span>
+        bitmap=savedInstanceState<span class="preprocessor">.getParcelable</span>(<span class="string">"bitmap"</span>)<span class="comment">;</span>
+        eye_left_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_left_x"</span>)<span class="comment">;</span>
+        eye_left_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_left_y"</span>)<span class="comment">;</span>
+        eye_right_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_right_x"</span>)<span class="comment">;</span>
+        eye_right_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_right_y"</span>)<span class="comment">;</span>
+        nose_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"nose_x"</span>)<span class="comment">;</span>
+        nose_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"nose_y"</span>)<span class="comment">;</span>
+        mouth_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"mouth_x"</span>)<span class="comment">;</span>
+        mouth_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"mouth_y"</span>)<span class="comment">;</span>
+        if(img!=null){
+            imageView<span class="preprocessor">.setImageBitmap</span>(img)<span class="comment">;</span>
+        }
+
+        System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(<span class="string">"onRestoreInstanceState"</span>)<span class="comment">;</span>
+        super<span class="preprocessor">.onRestoreInstanceState</span>(savedInstanceState)<span class="comment">;</span>
+    }
+</pre></td></tr></table></figure>
+
+<p>OK，问题解决了。</p>
 <p>以上是方法一，还有一种方法就是这样的：</p>
-<p>引用官网的代码，<br><pre>@Override<br>protected void onCreate(Bundle savedInstanceState) {<br>    super.onCreate(savedInstanceState); // Always call the superclass first</p>
-<pre><code><span class="comment">// Check whether we're recreating a previously destroyed instance</span>
-<span class="keyword">if</span> (savedInstanceState <span class="subst">!=</span> <span class="built_in">null</span>) {
-    <span class="comment">// Restore value of members from saved state</span>
-    mCurrentScore <span class="subst">=</span> savedInstanceState<span class="built_in">.</span>getInt(STATE_SCORE);
-    mCurrentLevel <span class="subst">=</span> savedInstanceState<span class="built_in">.</span>getInt(STATE_LEVEL);
-} <span class="keyword">else</span> {
-    <span class="comment">// Probably initialize members with default values for a new instance</span>
+<p>引用官网的代码，</p>
+<figure class="highlight @Override"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span>(Bundle savedInstanceState) {
+    <span class="keyword">super</span>.onCreate(savedInstanceState); <span class="comment">// Always call the superclass first</span>
+
+    <span class="comment">// Check whether we're recreating a previously destroyed instance</span>
+    <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) {
+        <span class="comment">// Restore value of members from saved state</span>
+        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+        mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+    } <span class="keyword">else</span> {
+        <span class="comment">// Probably initialize members with default values for a new instance</span>
+    }
+    ...
 }
-<span class="attribute">...</span>
-</code></pre><p>}</pre><br>换成我的代码的话，我只需变动 if 里面的代码：</p>
-<p><pre>if(savedInstanceState!=null){<br>            ifLoaded=savedInstanceState.getInt(“ifLoaded”);<br>            NewBitmap=savedInstanceState.getParcelable(“NewBitmap”);<br>            img=savedInstanceState.getParcelable(“img”);<br>            bitmap=savedInstanceState.getParcelable(“bitmap”);<br>            eye_left_x=savedInstanceState.getFloat(“eye_left_x”);<br>            eye_left_y=savedInstanceState.getFloat(“eye_left_y”);<br>            eye_right_x=savedInstanceState.getFloat(“eye_right_x”);<br>            eye_right_y=savedInstanceState.getFloat(“eye_right_y”);<br>            nose_x=savedInstanceState.getFloat(“nose_x”);<br>            nose_y=savedInstanceState.getFloat(“nose_y”);<br>            mouth_x=savedInstanceState.getFloat(“mouth_x”);<br>            mouth_y=savedInstanceState.getFloat(“mouth_y”);<br>            if(img!=null){<br>                imageView.setImageBitmap(img);<br>            }</p>
-<pre><code>    }<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-</code></pre><p>也是这样就可以把保存的数据取出来了。</p>
+</pre></td></tr></table></figure>
+
+<p>换成我的代码的话，我只需变动 if 里面的代码：</p>
+<figure class="highlight if(savedInstanceState!=null){"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre>            ifLoaded=savedInstanceState<span class="preprocessor">.getInt</span>(<span class="string">"ifLoaded"</span>)<span class="comment">;</span>
+            NewBitmap=savedInstanceState<span class="preprocessor">.getParcelable</span>(<span class="string">"NewBitmap"</span>)<span class="comment">;</span>
+            img=savedInstanceState<span class="preprocessor">.getParcelable</span>(<span class="string">"img"</span>)<span class="comment">;</span>
+            bitmap=savedInstanceState<span class="preprocessor">.getParcelable</span>(<span class="string">"bitmap"</span>)<span class="comment">;</span>
+            eye_left_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_left_x"</span>)<span class="comment">;</span>
+            eye_left_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_left_y"</span>)<span class="comment">;</span>
+            eye_right_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_right_x"</span>)<span class="comment">;</span>
+            eye_right_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"eye_right_y"</span>)<span class="comment">;</span>
+            nose_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"nose_x"</span>)<span class="comment">;</span>
+            nose_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"nose_y"</span>)<span class="comment">;</span>
+            mouth_x=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"mouth_x"</span>)<span class="comment">;</span>
+            mouth_y=savedInstanceState<span class="preprocessor">.getFloat</span>(<span class="string">"mouth_y"</span>)<span class="comment">;</span>
+            if(img!=null){
+                imageView<span class="preprocessor">.setImageBitmap</span>(img)<span class="comment">;</span>
+            }
+
+        }
+</pre></td></tr></table></figure>
+
+<p>也是这样就可以把保存的数据取出来了。</p>
 <p>我的馥这几天不知道怎么了。~ 又耍脾气不理我了~ 女人心真难懂~ 唉。</p>
   
 	</div>
@@ -136,7 +266,7 @@ To save additional state information for your activity, you must implement onSav
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/01/28/android保存当前活动状态/" data-title="Android保存当前活动状态 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/01/28/android_SaveInstanceState/" data-title="Android保存当前活动状态 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -146,7 +276,7 @@ To save additional state information for your activity, you must implement onSav
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/02/01/android-notifications笔记/" title="Android——Notifications笔记">
+ <a href="/2014/02/01/android-notifications/" title="Android——Notifications笔记">
   <strong>PREVIOUS:</strong><br/>
   <span>
   Android——Notifications笔记</span>
@@ -155,7 +285,7 @@ To save additional state information for your activity, you must implement onSav
 
 
 <div class="next">
-<a href="/2014/01/24/adnroid-viewpager制作app第一次使用时出现的导航介绍/"  title="Adnroid——View Pager制作App第一次使用时出现的导航介绍">
+<a href="/2014/01/24/adnroid-viewpager/"  title="Adnroid——View Pager制作App第一次使用时出现的导航介绍">
  <strong>NEXT:</strong><br/> 
  <span>Adnroid——View Pager制作App第一次使用时出现的导航介绍
 </span>

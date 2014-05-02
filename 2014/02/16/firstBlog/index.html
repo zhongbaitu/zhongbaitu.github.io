@@ -4,18 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Git之Github使用（一）：Push代码到Github | 钟买能个人博客</title>
+    <title>个人博客，第一文 | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="github 一直都是在上面拿资源。感觉有点愧对大众。是不是应该奉献自己的力量给 github 来推动开源的发展呢。在两个月前第一次在 github 新建项目，并且 push 了一套比赛的源码。但。。。今天竟然忘了怎么用 git 了。又复习了一次。所以这次打算在这里作个笔记。给自己做个的或是给 git 新手做的也好吧。为互联网贡献一点力量。
-一：安装 git 和配置就不说了。
-二：进入到等下要 push 的代码的目录文件夹，打开 bash
-进入到等下要 push 的代码的目录文件夹，打开 bash
-初始化
-    git init
-初始化后在本地代码库会自动创建一个.git 隐藏文件，这个就是本地代码库">
+    <meta name="description" content="我是一名安卓开发者 、 web 开发者、一枚极客。写这篇文章的时候是一名大二学生。爱 IT、爱代码、爱设计、爱经济学、羽毛球、单车。喜欢专研各种技术。
+介绍完毕。
+自从高一做过淘宝客，就开始去尝试去改一些网站。去注册域名（还有印象，就是 tk 域名——免费），去找一些免费的空间。去组建自己的网站。慢慢，接触网络安全（此时，我又想起你了，小吉同学），到入侵，最终，上瘾了。">
     
     
     
@@ -75,15 +71,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/01/20/git之github使用（一）：push代码到github/" title="Git之Github使用（一）：Push代码到Github" itemprop="url">Git之Github使用（一）：Push代码到Github</a>
+      <a href="/2014/02/16/firstBlog/" title="个人博客，第一文" itemprop="url">个人博客，第一文</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-01-20T15:07:26.000Z" itemprop="datePublished">Jan 20 2014</time>
-    Updated:<time datetime="2014-04-05T06:01:57.000Z" itemprop="dateModified">Apr 5 2014</time>
+    <time datetime="2014-02-15T16:11:28.000Z" itemprop="datePublished">Feb 16 2014</time>
+    Updated:<time datetime="2014-05-02T02:41:51.000Z" itemprop="dateModified">May 2 2014</time>
     
   </p>
 </header>
@@ -95,53 +91,56 @@
 		
 		</div>
 		
-		<p>github 一直都是在上面拿资源。感觉有点愧对大众。是不是应该奉献自己的力量给 github 来推动开源的发展呢。<br>在两个月前第一次在 github 新建项目，并且 push 了一套比赛的源码。但。。。今天竟然忘了怎么用 git 了。又复习了一次。所以这次打算在这里作个笔记。给自己做个的或是给 git 新手做的也好吧。为互联网贡献一点力量。</p>
-<p>一：<br>安装 git 和配置就不说了。</p>
-<p>二：<br>进入到等下要 push 的代码的目录文件夹，打开 bash<br><a href="http://segmentfault.com/img/bVbN91/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbN91" alt=" 请输入图片描述 "></a></p>
-<p><pre>进入到等下要 push 的代码的目录文件夹，打开 bash</pre><br><a href="http://segmentfault.com/img/bVbN97/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbN97" alt=" 请输入图片描述 "></a></p>
-<p><pre>初始化</pre></p>
-<p><pre>    git init</pre></p>
-<p><pre>初始化后在本地代码库会自动创建一个.git 隐藏文件，这个就是本地代码库<br><a id="more"></a></pre><br>三：<br>加载文件</p>
-<p><pre>    git add .</pre><br>. 是把文件夹里面的所有文件都加载进来</p>
-<p>还可以单个加载</p>
-<p><pre>    git add index.html,test.html</pre><br>四：</p>
-<p>提交文件，创建时间点</p>
-<p><pre>    git commit -m “init commit”</pre><br>-m “这里的文件是注释”</p>
-<p>创建之后可以随时回到这个时间点，可以看到有 4 个文件被修改了，47 个插入，51 个删除<br><a href="http://segmentfault.com/img/bVbOam/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOam" alt=" 请输入图片描述 "></a></p>
-<p>可以随时用</p>
-<p><pre>git status</pre><br>查看 git 的状态</p>
-<p>五：<br>推送代码</p>
-<p>第一次推送的时候要添加远程的代码库到配置</p>
-<p><pre>git remote add origin <a href="https://github.com/zhong635725959/droplook.git" target="_blank">https://github.com/zhong635725959/droplook.git</a></pre><br>origin 可变，随自己喜欢</p>
-<p>推送代码：</p>
-<p><pre>git push origin master</pre><br>然后会要求输入 github 的帐号和密码（不可见的）<br><a href="http://segmentfault.com/img/bVbOaz/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOaz" alt=" 请输入图片描述 "></a><br>OK, 成功</p>
-<p>问题：<br>在这成功之前遇到了一个问题。update were rejected because the tip of your current branch is behind ….</p>
-<p>原因是远程的的代码库比我本地的代码库要新。所以需要在远程代码库 pull 一次下来。再修改代码。再 push。成功。解决了。<br><a href="http://segmentfault.com/img/bVbOaA/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOaA" alt=" 请输入图片描述 "></a></p>
-<p>—————————————华丽的分割线——————————————————————</p>
-<p>这是我第一次写技术博客。不知道这种算不算是技术博客呢。欢迎吐槽哈。应该有好多问题的。</p>
-<p>之前在 csdn 看到一牛人的一个提升自我能力的一个建议就是写技术博客。</p>
-<p>已经想动手久了。但一直没动。这次终于动手了。希望可以坚持下去。加油</p>
-<p>—————————————华丽的分割线——————————————————————</p>
+		<p>我是一名安卓开发者 、 web 开发者、一枚极客。写这篇文章的时候是一名大二学生。爱 IT、爱代码、爱设计、爱经济学、羽毛球、单车。喜欢专研各种技术。</p>
+<p>介绍完毕。</p>
+<p>自从高一做过淘宝客，就开始去尝试去改一些网站。去注册域名（还有印象，就是 tk 域名——免费），去找一些免费的空间。去组建自己的网站。慢慢，接触网络安全（此时，我又想起你了，小吉同学），到入侵，最终，上瘾了。</p>
+<a id="more"></a>
+
+<p>此处省略 3 万字。。。</p>
+<p>最后，还是戒掉了。</p>
+<p>戒掉的时候大概是高二第二学期的时候，原因就是开始意识到自己准备要迎接天朝帝国的科举。那时候就和自己说，到上了大学要做的第一件事情就是做一个网站，然后做谷歌广告，把自己养活。</p>
+<p>话，说出来就容易，但要实现，就并非那么简单了。</p>
+<p>虽然上了大学的我还是选择了自己感兴趣的专业。</p>
+<p>当上了大学的我，对业界的熟悉程度更深了一层，就自然而然不会去兑现以前的那个承诺。现在还什么年代了啊，还做站长做关键字做广告，当然，并不是说现在这个已经不能赚钱了，还在用这个赚钱的人大有人在，也还赚好多，但，显然不再是创业的趋势。</p>
+<p>然后，做网站这一事情就搁置了好久好久。直至一天和晓冰同志说起了这件事情来·。便又想起了当年的梦想。但，我还是没去实现。</p>
+<p>再然后，终于找到方向了，于是伙同了几个小伙伴创起业来，我们的第一期项目——花花 **PROJECT。</p>
+<p>由于各种原因。</p>
+<p>此处又省略 5 万字。</p>
+<p>此项目宣布告一段落。项目搁置，但梦想从未止步。创业之心还是烈火雄心。</p>
+<p>额~ 好像有点离题了·。不好意思。立刻回到正题。</p>
+<p>于是，还是要为今年的 6 月份出来实习做好准备。</p>
+<p>1、完成当前的梦想。拥有一个属于自己的博客（当然，这个博客不会放广告）。</p>
+<p>2、大牛说，有技术博客的人拿 offer 容易些。哈哈。（原本是在 segmentfault 写的，但想想还是有自己的博客爽一些）</p>
+<p>3、前段时间在《程序员》杂志看到有大牛推荐程序员坚持写技术博客，这样可以不断总结，不断归纳，让自己对技术的掌握更加仔细。（目前写了几篇，感觉还不错。）</p>
+<p>4、社交碎片化越加严重，国外 facebook、google+（当然，这些都给天朝墙了）、instagram。国内 微博、微信、QQ 签名 等等等。想发一下最近的心情，都不知道望哪里发了。所以，有时候便写到印象笔记里去，但这人类的心理却又奇怪，写了没人看又会不安心。干脆以后的生活都往博客里写好了，不用纠结。还有，现在都是微时代，在微博里头发个长微博还没什么人看呢。。（但，我现在还是在用微博记录下生活的点滴，不求什么，只求日后可以再看一下也可以感受一下当时自己的心情）。</p>
+<p>这，大概就是这个博客诞生的原因了。</p>
+<p>域名注册于 godaddy，2014 年，2 月，13 日</p>
+<p>域名的意义是：hacker is me .</p>
+<p>对于我更多的还是：starter is me . geek is me .</p>
+<p>本站搭建于 新浪 SAE 平台.(已经搬迁)</p>
+<p>现在是搭建于<code>github</code></p>
+<p>本文之前的文章都是在 segmentfault 写的，搬运过来而已。</p>
+<p>谢谢大家支持。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a><a href="/tags/github/">github</a>
+  <span></span> <a href="/tags/感悟/">感悟</a><a href="/tags/生活/">生活</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/git版本控制/">git版本控制</a>
+  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/01/20/git之github使用（一）：push代码到github/" data-title="Git之Github使用（一）：Push代码到Github | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/02/16/firstBlog/" data-title="个人博客，第一文 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -151,18 +150,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/01/24/adnroid-viewpager制作app第一次使用时出现的导航介绍/" title="Adnroid——View Pager制作App第一次使用时出现的导航介绍">
+ <a href="/2014/02/17/git_reset/" title="Git学习——Git重置">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Adnroid——View Pager制作App第一次使用时出现的导航介绍</span>
+  Git学习——Git重置</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/01/19/最后一个寒假-这几天的感想/"  title="最后一个寒假——这几天的感想">
+<a href="/2014/02/15/git_object/"  title="Git学习——Git对象及游标的简单介绍">
  <strong>NEXT:</strong><br/> 
- <span>最后一个寒假——这几天的感想
+ <span>Git学习——Git对象及游标的简单介绍
 </span>
 </a>
 </div>

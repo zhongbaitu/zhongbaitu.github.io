@@ -72,7 +72,7 @@ process 老师没讲过，thread 和 AsyncTask 只是讲了下使用。至于为
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/02/02/android-processesthreadasynctask（未完，待续。）/" title="Android——Processes,Thread,Async Task（未完，待续。）" itemprop="url">Android——Processes,Thread,Async Task（未完，待续。）</a>
+      <a href="/2014/02/02/android-processesthreadasynctask/" title="Android——Processes,Thread,Async Task（未完，待续。）" itemprop="url">Android——Processes,Thread,Async Task（未完，待续。）</a>
   </h1>
   <p class="article-author">By
     
@@ -80,7 +80,7 @@ process 老师没讲过，thread 和 AsyncTask 只是讲了下使用。至于为
     </p>
   <p class="article-time">
     <time datetime="2014-02-02T15:23:35.000Z" itemprop="datePublished">Feb 2 2014</time>
-    Updated:<time datetime="2014-04-05T06:01:57.000Z" itemprop="dateModified">Apr 5 2014</time>
+    Updated:<time datetime="2014-05-02T02:54:49.000Z" itemprop="dateModified">May 2 2014</time>
     
   </p>
 </header>
@@ -127,38 +127,99 @@ process 老师没讲过，thread 和 AsyncTask 只是讲了下使用。至于为
 </ol>
 <h2 id="Worker_threads">Worker threads</h2>
 <p>例子：</p>
-<p><pre>public void onClick(View v) {<br>    new Thread(new Runnable() {<br>        public void run() {<br>            Bitmap b = loadImageFromNetwork(“<a href="http://example.com/image.png" target="_blank">http://example.com/image.png</a>“);<br>            mImageView.setImageBitmap(b);<br>        }<br>    }).start();<br>}</pre><br>这样做好像已经满足了我们所想的意思了，但其实不是这样，刚说了，我们不在主线程之外的线程作创建或者修改 UI 的动作。这里已经违反了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View v) {
+    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+            Bitmap b = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);
+            mImageView.setImageBitmap(b);
+        }
+    }).start();
+}
+</pre></td></tr></table></figure>
+
+<p>这样做好像已经满足了我们所想的意思了，但其实不是这样，刚说了，我们不在主线程之外的线程作创建或者修改 UI 的动作。这里已经违反了。</p>
 <p>安卓提供了几个在其他线程去求该 UI 的方法给我们，如下：</p>
 <ul>
 <li>Activity.runOnUiThread(Runnable)</li>
 <li>View.post(Runnable)</li>
-<li>View.postDelayed(Runnable, long)<br>例子：<br><pre>public void onClick(View v) {<br>new Thread(new Runnable() {<pre><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
-    <span class="keyword">final</span> Bitmap bitmap = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);
-    mImageView.post(<span class="keyword">new</span> Runnable() {
+<li>View.postDelayed(Runnable, long)<br>例子：<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View v) {
+    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
         <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
-            mImageView.setImageBitmap(bitmap);
+            <span class="keyword">final</span> Bitmap bitmap = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);
+            mImageView.post(<span class="keyword">new</span> Runnable() {
+                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+                    mImageView.setImageBitmap(bitmap);
+                }
+            });
         }
-    });
+    }).start();
 }
-</code></pre>}).start();<br>}</pre><br>这个时候，访问网络不再主线程进行了，修改 UI 也脱离主线程，好像真的满足我们的需求了。其实。还是没有达到。</li>
+</pre></td></tr></table></figure>
+
+</li>
 </ul>
+<p>这个时候，访问网络不再主线程进行了，修改 UI 也脱离主线程，好像真的满足我们的需求了。其实。还是没有达到。</p>
 <h2 id="AsyncTask">AsyncTask</h2>
 <p>如果我们都是这样做的话，线程会很多，很多的话就很难去管理，我们可能需要用 Handler 去管理我们的工人线程，在主线程传递信息过去 Handler 去处理。或者，还有一个更好的解决方法，就是使用 AsyncTask 类，它简单化地解决了我们刚才遇到的问题，可以使用到工人线程又可以和 UI 交互。</p>
 <p>继承 AsyncTask 类后实现 doInBackground() 回调方法，这个方法将会运行在后台线程（工人线程也称后台线程），要更新 UI 层，我们需要实现 onPostExecute() 方法，这个方法里面的结果是 doInBackground() 传递过来的，这样我们就可以安全更新 UI。我们只需在主线程调用 execute() 方法即可使用 AsyncTask。</p>
 <p>例子：</p>
-<p><pre>public void onClick(View v) {<br>    new DownloadImageTask().execute(“<a href="http://example.com/image.png" target="_blank">http://example.com/image.png</a>“);<br>}</p>
-<p>private class DownloadImageTask extends AsyncTask&lt;String, Void, Bitmap&gt; {<br>    /** The system calls this to perform work in a worker thread and</p>
-<pre><code>  * delivers it the parameters given to AsyncTask.execute() */
-<span class="keyword">protected</span> Bitmap <span class="title">doInBackground</span>(String... urls) {
-    <span class="keyword">return</span> loadImageFromNetwork(urls[<span class="number">0</span>]);
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View v) {
+    <span class="keyword">new</span> DownloadImageTask().execute(<span class="string">"http://example.com/image.png"</span>);
 }
 
-<span class="javadoc">/** The system calls this to perform work in the UI thread and delivers
-  * the result from doInBackground() */</span>
-<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span>(Bitmap result) {
-    mImageView.setImageBitmap(result);
+<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadImageTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&<span class="title">lt</span>;</span>String, Void, Bitmap&gt; {
+    <span class="javadoc">/** The system calls this to perform work in a worker thread and
+      * delivers it the parameters given to AsyncTask.execute() */</span>
+    <span class="keyword">protected</span> Bitmap <span class="title">doInBackground</span>(String... urls) {
+        <span class="keyword">return</span> loadImageFromNetwork(urls[<span class="number">0</span>]);
+    }
+
+    <span class="javadoc">/** The system calls this to perform work in the UI thread and delivers
+      * the result from doInBackground() */</span>
+    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span>(Bitmap result) {
+        mImageView.setImageBitmap(result);
+    }
 }
-</code></pre><p>}</pre><br>我们还可以在 AsyncTask 设置进度条，随时可以在 doInBackground() 调用 publishProgress() ，然后用 onProgressUpdate() 更新进度条的 UI 显示。</p>
+</pre></td></tr></table></figure>
+
+<p>我们还可以在 AsyncTask 设置进度条，随时可以在 doInBackground() 调用 publishProgress() ，然后用 onProgressUpdate() 更新进度条的 UI 显示。</p>
 <p>这里经常会遇到一个问题就是，当我们使用工人线程的时候会出现 runtime configuration change 的错误，例如用户使屏幕横竖颠倒可能会 destroy 我们的工人线程，这里还需要更深入地研究。可见 Shelves 的使用。</p>
 <p>还有一点就是，AsyncTask 不适合处理时间过长的任务，只适合处理较短时间的任务，例如几秒钟，如果要处理长时间的任务的话，android 提供了几个更好的 API 给我们使用，如下：</p>
 <p>java.util.concurrent 包里面的 Executor, ThreadPoolExecutor 和 FutureTask.</p>
@@ -184,7 +245,7 @@ process 老师没讲过，thread 和 AsyncTask 只是讲了下使用。至于为
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/02/02/android-processesthreadasynctask（未完，待续。）/" data-title="Android——Processes,Thread,Async Task（未完，待续。） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/02/02/android-processesthreadasynctask/" data-title="Android——Processes,Thread,Async Task（未完，待续。） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -194,7 +255,7 @@ process 老师没讲过，thread 和 AsyncTask 只是讲了下使用。至于为
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/02/15/git学习-git对象及游标的简单介绍/" title="Git学习——Git对象及游标的简单介绍">
+ <a href="/2014/02/15/git_object/" title="Git学习——Git对象及游标的简单介绍">
   <strong>PREVIOUS:</strong><br/>
   <span>
   Git学习——Git对象及游标的简单介绍</span>
@@ -203,7 +264,7 @@ process 老师没讲过，thread 和 AsyncTask 只是讲了下使用。至于为
 
 
 <div class="next">
-<a href="/2014/02/01/android-notifications笔记/"  title="Android——Notifications笔记">
+<a href="/2014/02/01/android-notifications/"  title="Android——Notifications笔记">
  <strong>NEXT:</strong><br/> 
  <span>Android——Notifications笔记
 </span>
