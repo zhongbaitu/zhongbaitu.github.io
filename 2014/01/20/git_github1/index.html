@@ -77,7 +77,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-01-20T15:07:26.000Z" itemprop="datePublished">Jan 20 2014</time>
-    Updated:<time datetime="2014-05-02T03:14:35.000Z" itemprop="dateModified">May 2 2014</time>
+    Updated:<time datetime="2014-05-02T06:38:04.000Z" itemprop="dateModified">May 2 2014</time>
     
   </p>
 </header>
@@ -92,73 +92,61 @@
 		<p>github 一直都是在上面拿资源。感觉有点愧对大众。是不是应该奉献自己的力量给 github 来推动开源的发展呢。<br>在两个月前第一次在 github 新建项目，并且 push 了一套比赛的源码。但。。。今天竟然忘了怎么用 git 了。又复习了一次。所以这次打算在这里作个笔记。给自己做个的或是给 git 新手做的也好吧。为互联网贡献一点力量。</p>
 <p>一：<br>安装 git 和配置就不说了。</p>
 <p>二：<br>进入到等下要 push 的代码的目录文件夹，打开 bash</p>
-<p><a href="http://segmentfault.com/img/bVbN91/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbN91" alt=" 请输入图片描述 "></a></p>
+<p><img src="http://segmentfault.com/img/bVbN91" alt=""></p>
 <p>进入到等下要 push 的代码的目录文件夹，打开 bash</p>
-<p><img src="http://segmentfault.com/img/bVbN97/view" alt=" 请输入图片描述](http://segmentfault.com/img/bVbN97)" title=" 点击查看原图 "></p>
-<figure class="highlight 初始化```"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>
-<span class="escape">``</span><span class="escape">`g</span>it init
+<p><img src="http://segmentfault.com/img/bVbN97" alt=""></p>
+<p>初始化</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git init
 </pre></td></tr></table></figure>
 
 <p>初始化后在本地代码库会自动创建一个.git 隐藏文件，这个就是本地代码库</p>
 <p>三：<br>加载文件</p>
-<figure class="highlight git"><figcaption><span>add .```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>
-. 是把文件夹里面的所有文件都加载进来
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="built_in">add</span> .
+</pre></td></tr></table></figure>
 
-还可以单个加载
-```    git <span class="keyword">add</span> index<span class="preprocessor">.html</span>,test<span class="preprocessor">.html</span>
+<p>. 是把文件夹里面的所有文件都加载进来</p>
+<p>还可以单个加载</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">add</span> index<span class="preprocessor">.html</span>,test<span class="preprocessor">.html</span>
 </pre></td></tr></table></figure>
 
 <p>四：</p>
 <p>提交文件，创建时间点</p>
-<figure class="highlight git"><figcaption><span>commit -m "init commit"```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>-m " 这里的文件是注释 "
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="operator"><span class="keyword">commit</span> -m <span class="string">"init commit"</span></span>
+</pre></td></tr></table></figure>
 
-创建之后可以随时回到这个时间点，可以看到有 4 个文件被修改了，47 个插入，51 个删除
-[<span class="link_label">![请输入图片描述</span>](<span class="link_url">http://segmentfault.com/img/bVbOam</span>)](<span class="link_url">http://segmentfault.com/img/bVbOam/view " 点击查看原图 "</span>)
-
-可以随时用
-<span class="code">```</span>git status
+<p>-m “这里的文件是注释”</p>
+<p>创建之后可以随时回到这个时间点，可以看到有 4 个文件被修改了，47 个插入，51 个删除<br><img src="http://segmentfault.com/img/bVbOam" alt=""></p>
+<p>可以随时用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git status
 </pre></td></tr></table></figure>
 
 <p>查看 git 的状态</p>
 <p>五：<br>推送代码</p>
 <p>第一次推送的时候要添加远程的代码库到配置</p>
-<figure class="highlight git"><figcaption><span>remote add origin</span><a href="https://github.com/zhong635725959/droplook.git```" target="_blank">link</a></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre>
-origin 可变，随自己喜欢
-
-推送代码：
-
-<span class="escape">``</span><span class="escape">`g</span>it push origin master
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git remote <span class="keyword">add</span> origin https://github<span class="preprocessor">.com</span>/zhong635725959/droplook<span class="preprocessor">.git</span>
 </pre></td></tr></table></figure>
 
-<p>然后会要求输入 github 的帐号和密码（不可见的）<br><a href="http://segmentfault.com/img/bVbOaz/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOaz" alt=" 请输入图片描述 "></a></p>
+<p>origin 可变，随自己喜欢</p>
+<p>推送代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">push</span> origin master
+</pre></td></tr></table></figure>
+
+<p>然后会要求输入 github 的帐号和密码（不可见的）<br><img src="http://segmentfault.com/img/bVbOaz" alt="">]</p>
 <p>OK, 成功</p>
 <p>问题：<br>在这成功之前遇到了一个问题。update were rejected because the tip of your current branch is behind ….</p>
-<p>原因是远程的的代码库比我本地的代码库要新。所以需要在远程代码库 pull 一次下来。再修改代码。再 push。成功。解决了。<br><a href="http://segmentfault.com/img/bVbOaA/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbOaA" alt=" 请输入图片描述 "></a></p>
-<p>—————————————华丽的分割线——————————————————————</p>
+<p>原因是远程的的代码库比我本地的代码库要新。所以需要在远程代码库 pull 一次下来。再修改代码。再 push。成功。解决了。<br><img src="http://segmentfault.com/img/bVbOaA" alt="">]</p>
+<hr>
 <p>这是我第一次写技术博客。不知道这种算不算是技术博客呢。欢迎吐槽哈。应该有好多问题的。</p>
 <p>之前在 csdn 看到一牛人的一个提升自我能力的一个建议就是写技术博客。</p>
 <p>已经想动手久了。但一直没动。这次终于动手了。希望可以坚持下去。加油</p>
-<p>—————————————华丽的分割线——————————————————————</p>
+<hr>
   
 	</div>
 		<footer class="article-footer clearfix">

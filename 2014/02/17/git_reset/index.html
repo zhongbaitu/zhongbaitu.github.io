@@ -14,8 +14,11 @@
 游标。当所在的分支有了新的提交的时候，游标会自动指向该提交。
 可以向前移动，当然，也可以向后。才能称得上为游标。
 首先，介绍一下重置。（即 reset）
-reset a.txt```1
-">
+1
+git reset a.txt
+
+
+把刚 add 到暂存区的文件撤出暂存区">
     
     
     
@@ -83,7 +86,7 @@ reset a.txt```1
     </p>
   <p class="article-time">
     <time datetime="2014-02-17T03:02:43.000Z" itemprop="datePublished">Feb 17 2014</time>
-    Updated:<time datetime="2014-05-02T02:48:41.000Z" itemprop="dateModified">May 2 2014</time>
+    Updated:<time datetime="2014-05-02T06:43:25.000Z" itemprop="dateModified">May 2 2014</time>
     
   </p>
 </header>
@@ -100,77 +103,56 @@ reset a.txt```1
 <p>游标。当所在的分支有了新的提交的时候，游标会自动指向该提交。</p>
 <p>可以向前移动，当然，也可以向后。才能称得上为游标。</p>
 <p>首先，介绍一下重置。（即 reset）</p>
-<figure class="highlight git"><figcaption><span>reset a.txt```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>
-把刚 add 到暂存区的文件撤出暂存区
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git reset <span class="operator">a</span>.txt
+</pre></td></tr></table></figure>
 
-![](http://zhongsir.qiniudn.com/2014-2-17-git/1.png)
-<span class="comment">&lt;!--more--&gt;</span>
-
-```git reset HEAD^
+<p>把刚 add 到暂存区的文件撤出暂存区</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-2-17-git/1.png" alt=""><br><a id="more"></a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">reset</span> HEAD^
 </pre></td></tr></table></figure>
 
 <p>等同</p>
-<figure class="highlight git"><figcaption><span>reset --mixed HEAD^```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>
-工作区不变，暂存区退回到现在的引用的父提交，引用也会退一次。
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">reset</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">mixed</span> <span class="comment">HEAD^</span>
+</pre></td></tr></table></figure>
 
-<span class="escape">``</span><span class="escape">`g</span>it reset --soft HEAD^
+<p>工作区不变，暂存区退回到现在的引用的父提交，引用也会退一次。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">reset</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">soft</span> <span class="comment">HEAD^</span>
 </pre></td></tr></table></figure>
 
 <p>引用退回上一次提交（即父提交），工作区和暂存区不变</p>
-<figure class="highlight git"><figcaption><span>reset --hard HEAD^```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>
-替换引用、暂存区、工作区
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">reset</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">hard</span> <span class="comment">HEAD^</span>
+</pre></td></tr></table></figure>
 
-当重置了的时候，用 git <span class="keyword">log</span> 查看日志的时候发现，日志也一同消失了。
-
-这个时候需要用到  reflog   来挽救错误的动作
-
-<span class="string">``</span><span class="string">`git reflog</span>
+<p>替换引用、暂存区、工作区</p>
+<p>当重置了的时候，用 git log 查看日志的时候发现，日志也一同消失了。</p>
+<p>这个时候需要用到  reflog   来挽救错误的动作</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git reflog
 </pre></td></tr></table></figure>
 
 <p>可以查看全部的操作记录。当然，也可以显示单一分支的操作记录</p>
-<figure class="highlight git"><figcaption><span>reflog show master```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="code"><pre>
-![](http:<span class="regexp">//zhongsir</span>.qiniudn.com/<span class="number">2014</span>-<span class="number">2</span>-<span class="number">17</span>-git/<span class="number">3</span>png.png)
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git reflog <span class="operator"><span class="keyword">show</span> master</span>
+</pre></td></tr></table></figure>
 
-这里我们看到一个很不错的表达式： &<span class="keyword">lt</span>;refname&<span class="keyword">gt</span>;@{&<span class="keyword">lt</span>;n&<span class="keyword">gt</span>;}  ，这个表达式的含义是引用 &<span class="keyword">lt</span>;refnamw&<span class="keyword">gt</span>; 之前第 &<span class="keyword">lt</span>;n&<span class="keyword">gt</span>; 次改变的 SHA1 哈希值。
-
-当然，在第一行也有响应的哈希值。
-
-现在我们想还原到哪个提交都可以了。
-
-<span class="string">``</span><span class="string">`git reset master@{1}</span>
+<p><img src="http://zhongsir.qiniudn.com/2014-2-17-git/3png.png" alt=""></p>
+<p>这里我们看到一个很不错的表达式： &lt;refname&gt;@{&lt;n&gt;}  ，这个表达式的含义是引用 &lt;refnamw&gt; 之前第 &lt;n&gt; 次改变的 SHA1 哈希值。</p>
+<p>当然，在第一行也有响应的哈希值。</p>
+<p>现在我们想还原到哪个提交都可以了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">reset</span> master<span class="variable">@{1}</span>
 </pre></td></tr></table></figure>
 
 <p>或者</p>
-<p><code>git reflog show dbd3fa8</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git reflog <span class="operator"><span class="keyword">show</span> dbd3fa8</span>
+</pre></td></tr></table></figure>
+
 <p>就可以还原到该提交了。</p>
 <p><img src="http://zhongsir.qiniudn.com/2014-2-17-git/4.png" alt=""></p>
 <p>相应的操作也会记录到日志中</p>

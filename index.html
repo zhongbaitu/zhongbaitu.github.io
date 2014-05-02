@@ -180,13 +180,14 @@
     <h1 itemprop="name">Git学习——Git重置</h1>
     
      
-           <p itemprop="description" >读《Git 权威指南》——笔记
+       <p itemprop="description" >读《Git 权威指南》——笔记
 书上是在这一章介绍游标 HEAD 的，但我觉得在上一章讲对象的时候介绍更为适合。
 游标。当所在的分支有了新的提交的时候，游标会自动指向该提交。
 可以向前移动，当然，也可以向后。才能称得上为游标。
 首先，介绍一下重置。（即 reset）
-reset </p>
-        
+1
+git </p>
+      
     
     <time datetime="2014-02-17T03:02:43.000Z" itemprop="datePublished">Feb 17 2014</time>
   </a>
@@ -215,21 +216,19 @@ reset </p>
     <h1 itemprop="name">Git学习——Git对象及游标的简单介绍</h1>
     
      
-       <p itemprop="description" >读《Git 权威指南》——笔记
-log -1 --pretty=raw```1
-2
-3
-4
-5
+           <p itemprop="description" >读《Git 权威指南》——笔记
+1
+git log -1 --pretty=raw
+
+
 可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交
-
 我们可以用命令
+1
+git cat-file -t 9c0ac
 
-```git cat-file -t 9c0ac
 
-
-来查看该哈希值所表示的是什么</p>
-      
+来查看该哈希值所表示的是什么对象。(其中哈</p>
+        
     
     <time datetime="2014-02-15T07:30:19.000Z" itemprop="datePublished">Feb 15 2014</time>
   </a>

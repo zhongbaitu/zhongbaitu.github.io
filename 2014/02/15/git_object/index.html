@@ -10,19 +10,17 @@
     <meta name="author" content="钟买能">
     
     <meta name="description" content="读《Git 权威指南》——笔记
-log -1 --pretty=raw```1
-2
-3
-4
-5
+1
+git log -1 --pretty=raw
+
+
 可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交
-
 我们可以用命令
+1
+git cat-file -t 9c0ac
 
-```git cat-file -t 9c0ac
 
-
-来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只需输入前面一小段不冲突的字符)">
+来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只">
     
     
     
@@ -90,7 +88,7 @@ log -1 --pretty=raw```1
     </p>
   <p class="article-time">
     <time datetime="2014-02-15T07:30:19.000Z" itemprop="datePublished">Feb 15 2014</time>
-    Updated:<time datetime="2014-05-02T02:52:32.000Z" itemprop="dateModified">May 2 2014</time>
+    Updated:<time datetime="2014-05-02T06:42:16.000Z" itemprop="dateModified">May 2 2014</time>
     
   </p>
 </header>
@@ -103,69 +101,53 @@ log -1 --pretty=raw```1
 		</div>
 		
 		<p>读《Git 权威指南》——笔记</p>
-<figure class="highlight git"><figcaption><span>log -1 --pretty=raw```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="built_in">log</span> -<span class="number">1</span> <span class="comment">--pretty=raw</span>
+</pre></td></tr></table></figure>
 
-我们可以用命令
-
-<span class="escape">``</span><span class="escape">`g</span>it cat-file -t <span class="number">9</span>c0ac
+<p>可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交</p>
+<p>我们可以用命令</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git cat<span class="attribute">-file</span> <span class="attribute">-t</span> <span class="number">9</span>c0ac
 </pre></td></tr></table></figure>
 
 <p>来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只需输入前面一小段不冲突的字符)</p>
 <p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/1.png" alt=" 图 1"> </p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/2.png" alt=" 图 2"><br><a id="more"></a></p>
+<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/2.png" alt=" 图 2"> </p>
 <p>用</p>
-<figure class="highlight git"><figcaption><span>cat-file -p 9c0ac```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="code"><pre>
-查看该对象的内容
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git cat<span class="attribute">-file</span> <span class="attribute">-p</span> <span class="number">9</span>c0ac
+</pre></td></tr></table></figure>
 
-![<span class="link_label">图 3</span>](<span class="link_url">http://zhongsir.qiniudn.com/2014-2-15-git/3.png</span>) 
-
-当查看 tree 的对象的时候，发现里面还包含这另外一个对象 blob, 这个对象保存着 a.txt 的内容。我们查看一下
-
-![<span class="link_label">图 4</span>](<span class="link_url">http://zhongsir.qiniudn.com/2014-2-15-git/4.png</span>) 
-
-<span class="code">```</span>[/code]git log --pretty=raw --graph 9c0ac
+<p>查看该对象的内容</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/3.png" alt=" 图 3"> </p>
+<p>当查看 tree 的对象的时候，发现里面还包含这另外一个对象 blob, 这个对象保存着 a.txt 的内容。我们查看一下</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/4.png" alt=" 图 4"> </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">log</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">pretty=raw</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">graph</span> <span class="comment">9c0ac</span>
 </pre></td></tr></table></figure>
 
 <p>可以查看该对象的父提交的跟踪链，到了最后一个的时候便没有 parent 对象。</p>
 <p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/5.png" alt=" 图 5"> </p>
-<figure class="highlight git"><figcaption><span>branch```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>查看分支
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git branch
+</pre></td></tr></table></figure>
 
-![<span class="link_label">图 6</span>](<span class="link_url">http://zhongsir.qiniudn.com/2014-2-15-git/6.png</span>) 
-
-可见，当前有两个分支。一个是 master, 和 pre 分支
-
-<span class="code">```</span>git log HEAD -1
+<p>查看分支</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/6.png" alt=" 图 6"> </p>
+<p>可见，当前有两个分支。一个是 master, 和 pre 分支</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">log</span> HEAD -<span class="number">1</span>
 </pre></td></tr></table></figure>
 
 <p>查看当前游标的指向。（HEAD 称为游标，用于指向不同分支中的不同提交。下面会详细说明）</p>
-<figure class="highlight git"><figcaption><span>log master -1 ```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>查看当前 master 的提交标识
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">log</span> master -<span class="number">1</span>
+</pre></td></tr></table></figure>
 
-<span class="escape">``</span><span class="escape">`g</span>it log pre -<span class="number">1</span>
+<p>查看当前 master 的提交标识</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">log</span> pre -<span class="number">1</span>
 </pre></td></tr></table></figure>
 
 <p>查看当前 pre 的提交标识</p>
@@ -174,43 +156,31 @@ log -1 --pretty=raw```1
 <p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/8.png" alt=" 图 8"> </p>
 <p>可见，当前的 HEAD 游标和 master 的指向是一样的，所以当前的 HEAD 是指向 master 的最后一个提交</p>
 <p>现在我们切换一下分支<br>查看当前 master 的提交标识</p>
-<figure class="highlight git"><figcaption><span>checkout pre ```</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>
-![<span class="link_label">图 9</span>](<span class="link_url">http://zhongsir.qiniudn.com/2014-2-15-git/9.png</span>) 
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git checkout pre
+</pre></td></tr></table></figure>
 
-可见，切换分支之后，游标 HEAD 就指向 pre 的最新的提交了。
-
-下面我们来看看这些对象都存放了在哪里
-
-<span class="code">```</span>find .git -name HEAD -o -name master -o -name pre
+<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/9.png" alt=" 图 9"> </p>
+<p>可见，切换分支之后，游标 HEAD 就指向 pre 的最新的提交了。</p>
+<p>下面我们来看看这些对象都存放了在哪里</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>find <span class="built_in">.</span>git <span class="attribute">-name</span> HEAD <span class="attribute">-o</span> <span class="attribute">-name</span> master <span class="attribute">-o</span> <span class="attribute">-name</span> pre
 </pre></td></tr></table></figure>
 
 <p>再把他们输出查看</p>
-<figure class="highlight cat"><figcaption><span>.git/HEAD```</span></figcaption><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="escape">``</span><span class="escape">`c</span>at .git/refs/heads/master
-</pre></td></tr></table></figure>
-
-<figure class="highlight cat"><figcaption><span>.git/refs/heads/pre```</span></figcaption><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>
-![<span class="link_label">图 10</span>](<span class="link_url">http://zhongsir.qiniudn.com/2014-2-15-git/10.png</span>) 
+</pre></td><td class="code"><pre>cat <span class="preprocessor">.git</span>/HEAD
+cat <span class="preprocessor">.git</span>/refs/heads/master
+cat <span class="preprocessor">.git</span>/refs/heads/pre
+</pre></td></tr></table></figure>
 
-可见，HEAD 是指向了 refs/heads/master（而不是一个具体的哈希值）。与上面一一对应。完全相同。
-
-还介绍多一个底层命令，用语查看引用对应的提交 ID（哈希值）：
-<span class="code">```</span>git rev-parse HEAD
+<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/10.png" alt=" 图 10"> </p>
+<p>可见，HEAD 是指向了 refs/heads/master（而不是一个具体的哈希值）。与上面一一对应。完全相同。</p>
+<p>还介绍多一个底层命令，用语查看引用对应的提交 ID（哈希值）：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git rev<span class="attribute">-parse</span> HEAD
 </pre></td></tr></table></figure>
 
 <p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/11.png" alt=" 图 11"></p>
