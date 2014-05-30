@@ -4,23 +4,19 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Git学习——Git对象及游标的简单介绍 | 钟买能个人博客</title>
+    <title>安卓自定义圆形Image View | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="读《Git 权威指南》——笔记
-1
-git log -1 --pretty=raw
+    <meta name="description" content="微信等很多软件都有使用圆形头像，圆形头像的确挺好看的，之前都是直接 P 一个圆形图片头像上去骗骗人家，不过时间长了，总得升升级来弄个真的吧。这次就把这个圆形头像效果加进我的毕设实际。
+思路
 
 
-可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交
-我们可以用命令
-1
-git cat-file -t 9c0ac
+自定义一个圆形 ImageView.
+写一个方法来专门剪切图片.
 
-
-来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只">
+其实两种方法的实现都差不多，把剪切的方">
     
     
     
@@ -80,15 +76,15 @@ git cat-file -t 9c0ac
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/02/15/git_object/" title="Git学习——Git对象及游标的简单介绍" itemprop="url">Git学习——Git对象及游标的简单介绍</a>
+      <a href="/2014/05/31/androidroundimageview/" title="安卓自定义圆形Image View" itemprop="url">安卓自定义圆形Image View</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-02-15T07:30:19.000Z" itemprop="datePublished">Feb 15 2014</time>
-    Updated:<time datetime="2014-05-02T06:42:16.000Z" itemprop="dateModified">May 2 2014</time>
+    <time datetime="2014-05-30T16:31:59.000Z" itemprop="datePublished">May 31 2014</time>
+    Updated:<time datetime="2014-05-30T16:33:52.000Z" itemprop="dateModified">May 31 2014</time>
     
   </p>
 </header>
@@ -97,113 +93,250 @@ git cat-file -t 9c0ac
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="# 思路 "><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 实现 "><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 使用 "><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li></ol>
 		</div>
 		
-		<p>读《Git 权威指南》——笔记</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="built_in">log</span> -<span class="number">1</span> <span class="comment">--pretty=raw</span>
-</pre></td></tr></table></figure>
-
-<p>可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交</p>
-<p>我们可以用命令</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git cat<span class="attribute">-file</span> <span class="attribute">-t</span> <span class="number">9</span>c0ac
-</pre></td></tr></table></figure>
-
-<p>来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只需输入前面一小段不冲突的字符)</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/1.png" alt=" 图 1"> </p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/2.png" alt=" 图 2"> </p>
-<p>用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git cat<span class="attribute">-file</span> <span class="attribute">-p</span> <span class="number">9</span>c0ac
-</pre></td></tr></table></figure>
-
-<p>查看该对象的内容</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/3.png" alt=" 图 3"> </p>
-<p>当查看 tree 的对象的时候，发现里面还包含这另外一个对象 blob, 这个对象保存着 a.txt 的内容。我们查看一下</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/4.png" alt=" 图 4"> </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">log</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">pretty=raw</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">graph</span> <span class="comment">9c0ac</span>
-</pre></td></tr></table></figure>
-
-<p>可以查看该对象的父提交的跟踪链，到了最后一个的时候便没有 parent 对象。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/5.png" alt=" 图 5"> </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git branch
-</pre></td></tr></table></figure>
-
-<p>查看分支</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/6.png" alt=" 图 6"> </p>
-<p>可见，当前有两个分支。一个是 master, 和 pre 分支</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">log</span> HEAD -<span class="number">1</span>
-</pre></td></tr></table></figure>
-
-<p>查看当前游标的指向。（HEAD 称为游标，用于指向不同分支中的不同提交。下面会详细说明）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">log</span> master -<span class="number">1</span>
-</pre></td></tr></table></figure>
-
-<p>查看当前 master 的提交标识</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">log</span> pre -<span class="number">1</span>
-</pre></td></tr></table></figure>
-
-<p>查看当前 pre 的提交标识</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/7.png" alt=" 图 7"> </p>
-<p>若加上参数 —pretty=oneline 则显示精简模式</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/8.png" alt=" 图 8"> </p>
-<p>可见，当前的 HEAD 游标和 master 的指向是一样的，所以当前的 HEAD 是指向 master 的最后一个提交</p>
-<p>现在我们切换一下分支<br>查看当前 master 的提交标识</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git checkout pre
-</pre></td></tr></table></figure>
-
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/9.png" alt=" 图 9"> </p>
-<p>可见，切换分支之后，游标 HEAD 就指向 pre 的最新的提交了。</p>
-<p>下面我们来看看这些对象都存放了在哪里</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>find <span class="built_in">.</span>git <span class="attribute">-name</span> HEAD <span class="attribute">-o</span> <span class="attribute">-name</span> master <span class="attribute">-o</span> <span class="attribute">-name</span> pre
-</pre></td></tr></table></figure>
-
-<p>再把他们输出查看</p>
+		<p>微信等很多软件都有使用圆形头像，圆形头像的确挺好看的，之前都是直接 P 一个圆形图片头像上去骗骗人家，不过时间长了，总得升升级来弄个真的吧。<br>这次就把这个圆形头像效果加进我的<code>毕设实际</code>。</p>
+<h1 id=" 思路 ">思路</h1>
+<hr>
+<ol>
+<li>自定义一个圆形 ImageView.</li>
+<li>写一个方法来专门剪切图片.</li>
+</ol>
+<p>其实两种方法的实现都差不多，把剪切的方法放到 ImageView 的 onDraw 方法里面去，再作修正，就 OK 了。</p>
+<h1 id=" 实现 ">实现</h1>
+<hr>
+<p>下面我们来开始实现，上代码</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre>cat <span class="preprocessor">.git</span>/HEAD
-cat <span class="preprocessor">.git</span>/refs/heads/master
-cat <span class="preprocessor">.git</span>/refs/heads/pre
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+</pre></td><td class="code"><pre>
+<span class="keyword">package</span> com.bookingSystem.widget;
+
+<span class="keyword">import</span> android.content.Context;
+<span class="keyword">import</span> android.graphics.Bitmap;
+<span class="keyword">import</span> android.graphics.Bitmap.Config;
+<span class="keyword">import</span> android.graphics.Canvas;
+<span class="keyword">import</span> android.graphics.Matrix;
+<span class="keyword">import</span> android.graphics.Paint;
+<span class="keyword">import</span> android.graphics.PorterDuff;
+<span class="keyword">import</span> android.graphics.PorterDuffXfermode;
+<span class="keyword">import</span> android.graphics.drawable.BitmapDrawable;
+<span class="keyword">import</span> android.graphics.drawable.Drawable;
+<span class="keyword">import</span> android.util.AttributeSet;
+<span class="keyword">import</span> android.widget.ImageView;
+<span class="javadoc">/**
+ * 自定义圆形 ImageView
+ *<span class="javadoctag"> @author</span> 钟买能
+ *<span class="javadoctag"> @version</span> 1.0
+ *<span class="javadoctag"> @since</span> 2014-5-30
+ */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoundImageView</span> <span class="keyword">extends</span> <span class="title">ImageView</span> {</span>
+	
+	<span class="keyword">public</span> <span class="title">RoundImageView</span>(Context context) {
+		<span class="keyword">super</span>(context);
+		<span class="comment">// TODO Auto-generated constructor stub</span>
+	}
+
+	<span class="keyword">public</span> <span class="title">RoundImageView</span>(Context context, AttributeSet attrs) {
+		<span class="keyword">super</span>(context, attrs);
+
+	}
+
+	<span class="keyword">public</span> <span class="title">RoundImageView</span>(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle) {
+		<span class="keyword">super</span>(context, attrs, defStyle);
+
+	}
+
+	<span class="annotation">@Override</span>
+	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span>(Canvas canvas) {
+		
+		<span class="comment">// 获取当前控件的 drawable</span>
+		Drawable drawable = getDrawable();
+
+		<span class="keyword">if</span> (drawable == <span class="keyword">null</span>) {
+			<span class="keyword">return</span>;
+		}
+
+		<span class="comment">// 这里 get 回来的宽度和高度是当前控件相对应的宽度和高度（在 xml 设置）</span>
+		<span class="keyword">if</span> (getWidth() == <span class="number">0</span> || getHeight() == <span class="number">0</span>) {
+			<span class="keyword">return</span>; 
+		}
+	
+		<span class="comment">// 画笔</span>
+		Paint paint = <span class="keyword">new</span> Paint();
+		<span class="comment">// 颜色设置</span>
+		paint.setColor(<span class="number">0xff424242</span>);
+		<span class="comment">// 抗锯齿</span>
+		paint.setAntiAlias(<span class="keyword">true</span>);
+		<span class="comment">//Paint 的 Xfermode，PorterDuff.Mode.SRC_IN 取两层图像的交集部门, 只显示上层图像。 </span>
+		PorterDuffXfermode xfermode = <span class="keyword">new</span> PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
+		<span class="comment">// 获取 bitmap，即传入 imageview 的 bitmap</span>
+		Bitmap bitmap =  ((BitmapDrawable)drawable).getBitmap() ;
+
+		<span class="comment">// 标志</span>
+		<span class="keyword">int</span> saveFlags = Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG | Canvas.FULL_COLOR_LAYER_SAVE_FLAG | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
+		canvas.saveLayer(<span class="number">0</span>, <span class="number">0</span>, getWidth(), getHeight(), <span class="keyword">null</span>, saveFlags);
+		
+		<span class="comment">// 画遮罩，画出来就是一个和空间大小相匹配的圆</span>
+		canvas.drawCircle(getWidth()/<span class="number">2</span>, getHeight()/<span class="number">2</span>, getWidth()/<span class="number">2</span>, paint);
+		paint.setXfermode(xfermode);
+		
+		<span class="comment">// 空间的大小 /bitmap 的大小 =bitmap 缩放的倍数</span>
+		<span class="keyword">float</span> scaleWidth = ((<span class="keyword">float</span>) getWidth()) / bitmap.getWidth();
+		<span class="keyword">float</span> scaleHeight = ((<span class="keyword">float</span>) getHeight()) / bitmap.getHeight();
+		
+	    Matrix matrix = <span class="keyword">new</span> Matrix();
+	    matrix.postScale(scaleWidth, scaleHeight); 
+	    
+	    <span class="comment">//bitmap 缩放</span>
+	    bitmap = Bitmap.createBitmap(bitmap, <span class="number">0</span>, <span class="number">0</span>, bitmap.getWidth(), bitmap.getHeight(), matrix, <span class="keyword">true</span>);
+	    
+	    <span class="comment">//draw 上去</span>
+		canvas.drawBitmap(bitmap, <span class="number">0</span>, <span class="number">0</span>, paint);
+<span class="comment">//		paint.setXfermode(null);</span>
+		canvas.restore();
+
+	}
+
+}
 </pre></td></tr></table></figure>
 
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/10.png" alt=" 图 10"> </p>
-<p>可见，HEAD 是指向了 refs/heads/master（而不是一个具体的哈希值）。与上面一一对应。完全相同。</p>
-<p>还介绍多一个底层命令，用语查看引用对应的提交 ID（哈希值）：</p>
+<h1 id=" 使用 ">使用</h1>
+<hr>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git rev<span class="attribute">-parse</span> HEAD
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>        &lt;<span class="keyword">com</span><span class="preprocessor">.bookingSystem</span><span class="preprocessor">.widget</span><span class="preprocessor">.RoundImageView</span>
+            android:id=<span class="string">"@+id/comment_from_image"</span>
+            android:layout_width=<span class="string">"70dp"</span>
+            android:layout_height=<span class="string">"70dp"</span>
+            android:layout_marginTop=<span class="string">"5dp"</span>
+            android:src=<span class="string">"@drawable/ic_launcher"</span> /&gt;
 </pre></td></tr></table></figure>
 
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/11.png" alt=" 图 11"></p>
+<p>其中有点不是很明白的就是，以下这两句的真正用处。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>int saveFlags = Canvas<span class="preprocessor">.MATRIX</span>_SAVE_FLAG | Canvas<span class="preprocessor">.CLIP</span>_SAVE_FLAG | Canvas<span class="preprocessor">.HAS</span>_ALPHA_LAYER_SAVE_FLAG | Canvas<span class="preprocessor">.FULL</span>_COLOR_LAYER_SAVE_FLAG | Canvas<span class="preprocessor">.CLIP</span>_TO_LAYER_SAVE_FLAG<span class="comment">;</span>
+canvas<span class="preprocessor">.saveLayer</span>(<span class="number">0</span>, <span class="number">0</span>, getWidth(), getHeight(), null, saveFlags)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>若把这两行代码删掉的话，会出现圆形头像闪现现象，圆形会出现一秒钟立刻打回原型。<br>这里是参考</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/xyz_lmn/article/details/22745997" target="_blank">http://blog.csdn.net/xyz_lmn/article/details/22745997</a></p>
+</blockquote>
+<p>有大神可以为我解答解答吗~？</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a><a href="/tags/Git权威指南/">Git权威指南</a>
+  <span></span> <a href="/tags/安卓/">安卓</a><a href="/tags/毕设/">毕设</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/git版本控制/">git版本控制</a>
+  <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/02/15/git_object/" data-title="Git学习——Git对象及游标的简单介绍 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/05/31/androidroundimageview/" data-title="安卓自定义圆形Image View | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -212,19 +345,11 @@ cat <span class="preprocessor">.git</span>/refs/heads/pre
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/02/16/firstBlog/" title="个人博客，第一文">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  个人博客，第一文</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/02/02/android-processesthreadasynctask/"  title="Android——Processes,Thread,Async Task（未完，待续。）">
+<a href="/2014/05/31/2014may/"  title="2014五月记忆">
  <strong>NEXT:</strong><br/> 
- <span>Android——Processes,Thread,Async Task（未完，待续。）
+ <span>2014五月记忆
 </span>
 </a>
 </div>
@@ -241,7 +366,7 @@ cat <span class="preprocessor">.git</span>/refs/heads/pre
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="# 思路 "><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 实现 "><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 使用 "><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li></ol>
   </div>
 
 <div id="asidepart">

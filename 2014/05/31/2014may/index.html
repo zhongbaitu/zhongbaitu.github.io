@@ -4,23 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Git学习——Git对象及游标的简单介绍 | 钟买能个人博客</title>
+    <title>2014五月记忆 | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="读《Git 权威指南》——笔记
-1
-git log -1 --pretty=raw
+    <meta name="description" content="好奇怪，回想起这个五月，好像很多事情都忘记了似的。好吧，只好把记得的事情记下来了。
+微信公众号开发
 
-
-可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交
-我们可以用命令
-1
-git cat-file -t 9c0ac
-
-
-来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只">
+首先，就是微信开发团队的事情啦，这么重要。直至今天，团队已经从我一个人，增长到 7 人了。开始，都还挺激情热血的，慢慢地，还是减退了不少。至于是觉得搞这个没什么前途、还是没什么意义呢？见仁见智吧。也">
     
     
     
@@ -80,15 +72,15 @@ git cat-file -t 9c0ac
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/02/15/git_object/" title="Git学习——Git对象及游标的简单介绍" itemprop="url">Git学习——Git对象及游标的简单介绍</a>
+      <a href="/2014/05/31/2014may/" title="2014五月记忆" itemprop="url">2014五月记忆</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-02-15T07:30:19.000Z" itemprop="datePublished">Feb 15 2014</time>
-    Updated:<time datetime="2014-05-02T06:42:16.000Z" itemprop="dateModified">May 2 2014</time>
+    <time datetime="2014-05-30T16:27:19.000Z" itemprop="datePublished">May 31 2014</time>
+    Updated:<time datetime="2014-05-30T16:30:54.000Z" itemprop="dateModified">May 31 2014</time>
     
   </p>
 </header>
@@ -97,113 +89,49 @@ git cat-file -t 9c0ac
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 微信公众号开发 "><span class="toc-number">1.</span> <span class="toc-text">微信公众号开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 比赛 "><span class="toc-number">2.</span> <span class="toc-text">比赛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 毕设（面试作品）"><span class="toc-number">3.</span> <span class="toc-text">毕设（面试作品）</span></a></li></ol>
 		</div>
 		
-		<p>读《Git 权威指南》——笔记</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="built_in">log</span> -<span class="number">1</span> <span class="comment">--pretty=raw</span>
-</pre></td></tr></table></figure>
-
-<p>可以看到有三个哈希值所表示的对象，分别是这次提交的标识、目录树、本次提交的父提交</p>
-<p>我们可以用命令</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git cat<span class="attribute">-file</span> <span class="attribute">-t</span> <span class="number">9</span>c0ac
-</pre></td></tr></table></figure>
-
-<p>来查看该哈希值所表示的是什么对象。(其中哈希值不用全部输入，只需输入前面一小段不冲突的字符)</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/1.png" alt=" 图 1"> </p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/2.png" alt=" 图 2"> </p>
-<p>用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git cat<span class="attribute">-file</span> <span class="attribute">-p</span> <span class="number">9</span>c0ac
-</pre></td></tr></table></figure>
-
-<p>查看该对象的内容</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/3.png" alt=" 图 3"> </p>
-<p>当查看 tree 的对象的时候，发现里面还包含这另外一个对象 blob, 这个对象保存着 a.txt 的内容。我们查看一下</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/4.png" alt=" 图 4"> </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">log</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">pretty=raw</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">graph</span> <span class="comment">9c0ac</span>
-</pre></td></tr></table></figure>
-
-<p>可以查看该对象的父提交的跟踪链，到了最后一个的时候便没有 parent 对象。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/5.png" alt=" 图 5"> </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git branch
-</pre></td></tr></table></figure>
-
-<p>查看分支</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/6.png" alt=" 图 6"> </p>
-<p>可见，当前有两个分支。一个是 master, 和 pre 分支</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">log</span> HEAD -<span class="number">1</span>
-</pre></td></tr></table></figure>
-
-<p>查看当前游标的指向。（HEAD 称为游标，用于指向不同分支中的不同提交。下面会详细说明）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">log</span> master -<span class="number">1</span>
-</pre></td></tr></table></figure>
-
-<p>查看当前 master 的提交标识</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">log</span> pre -<span class="number">1</span>
-</pre></td></tr></table></figure>
-
-<p>查看当前 pre 的提交标识</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/7.png" alt=" 图 7"> </p>
-<p>若加上参数 —pretty=oneline 则显示精简模式</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/8.png" alt=" 图 8"> </p>
-<p>可见，当前的 HEAD 游标和 master 的指向是一样的，所以当前的 HEAD 是指向 master 的最后一个提交</p>
-<p>现在我们切换一下分支<br>查看当前 master 的提交标识</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git checkout pre
-</pre></td></tr></table></figure>
-
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/9.png" alt=" 图 9"> </p>
-<p>可见，切换分支之后，游标 HEAD 就指向 pre 的最新的提交了。</p>
-<p>下面我们来看看这些对象都存放了在哪里</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>find <span class="built_in">.</span>git <span class="attribute">-name</span> HEAD <span class="attribute">-o</span> <span class="attribute">-name</span> master <span class="attribute">-o</span> <span class="attribute">-name</span> pre
-</pre></td></tr></table></figure>
-
-<p>再把他们输出查看</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>cat <span class="preprocessor">.git</span>/HEAD
-cat <span class="preprocessor">.git</span>/refs/heads/master
-cat <span class="preprocessor">.git</span>/refs/heads/pre
-</pre></td></tr></table></figure>
-
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/10.png" alt=" 图 10"> </p>
-<p>可见，HEAD 是指向了 refs/heads/master（而不是一个具体的哈希值）。与上面一一对应。完全相同。</p>
-<p>还介绍多一个底层命令，用语查看引用对应的提交 ID（哈希值）：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git rev<span class="attribute">-parse</span> HEAD
-</pre></td></tr></table></figure>
-
-<p><img src="http://zhongsir.qiniudn.com/2014-2-15-git/11.png" alt=" 图 11"></p>
+		<p>好奇怪，回想起这个五月，好像很多事情都忘记了似的。<br>好吧，只好把记得的事情记下来了。</p>
+<h2 id=" 微信公众号开发 ">微信公众号开发</h2>
+<hr>
+<p>首先，就是微信开发团队的事情啦，这么重要。<br>直至今天，团队已经从我一个人，增长到 7 人了。开始，都还挺激情热血的，慢慢地，还是减退了不少。至于是觉得搞这个没什么前途、还是没什么意义呢？见仁见智吧。也许也是接近期末，大家都忙起来了，一些事情，便会很自然地忘掉。<br>在这里，还是很感激培强，培强是我的第二个伙伴，我们的 CTO，代码的重构、日常 bug 维护都交给了他。最近，图书馆图书检索功能挂了，培强默默地去修好了。<br>至于志鹏的加入，当然是想一起布局校园物联网，玩玩微信的第二个野心，物联网啦，在校园里面玩微信物联网，帅不？ 可惜，时间已经不允许我继续玩下去了。准备得走人了。</p>
+<p>嗯，没错，上面写的好像都透露了一个问题，就是，我跑去哪了？<br>啊、、这个问题残酷啊，在校时间也只剩下最后一个月了，一个月之后就得出去工作。所以呢，最近都在准备在面试的作品 + 比赛（下面再说），以导致于，知道微信的程序有 bug 都没时间去修。</p>
+<hr>
+<blockquote>
+<p>面试作品？ 比赛？</p>
+</blockquote>
+<p>还是按时间顺序吧。</p>
+<h2 id=" 比赛 ">比赛</h2>
+<hr>
+<p>就在上一篇博客说了，我们的嵌入式智能小车比赛失败了，没有了进国赛的资格。<br>在这期间，院长和超哥不断说我们还有机会，机会还很大。以至于曾确令找我参加个微信应用比赛都不敢去。（其实不参加的最主要还是因为觉得 O2O 已经不是创新了，要玩就玩物联网嘛，就是以上说的。）<br>还真想不到运气这么好，国赛资格名额真的增加到 3 名，还有一个条件，就是同校只能派出一个队伍参赛。这个是什么意思？ 就是我们可以进国赛了。耶~ 这个也就是 520 那晚得到的消息。</p>
+<p>所以公假又开始了，这次长达一个多月，一个多月不用上课哦。多爽。但时间一算，我们实训到 6 月 27 号结束，实训结束，就意味着我们的课程全部已经结束了，我们就要滚蛋了。<br>而，比赛是 26 号，在天津。比赛完了，回来学校，呵呵，刚好，课程也全部完了。<br>这就意味着，我已经没有课程上了，我的上课时间已经全部结束了。T_T<br>有时间还真得要去上回两节课。这种感觉，太不舍了。</p>
+<h2 id=" 毕设（面试作品）">毕设（面试作品）</h2>
+<hr>
+<p>其实这个是 node.js 的一个期末大作品（命题），做一个预约 + 叫号系统，我和梯神一队，梯神写服务端，我写安卓端。<br>由于之前做的作品都没有一个是考虑到比较全面的，这次这个，决定要做一个比较完美的，拿去面试。<br>也因为剩下的时间不多，已经没有时间再做别的作品了。所以，这个作品也算是我的毕业设计了。<br>55555555555555，也由于这个作品的实用性不大（我已经很努力地改的了，把它当成一个产品来分析、开发），所以我也给它起了个名字叫<code>毕设实际</code>。</p>
+<p>正在想等完成后要不要开源出来呢？</p>
+<p>不过写几篇文章来分享一下里面用到的技术还是要的，也是给自己做一个笔记。</p>
+<p>这个端午在家里过，老妈做了好多粽子啊，可惜我不能吃。那可是我超爱的粽子，忍得我好幸苦。T_T. 病毒快走，快点康复。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a><a href="/tags/Git权威指南/">Git权威指南</a>
+  <span></span> <a href="/tags/大学/">大学</a><a href="/tags/生活/">生活</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/git版本控制/">git版本控制</a>
+  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/02/15/git_object/" data-title="Git学习——Git对象及游标的简单介绍 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/05/31/2014may/" data-title="2014五月记忆 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -213,18 +141,18 @@ cat <span class="preprocessor">.git</span>/refs/heads/pre
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/02/16/firstBlog/" title="个人博客，第一文">
+ <a href="/2014/05/31/androidroundimageview/" title="安卓自定义圆形Image View">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  个人博客，第一文</span>
+  安卓自定义圆形Image View</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/02/02/android-processesthreadasynctask/"  title="Android——Processes,Thread,Async Task（未完，待续。）">
+<a href="/2014/05/02/2014april/"  title="原本是个平淡的四月">
  <strong>NEXT:</strong><br/> 
- <span>Android——Processes,Thread,Async Task（未完，待续。）
+ <span>原本是个平淡的四月
 </span>
 </a>
 </div>
@@ -241,7 +169,7 @@ cat <span class="preprocessor">.git</span>/refs/heads/pre
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 微信公众号开发 "><span class="toc-number">1.</span> <span class="toc-text">微信公众号开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 比赛 "><span class="toc-number">2.</span> <span class="toc-text">比赛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 毕设（面试作品）"><span class="toc-number">3.</span> <span class="toc-text">毕设（面试作品）</span></a></li></ol>
   </div>
 
 <div id="asidepart">
