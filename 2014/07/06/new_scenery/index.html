@@ -4,12 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Git之Github使用（一）：Push代码到Github | 钟买能个人博客</title>
+    <title>另一道风景 | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="github 一直都是在上面拿资源。感觉有点愧对大众。是不是应该奉献自己的力量给 github 来推动开源的发展呢。在两个月前第一次在 github 新建项目，并且 push 了一套比赛的源码。但。。。今天竟然忘了怎么用 git 了。又复习了一次。所以这次打算在这里作个笔记。给自己做个的或是给 gi">
+    <meta name="description" content="最后的一晚
+
+
+宿舍第一次完整聚餐。
+餐后去找馥（送了个小盒子给我）。
+再去部门唱 K，玩骰子骗了好多酒喝。
+出 KTV，见到班上伙伴，坐下。
+回到宿舍，和苹果体验中心的伙伴畅聊到凌晨。
+继续欣赏机电夜景
+
+离开那天
+
+离开，百感交集。
+想了好多，好多。
+今天搬出来了。一年前，我们的约定，今年，没有">
     
     
     
@@ -71,15 +85,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/01/20/git_github1/" title="Git之Github使用（一）：Push代码到Github" itemprop="url">Git之Github使用（一）：Push代码到Github</a>
+      <a href="/2014/07/06/new_scenery/" title="另一道风景" itemprop="url">另一道风景</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-01-20T15:07:26.000Z" itemprop="datePublished">Jan 20 2014</time>
-    Updated:<time datetime="2014-05-02T06:38:04.000Z" itemprop="dateModified">May 2 2014</time>
+    <time datetime="2014-07-06T06:18:37.000Z" itemprop="datePublished">Jul 6 2014</time>
+    Updated:<time datetime="2014-07-06T06:22:21.000Z" itemprop="dateModified">Jul 6 2014</time>
     
   </p>
 </header>
@@ -88,87 +102,67 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 最后的一晚 "><span class="toc-number">1.</span> <span class="toc-text">最后的一晚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 离开那天 "><span class="toc-number">2.</span> <span class="toc-text">离开那天</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 第二天 "><span class="toc-number">3.</span> <span class="toc-text">第二天</span></a></li></ol>
 		</div>
 		
-		<p>github 一直都是在上面拿资源。感觉有点愧对大众。是不是应该奉献自己的力量给 github 来推动开源的发展呢。<br>在两个月前第一次在 github 新建项目，并且 push 了一套比赛的源码。但。。。今天竟然忘了怎么用 git 了。又复习了一次。所以这次打算在这里作个笔记。给自己做个的或是给 git 新手做的也好吧。为互联网贡献一点力量。</p>
-<p>一：<br>安装 git 和配置就不说了。</p>
-<p>二：<br>进入到等下要 push 的代码的目录文件夹，打开 bash</p>
-<p><img src="http://segmentfault.com/img/bVbN91" alt=""></p>
-<p>进入到等下要 push 的代码的目录文件夹，打开 bash</p>
-<p><img src="http://segmentfault.com/img/bVbN97" alt=""></p>
-<p>初始化</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git init
-</pre></td></tr></table></figure>
-
-<p>初始化后在本地代码库会自动创建一个.git 隐藏文件，这个就是本地代码库</p>
-<p>三：<br>加载文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="built_in">add</span> .
-</pre></td></tr></table></figure>
-
-<p>. 是把文件夹里面的所有文件都加载进来</p>
-<p>还可以单个加载</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">add</span> index<span class="preprocessor">.html</span>,test<span class="preprocessor">.html</span>
-</pre></td></tr></table></figure>
-
-<p>四：</p>
-<p>提交文件，创建时间点</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="operator"><span class="keyword">commit</span> -m <span class="string">"init commit"</span></span>
-</pre></td></tr></table></figure>
-
-<p>-m “这里的文件是注释”</p>
-<p>创建之后可以随时回到这个时间点，可以看到有 4 个文件被修改了，47 个插入，51 个删除<br><img src="http://segmentfault.com/img/bVbOam" alt=""></p>
-<p>可以随时用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git status
-</pre></td></tr></table></figure>
-
-<p>查看 git 的状态</p>
-<p>五：<br>推送代码</p>
-<p>第一次推送的时候要添加远程的代码库到配置</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git remote <span class="keyword">add</span> origin https://github<span class="preprocessor">.com</span>/zhong635725959/droplook<span class="preprocessor">.git</span>
-</pre></td></tr></table></figure>
-
-<p>origin 可变，随自己喜欢</p>
-<p>推送代码：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>git <span class="keyword">push</span> origin master
-</pre></td></tr></table></figure>
-
-<p>然后会要求输入 github 的帐号和密码（不可见的）<br><img src="http://segmentfault.com/img/bVbOaz" alt="">]</p>
-<p>OK, 成功</p>
-<p>问题：<br>在这成功之前遇到了一个问题。update were rejected because the tip of your current branch is behind ….</p>
-<p>原因是远程的的代码库比我本地的代码库要新。所以需要在远程代码库 pull 一次下来。再修改代码。再 push。成功。解决了。<br><img src="http://segmentfault.com/img/bVbOaA" alt="">]</p>
+		<h2 id=" 最后的一晚 ">最后的一晚</h2>
 <hr>
-<p>这是我第一次写技术博客。不知道这种算不算是技术博客呢。欢迎吐槽哈。应该有好多问题的。</p>
-<p>之前在 csdn 看到一牛人的一个提升自我能力的一个建议就是写技术博客。</p>
-<p>已经想动手久了。但一直没动。这次终于动手了。希望可以坚持下去。加油</p>
+<ul>
+<li>宿舍第一次完整聚餐。</li>
+<li>餐后去找馥（送了个小盒子给我）。</li>
+<li>再去部门唱 K，玩骰子骗了好多酒喝。</li>
+<li>出 KTV，见到班上伙伴，坐下。</li>
+<li>回到宿舍，和苹果体验中心的伙伴畅聊到凌晨。</li>
+<li>继续欣赏机电夜景</li>
+</ul>
+<h2 id=" 离开那天 ">离开那天</h2>
 <hr>
+<p>离开，百感交集。</p>
+<p>想了好多，好多。</p>
+<p>今天搬出来了。一年前，我们的约定，今年，没有履行。</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/20140706003703.jpg" alt=""></p>
+<p>而这一承诺，同样触动了冷血无情的海浩。</p>
+<hr>
+<p>来到这里，感觉好了好多，可能是没停下来的感觉吧。一直在搬运行李。整理行李，没有去想太多。</p>
+<p>而，现在闲下来了，情绪又要发作了。这也是我记下这篇日志的原因。</p>
+<hr>
+<p>晓冰和馥家的文佳也来了这边，和我们隔了三个巷子。</p>
+<p>再附照片几张</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3255.jpg" alt=""></p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3256.jpg" alt=""></p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3254.jpg" alt=""></p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3259.jpg" alt=""></p>
+<h2 id=" 第二天 ">第二天</h2>
+<hr>
+<p>今天我们去超市买了好多东西回来装备我们的家，我们还说这是一个正在崛起的 IT 巨头，哈哈。</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3261.jpg" alt=""></p>
+<p>但依然还有好多东西没买，因为我们都没什么钱了。原来一个房子是需要这么多东西的。</p>
+<p>好吧，只能 mark 下来，下个月、下下个月发工资再买。</p>
+<p>我们下个月的目标。</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3260.jpg" alt=""></p>
+<p>真的太好玩了，让我加强了对以后生活的幻想，嗯，是和老婆的生活，我们那时候会是怎样去装扮我们的家庭的呢，真让人期待。</p>
+<p>锅、面等都买好了。也该自己动手做午餐了。原本是想下楼去买两根葱回来煮面的，但结果却买了两根韭菜回来。难道卖菜的阿姨不奇怪我为什么会买两根葱的么？ 不过其实我真的懂的，葱是圆的，韭菜是扁的，只是粗心大意没留意而已。哈哈。</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3262.jpg" alt=""></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a><a href="/tags/github/">github</a>
+  <span></span> <a href="/tags/大学/">大学</a><a href="/tags/生活/">生活</a><a href="/tags/感悟/">感悟</a><a href="/tags/青春/">青春</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/git版本控制/">git版本控制</a>
+  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/01/20/git_github1/" data-title="Git之Github使用（一）：Push代码到Github | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/07/06/new_scenery/" data-title="另一道风景 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -177,19 +171,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/01/24/adnroid-viewpager/" title="Adnroid——View Pager制作App第一次使用时出现的导航介绍">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Adnroid——View Pager制作App第一次使用时出现的导航介绍</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/01/19/winter_holiday/"  title="最后一个寒假——这几天的感想">
+<a href="/2014/06/29/tianjin/"  title="天津之行——国赛+毕业旅游">
  <strong>NEXT:</strong><br/> 
- <span>最后一个寒假——这几天的感想
+ <span>天津之行——国赛+毕业旅游
 </span>
 </a>
 </div>
@@ -206,7 +192,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 最后的一晚 "><span class="toc-number">1.</span> <span class="toc-text">最后的一晚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 离开那天 "><span class="toc-number">2.</span> <span class="toc-text">离开那天</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 第二天 "><span class="toc-number">3.</span> <span class="toc-text">第二天</span></a></li></ol>
   </div>
 
 <div id="asidepart">
