@@ -4,16 +4,37 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>最后一个寒假——这几天的感想 | 钟买能个人博客</title>
+    <title>Share Sdk短信验证码功能开发（Android） | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="这个博客原本应该在学校的时候就已经要开的了。但开着还要等着审核就懒了，然后那晚写的学期总结就放了在印象笔记。
-这两天想着自己做一个个人博客，头绪也有了，思路也有了，但想着后台那些逻辑就又不想折腾了。好吧，用 wordpress，做个界面就算了，但 wordpress 又没怎么接触过，它的界面应该如何开发呢？还是只是换个主题？ 纯碎换个主题的话又太没意思了。又算了，还是在 segmentfault 开个博客好了，选择这里的其中一个原因就是，我很喜欢这个平台的风格——小清新。
-3 号放假，5 号回家，9 号到了长隆打兼职上班。这个寒假的蓝图我想得非常美好，白天去上班，下班和馥聊聊天，晚上还可以敲代码。一个寒假下来，可以把下一个学期的伙食 + 娱乐 + 实习需要的费用（租房子）都赚够了。
-原本是打着服务员的头号去干的，可惜入世不深的我，误会了这个服务员的意思。。。感觉没有什么服务性质，只是一个清洁工而已。至工作有多卑微也不想再谈了，打了这个多次兼职，这次的最糟糕。每天上班空虚度过、做着呢卑微的工作，很委屈自己似的、感觉什么都没得到，除了钱。但有着馥的鼓励、加油，多空虚都补充回来了。
-&nbsp;">
+    <meta name="description" content="之前就想在毕设实际的注册里加上手机验证码验证功能，但那时候找了好几个短信网关都不好用而且收费贵。最终还是没做了。
+之后，看到 shareSDK 出了这个功能，想试试好久了。
+参考文档
+
+
+官方参考文档
+
+注册 demo
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+">
     
     
     
@@ -75,15 +96,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/01/19/winter_holiday/" title="最后一个寒假——这几天的感想" itemprop="url">最后一个寒假——这几天的感想</a>
+      <a href="/2014/07/29/sharesdk_messagesdk/" title="Share Sdk短信验证码功能开发（Android）" itemprop="url">Share Sdk短信验证码功能开发（Android）</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-01-19T15:01:13.000Z" itemprop="datePublished">Jan 19 2014</time>
-    Updated:<time datetime="2014-04-05T06:01:57.000Z" itemprop="dateModified">Apr 5 2014</time>
+    <time datetime="2014-07-29T15:16:10.000Z" itemprop="datePublished">Jul 29 2014</time>
+    Updated:<time datetime="2014-07-29T15:18:11.000Z" itemprop="dateModified">Jul 29 2014</time>
     
   </p>
 </header>
@@ -92,50 +113,267 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 参考文档 "><span class="toc-number">1.</span> <span class="toc-text">参考文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 注册 demo"><span class="toc-number">2.</span> <span class="toc-text">注册 demo</span></a></li></ol>
 		</div>
 		
-		<p>这个博客原本应该在学校的时候就已经要开的了。但开着还要等着审核就懒了，然后那晚写的学期总结就放了在印象笔记。</p>
-<p>这两天想着自己做一个个人博客，头绪也有了，思路也有了，但想着后台那些逻辑就又不想折腾了。好吧，用 wordpress，做个界面就算了，但 wordpress 又没怎么接触过，它的界面应该如何开发呢？还是只是换个主题？ 纯碎换个主题的话又太没意思了。又算了，还是在 segmentfault 开个博客好了，选择这里的其中一个原因就是，我很喜欢这个平台的风格——小清新。</p>
-<p>3 号放假，5 号回家，9 号到了长隆打兼职上班。这个寒假的蓝图我想得非常美好，白天去上班，下班和馥聊聊天，晚上还可以敲代码。一个寒假下来，可以把下一个学期的伙食 + 娱乐 + 实习需要的费用（租房子）都赚够了。</p>
-<p>原本是打着服务员的头号去干的，可惜入世不深的我，误会了这个服务员的意思。。。感觉没有什么服务性质，只是一个清洁工而已。至工作有多卑微也不想再谈了，打了这个多次兼职，这次的最糟糕。每天上班空虚度过、做着呢卑微的工作，很委屈自己似的、感觉什么都没得到，除了钱。但有着馥的鼓励、加油，多空虚都补充回来了。</p>
-<p>&nbsp;</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2244.jpg" alt=""></p>
-<p><a id="more"></a>直至第五天，发生了过于严重的问题·。一把火冲上头就去主管那里辞职了。</p>
-<p>到了更衣室见到基龙，他说我怎么这么突然 ，好像把他吓坏了。因为才认识他一天，准确来说 24 小时都还不够。这时候他赶着要回城职拿东西。</p>
-<p>到了外面等车，看着发光的二家姐头像，也和她说了。理所当然的，会问我为什么。然后我如常说了。这时候我承认我自己有点自大，我觉得自己可以利用这些时间做一些更有意义的事情，我现在比以前会的东西更多，我有得选择。她说我沉不住气，怎么不能忍一忍。但我觉得我这个忍的时间过了。我的这个时间在早两年就过了，好多苦我都熬过了。以前，我别无选择，现在，我可以选择。</p>
-<p>有时候，我也会拿自己和里面一起工作的临时工比较一下，为什么他们可以熬下去，而我就不能呢？ 然后我给我自己的答案就是，他们（都是一些没工作做的社会青年）的知识很有限，他们要是不留在这里的话，他们也没其他地方去。我。就和他们不同于这里。我不知道我这个想法对不对，不知道应不应该这样想，但我就是这么想了。</p>
-<p>晚上回到宿舍。馥没有问太多我，她说随我喜欢咯。其实我想你问多一点，哪怕是一点。不过就算你问了我也不会说太多。因为我知道我说了你也会不开心。不知道你现在是不是在想，我是因为吃不了苦的那种，然后就容易放弃了。</p>
-<p>晚上，到了宿舍管理处那里问关于退宿舍的事情，这时候和里面的一个阿姨聊了起来（她主要是看我这么快就退宿舍了，问了下原因），我也如实说了，那时候我还不知道她是谁，也没避忌太多，就把心里的都说了出来。最后，她竟然赞我很有想法，再然后她暴露自己的身份，她是 ** 公司（世界 500 强）的总经理，这个宿舍管理公司是她们公司的子公司之一。在了解我专业情况之下。她说她在金鼎那边有个餐厅，打算向着网络订餐化发展，（应该又是想搞传说中的 O2O 的了）。她想先招我进去她们那里做着服务员，先了解公司、餐厅的运作流程。到实习的时候就过去实习帮她忙。</p>
-<p>这时候我心开了一朵花。哈哈。我说我今天出门遇贵人了，她问我有么有作品之类的，刚好我带了笔记本，她说我好像有备而来，机会是留给有准备的人的，就这样，我就在旁边的桌子上坐了下来面试了。</p>
-<p>最终。我拿着简历表说，我回去考虑一下，考虑清楚了就填了表再拿下来给你。然后她还叫秘书留了电话给我。（非常感谢你这么看得起我）</p>
-<p>最终没去的原因有几个，1、实习或者毕业后回珠海工作的想法没怎么想过。反而更想留在广州或者甚至是深圳（因为馥）。2、餐厅有点远，她说，地点没有远和不远，只有离梦想远和不远。我非常赞同这句话。但，例如，我也不可能说去北京就是为了做一个服务员吧。3、谢谢经理这么看得起我，如果我真的有那么大的能力，我想趁这个时间继续给我自己充实深造一下。4、5、、、、、</p>
-<p>&nbsp;</p>
-<p>好吧，剩下的寒假时间，主要是准备中国软件杯，加强英语，继续深入了解安卓开发，参与开源，养成写技术博客的习惯（就在这个博客开始）。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2234.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2238.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2251.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-2/IMAG2256.jpg" alt=""></p>
+		<p>之前就想在<code>毕设实际</code>的注册里加上手机验证码验证功能，但那时候找了好几个短信网关都不好用而且收费贵。最终还是没做了。</p>
+<p>之后，看到 shareSDK 出了这个功能，想试试好久了。</p>
+<h2 id=" 参考文档 ">参考文档</h2>
+<hr>
+<blockquote>
+<p><a href="http://wiki.sharesdk.cn/Android_%E7%9F%AD%E4%BF%A1SDK%E9%9B%86%E6%88%90%E6%96%87%E6%A1%A3" target="_blank">官方参考文档</a></p>
+</blockquote>
+<h2 id=" 注册 demo">注册 demo</h2>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> {</span>
+	
+	<span class="keyword">private</span> RegisterPage registerPage;
+	<span class="keyword">private</span> Button registerBut;
+	
+	<span class="annotation">@Override</span>
+	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span>(Bundle savedInstanceState) {
+		<span class="keyword">super</span>.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		<span class="comment">// 初始化短信 SDK</span>
+		SMSSDK.initSDK(<span class="keyword">this</span>, <span class="string">"2784af5d6350"</span>, <span class="string">"b0e314ffc11ce447ad0a0be0156ba12c"</span>);
+		<span class="comment">// 集成的 GUI</span>
+		registerPage=<span class="keyword">new</span> RegisterPage();
+		<span class="comment">// 注册按钮</span>
+		registerBut=(Button) <span class="keyword">this</span>.findViewById(R.id.button1);
+		
+		
+		registerBut.setOnClickListener(<span class="keyword">new</span> OnClickListener() {
+			
+			<span class="annotation">@Override</span>
+			<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View arg0) {
+				
+				registerPage.setRegisterCallback(<span class="keyword">new</span> EventHandler(){
+
+					<span class="annotation">@Override</span>
+					<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterEvent</span>(<span class="keyword">int</span> event, <span class="keyword">int</span> result, Object data) {
+				        <span class="comment">// 解析注册结果</span>
+				        <span class="keyword">if</span> (result == SMSSDK.RESULT_COMPLETE) {
+				                <span class="annotation">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)
+				                HashMap&lt;String,Object&gt; phoneMap = (HashMap&lt;String, Object&gt;) data;
+				                String country = (String) phoneMap.get(<span class="string">"country"</span>);
+				                String phone = (String) phoneMap.get(<span class="string">"phone"</span>);
+				                
+				                <span class="comment">// 验证成功跳转到设置密码、信息界面，继续完成注册</span>
+				                Intent intent=<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, Info.class);
+				                intent.putExtra(<span class="string">"country"</span>, country);
+				                intent.putExtra(<span class="string">"phone"</span>, phone);
+				                startActivity(intent);
+				        }
+					}
+					
+					
+				});
+				registerPage.show(MainActivity.<span class="keyword">this</span>);
+			}
+		});
+
+	}
+
+
+}
+</pre></td></tr></table></figure>
+
+<p><code>RegisterPage</code>这个类集成了一个注册 GUI，使用这个类相当方便。</p>
+<p>点击按钮触发事件，就进入到它做好了的 UI 界面，直至验证成功。跳出来。</p>
+<p>所以这里从在了<code>afterEvent</code>方法，验证成功调用此方法，在这里我做了一个跳转，跳转到<code>Info.class</code>，从而继续以下的注册环节。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> <span class="keyword">extends</span> <span class="title">Activity</span> {</span>
+	
+	<span class="keyword">private</span> EditText passwordET;
+	<span class="keyword">private</span> Button sureButton;
+	<span class="keyword">private</span> String phone,password,country;
+	<span class="keyword">private</span> RequestQueue rQueue;
+	
+	<span class="annotation">@Override</span>
+	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span>(Bundle savedInstanceState) {
+		<span class="keyword">super</span>.onCreate(savedInstanceState);
+		setContentView(R.layout.info);
+		
+		rQueue = Volley.newRequestQueue(<span class="keyword">this</span>);
+		
+		Intent intent=getIntent();
+		phone=intent.getStringExtra(<span class="string">"phone"</span>);
+		country=intent.getStringExtra(<span class="string">"country"</span>);
+		
+		passwordET=(EditText) <span class="keyword">this</span>.findViewById(R.id.password);
+		sureButton=(Button) <span class="keyword">this</span>.findViewById(R.id.sureButton);
+		
+		sureButton.setOnClickListener(<span class="keyword">new</span> OnClickListener() {
+			
+			<span class="annotation">@Override</span>
+			<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View arg0) {
+				
+				password=passwordET.getText().toString();
+				Toast.makeText(Info.<span class="keyword">this</span>, phone+<span class="string">","</span>+password+<span class="string">","</span>+country, Toast.LENGTH_SHORT).show();
+				postData();
+				
+			}
+		});
+		
+	} 
+
+	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postData</span>(){
+		<span class="keyword">final</span> String URL = <span class="string">"http://192.168.191.1:8080/ShareSdkMessageService/servlet/Register?phone="</span>+phone+<span class="string">"&password="</span>+password+<span class="string">"&country="</span>+country;
+
+		JsonObjectRequest req = <span class="keyword">new</span> JsonObjectRequest(URL, <span class="keyword">null</span>,
+		       <span class="keyword">new</span> Response.Listener&lt;JSONObject&gt;() {
+		           <span class="annotation">@Override</span>
+		           <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span>(JSONObject response) {
+
+		           }
+		       }, <span class="keyword">new</span> Response.ErrorListener() {
+		           <span class="annotation">@Override</span>
+		           <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span>(VolleyError error) {
+
+		           }
+		       });
+		rQueue.add(req);
+		rQueue.start();
+	}
+
+}
+</pre></td></tr></table></figure>
+
+<p>在此继续完成注册资料的填写，然后提交到馥务器，写入到数据库。</p>
+<p>OK。完成。</p>
+<p>同时，shareSDK 同提供了无 GUI 的接口。</p>
+<blockquote>
+<p><a href="http://wiki.sharesdk.cn/Android_%E7%9F%AD%E4%BF%A1SDK%E6%97%A0GUI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8" target="_blank">无 GUI 开发文档</a></p>
+</blockquote>
+<hr>
+<p><a href="http://pan.baidu.com/s/1qWwh60W" target="_blank">完成代码点击下载</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/兼职/">兼职</a><a href="/tags/感悟/">感悟</a><a href="/tags/生活/">生活</a>
+  <span></span> <a href="/tags/安卓/">安卓</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
+  <a class="article-category-link" href="/categories/安卓开发杂锦/">安卓开发杂锦</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/01/19/winter_holiday/" data-title="最后一个寒假——这几天的感想 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/07/29/sharesdk_messagesdk/" data-title="Share Sdk短信验证码功能开发（Android） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -144,14 +382,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/01/20/git_github1/" title="Git之Github使用（一）：Push代码到Github">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Git之Github使用（一）：Push代码到Github</span>
+
+<div class="next">
+<a href="/2014/07/20/struts_demo_2/"  title="Struts Demo —— 认识拦截器">
+ <strong>NEXT:</strong><br/> 
+ <span>Struts Demo —— 认识拦截器
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -165,7 +403,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 参考文档 "><span class="toc-number">1.</span> <span class="toc-text">参考文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 注册 demo"><span class="toc-number">2.</span> <span class="toc-text">注册 demo</span></a></li></ol>
   </div>
 
 <div id="asidepart">
