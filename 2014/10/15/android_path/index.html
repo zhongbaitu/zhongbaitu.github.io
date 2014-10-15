@@ -4,21 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>世界的尽头——广州 东莞 南沙(广州)骑行之旅 | 钟买能个人博客</title>
+    <title>Android Path | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="今天 28 号了，其实一直想把这个旅程记录下来，只是找不到一个安静的地方写点东西。
-难得又来了次图书馆（刚又给正前方的师妹搭讪了、=_=），刚把荣泰的海报改完，虽有点不符合客户（老师）要求，但，这个客户的要求带点歪。没按他意思做，坚持了自己，当然，完全是不可能的，还是改了小部分。喝喝。
-不扯了，正题。
-#life·mark# 世界的尽头 plan a .
-22 号：机电 - 增城 - 麻涌 - 万江 - 道滘 - 厚街 - 虎门 - 南沙。
-23 号：南沙 - 番禺 - 海珠 - 天河 - 机电。
-成功挑战 224 公里。
-人生能有多少回青春。青春能有多少回难得的疯狂。
-
-出发咯（宿舍楼下）！！！">
+    <meta name="description" content="1、Why
+最近在写 android 画图经常用到这几个什么什么 To，一开始还真不知道cubicTo这个方法，更不用说能不能分清楚它们了，所以特此来做个小笔记，记录下 moveTo、lineTo、quadTo、cubicTo、arcTo 的作用，在自定义 view 的时候经常用到。接下来也会分享下">
     
     
     
@@ -80,15 +72,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/03/28/the_world_ending/" title="世界的尽头——广州 东莞 南沙(广州)骑行之旅" itemprop="url">世界的尽头——广州 东莞 南沙(广州)骑行之旅</a>
+      <a href="/2014/10/15/android_path/" title="Android Path" itemprop="url">Android Path</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-03-28T04:50:28.000Z" itemprop="datePublished">Mar 28 2014</time>
-    Updated:<time datetime="2014-05-02T02:39:31.000Z" itemprop="dateModified">May 2 2014</time>
+    <time datetime="2014-10-15T15:37:35.000Z" itemprop="datePublished">Oct 15 2014</time>
+    Updated:<time datetime="2014-10-15T15:44:22.000Z" itemprop="dateModified">Oct 15 2014</time>
     
   </p>
 </header>
@@ -97,118 +89,104 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Why"><span class="toc-number">1.</span> <span class="toc-text">1、Why</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、moveTo"><span class="toc-number">2.</span> <span class="toc-text">2、moveTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、lineTo"><span class="toc-number">3.</span> <span class="toc-text">3、lineTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、quadTo"><span class="toc-number">4.</span> <span class="toc-text">4、quadTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、cubicTo"><span class="toc-number">5.</span> <span class="toc-text">5、cubicTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、arcTo"><span class="toc-number">6.</span> <span class="toc-text">6、arcTo</span></a></li></ol>
 		</div>
 		
-		<p>今天 28 号了，其实一直想把这个旅程记录下来，只是找不到一个安静的地方写点东西。</p>
-<p>难得又来了次图书馆（刚又给正前方的师妹搭讪了、=_=），刚把荣泰的海报改完，虽有点不符合客户（老师）要求，但，这个客户的要求带点歪。没按他意思做，坚持了自己，当然，完全是不可能的，还是改了小部分。喝喝。</p>
-<p>不扯了，正题。</p>
-<p><a href="http://huati.weibo.com/k/life%C2%B7mark?from=501" target="_blank">#life·mark#</a> 世界的尽头 plan a .</p>
-<p>22 号：机电 - 增城 - 麻涌 - 万江 - 道滘 - 厚街 - 虎门 - 南沙。</p>
-<p>23 号：南沙 - 番禺 - 海珠 - 天河 - 机电。</p>
-<p>成功挑战 224 公里。</p>
-<p>人生能有多少回青春。青春能有多少回难得的疯狂。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2080.JPG" alt=""></p>
-<p>出发咯（宿舍楼下）！！！</p>
-<a id="more"></a>
+		<h2 id="1、Why">1、Why</h2>
+<p>最近在写 android 画图经常用到这几个<code>什么什么 To</code>，一开始还真不知道<code>cubicTo</code>这个方法，更不用说能不能分清楚它们了，所以特此来做个小笔记，记录下 moveTo、lineTo、quadTo、cubicTo、arcTo 的作用，在自定义 view 的时候经常用到。<br>接下来也会分享下这几天写的几个东西。相信对于新手也会有点帮助，高手也帮忙看看有没错，欢迎吐槽吐槽。</p>
+<h2 id="2、moveTo">2、moveTo</h2>
+<p><code>moveTo</code> 不会进行绘制，只用于移动移动画笔。<br>结合以下方法进行使用。</p>
+<h2 id="3、lineTo">3、lineTo</h2>
+<p><code>lineTo</code> 用于进行直线绘制。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>mPath<span class="preprocessor">.lineTo</span>(<span class="number">300</span>, <span class="number">300</span>)<span class="comment">;</span>
+canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
+</pre></td></tr></table></figure>
 
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2082.JPG" alt=""></p>
-<p>刚过马洞村进入了一个比较悠闲的道路，感觉爽歪歪。超级舒服~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2083.JPG" alt=""></p>
-<p>接近增城中，正在开发状态的这里，灰尘滚滚~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_094821.jpg" alt=""></p>
-<p>第一次休息，主要原因还是有两个是带着感冒上路的，停下来弄鼻涕~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_101247.jpg" alt=""></p>
-<p>在农工商 300 米外，海浩的单车掉链了，第二站休息。华仔努力中。两个小伙伴趁机去了“放水”，放水图就不上了，哈哈。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_112307.jpg" alt=""></p>
-<p>新堂。来了碗超抵超好吃的河粉。顺便附近超市搞了点下午的下午茶。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_130103.jpg" alt=""></p>
-<p>吃完河粉继续出发，经过数次休息，中途还捡钱了~ 标志着这是幸运的一天，终于到达东莞麻涌。</p>
-<p>刚进麻涌，道路左右两边，全是 xx 酒店，xx 沐足。还有几间带着锁链锁着，大概是封了。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_142122.jpg" alt=""></p>
-<p>东莞万江，下午茶。面包而已~~ 加点炼奶。嘎嘎~ 万江还真名副其实是“万江”。还真的够多江的，上桥爬坡都爬怕了。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_142206.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_145842.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_145908.jpg" alt=""></p>
-<p>还是在东莞，道滘。有点“荡失路”的感觉~~。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_151157.jpg" alt=""></p>
-<p>东莞厚街，正望着虎门渡口前进。厚街到处都是泥头车 + 各种车，横行霸道，见了好几个司机把车直接冲上人行道来逆行。。~ 牛哄哄。</p>
-<p>此时，大家已经很疲惫了。南沙，好像都已经忘记了，只是想像快点到渡口。。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165439.jpg" alt=""></p>
-<p>经过艰辛的路程，终于到达渡口了，还能欣赏一下夕阳。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165515.jpg" alt=""></p>
-<p>上船。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165549.jpg" alt=""></p>
-<p>坐的正式这样的船，小伙伴们都好激动。但这船比起 10 年前在涯南坐的大小差远了。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165645.jpg" alt=""></p>
-<p>此时好有 feel。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_170159.jpg" alt=""></p>
-<p>来张小合照更有 feel。还有一个拿相机。哈哈</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_170028.jpg" alt=""></p>
-<p>装装帅先。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_173624.jpg" alt=""></p>
-<p>下了船立刻去填填肚子先。这个时候，带出来的卷纸给偷了。。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_182005.jpg" alt=""></p>
-<p>无节操。屁股顶不住了。好好放松一下，扭两扭。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_183808.jpg" alt=""></p>
-<p>到达南沙天后宫。这里得省略部分内容，因实际偏离了我们的计划。属于我们的不可告人秘密。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_201434.jpg" alt=""></p>
-<p>江边休息，聊天。能偏离金钱，女人么？</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_210732.jpg" alt=""></p>
-<p>啤啤距。为青春干瓶。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_212238.jpg" alt=""></p>
-<p>因计划变化，带着酒驾上路，先来张大合照先。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_213321.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_213448.jpg" alt=""></p>
-<p>享受夜骑。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_034344.jpg" alt=""></p>
-<p>凌晨，KFC 小睡一下。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_050223.jpg" alt=""></p>
-<p>凌晨 4 点，继续上路，返程。前进了 10+ 公里左右，饿爆了的肚子看到个大排档果断靠近了。大概 5 点钟这个时候，老伯伯们都起来吃早餐了，赞一个。奇怪的是，怎么一个老奶奶都没有的。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_051652.jpg" alt=""></p>
-<p>这两天最奢侈的一顿。原以普通的早餐变了喝早茶。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_213426.jpg" alt=""></p>
-<p>凌晨的道路是我们的~ 耶</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_062323.jpg" alt=""></p>
-<p>累爆了。玩玩拍戏先。地面少了行字：精通 java、php，求捡走。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_063339.jpg" alt=""></p>
-<p>继续玩，弃车。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_062745.jpg" alt=""></p>
-<p>哇哈哈。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_073138.jpg" alt=""></p>
-<p>到市区了，市区穿梭的感觉也很不错。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_100259.jpg" alt=""></p>
-<p>重头戏。番禺的洛溪大桥。上桥，上了一半后，我们是用推的。下桥，却是用生命下的，刺激、惊险等等形容词都无法形容这座桥的经历。单车道很窄、没护栏，不得不走汽车道。汽车道的大巴高速飞驰而过，大巴与人的距离大概就那 5cm。靠近单车道的边边还坑坑洼洼。吓得腿都软了。最终安全到达桥下。有惊无险。呼~~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2169.JPG" alt=""></p>
-<p>广州塔这一带去过很多次，但还是第一次骑车去。在塔底控制不了眼皮，睡着了一会，为了不破坏形象，继续启程。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2190.JPG" alt=""></p>
-<p>旅程的最后，来点小插曲，到南校去转转，还是头一次呢。南校没有想象中的“破”，当然，是出了宿舍。南校都要给黑坏了，但显示在眼前的却是鸟语花香。</p>
-<p>进到南校，有点受关注，还给几个妹子问是不是北校过来的。有点奇怪的是，难道南校的男生不会这么般出现在她们眼前？怎么一看就知道是北校来的呢~~</p>
-<p>最后，队伍安全顺利回到了我们亲爱的大机电，时间是：下午 5：00.</p>
-<p>这次的旅程，难以用我的笨笔（现在是笨键盘）来形容出来。</p>
-<p>这是我活了这么多年，做了最疯狂的一件事。</p>
-<p>谢谢各位参与这场演出的小伙伴。</p>
-<p>生活就系要咁，间唔中嚟 D 期待、刺激、疯狂。生活就唔会再枯燥。</p>
+<p>默认从坐标 (0,0) 开始绘制。如图：</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013214930.jpg" alt=" 图片描述 "></p>
+<p>刚才我们不说了<code>moveTo</code>是用来移动画笔的吗？</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>mPath<span class="preprocessor">.moveTo</span>(<span class="number">100</span>, <span class="number">100</span>)<span class="comment">;</span>
+mPath<span class="preprocessor">.lineTo</span>(<span class="number">300</span>, <span class="number">300</span>)<span class="comment">;</span>
+canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>把画笔移动 (100,100) 处开始绘制，效果如图：</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013215407.jpg" alt=" 图片描述 "></p>
+<h2 id="4、quadTo">4、quadTo</h2>
+<p><code>quadTo</code> 用于绘制圆滑曲线，即贝塞尔曲线。</p>
+<p><code>mPath.quadTo(x1, y1, x2, y2)</code> (x1,y1) 为控制点，(x2,y2) 为结束点。</p>
+<p>同样地，我们还是得需要<code>moveTo</code>来协助控制。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>mPath<span class="preprocessor">.moveTo</span>(<span class="number">100</span>, <span class="number">500</span>)<span class="comment">;</span>
+mPath<span class="preprocessor">.quadTo</span>(<span class="number">300</span>, <span class="number">100</span>, <span class="number">600</span>, <span class="number">500</span>)<span class="comment">;</span>
+canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>效果如图：</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013220857.jpg" alt=" 图片描述 "></p>
+<h2 id="5、cubicTo">5、cubicTo</h2>
+<p><code>cubicTo</code> 同样是用来实现贝塞尔曲线的。</p>
+<p><code>mPath.cubicTo(x1, y1, x2, y2, x3, y3)</code> (x1,y1) 为控制点，(x2,y2) 为控制点，(x3,y3) 为结束点。</p>
+<p>那么，<code>cubicTo</code> 和 <code>quadTo</code> 有什么不一样呢？ </p>
+<p>官方是这么说的：</p>
+<blockquote>
+<p>Same as cubicTo, but the coordinates are considered relative to the current point on this contour.</p>
+</blockquote>
+<p>说白了，就是多了一个控制点而已。</p>
+<p>然后，我们想绘制和上一个一样的曲线，应该怎么写呢？</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>mPath<span class="preprocessor">.moveTo</span>(<span class="number">100</span>, <span class="number">500</span>)<span class="comment">;</span>
+mPath<span class="preprocessor">.cubicTo</span>(<span class="number">100</span>, <span class="number">500</span>, <span class="number">300</span>, <span class="number">100</span>, <span class="number">600</span>, <span class="number">500</span>)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>看看效果：</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013222234.jpg" alt="QQ%E5%9B%BE%E7%89%8720141013222234.jpg"></p>
+<p>一模一样！</p>
+<p>如果我们不加 <code>moveTo</code> 呢？ </p>
+<p>则以 (0,0) 为起点，(100,500) 和 (300,100) 为控制点绘制贝塞尔曲线：</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013223204.jpg" alt="2014-10-13%2FQQ%E5%9B%BE%E7%89%8720141013223204.jpg"></p>
+<h2 id="6、arcTo">6、arcTo</h2>
+<p><code>arcTo</code> 用于绘制弧线（实际是截取圆或椭圆的一部分）。</p>
+<p><code>mPath.arcTo(ovalRectF, startAngle, sweepAngle)</code> , <code>ovalRectF</code>为椭圆的矩形，<code>startAngle</code> 为开始角度，<code>sweepAngle</code> 为结束角度。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>mRectF = new RectF(<span class="number">10</span>, <span class="number">10</span>, <span class="number">600</span>, <span class="number">600</span>)<span class="comment">;</span>
+mPath<span class="preprocessor">.arcTo</span>(mRectF, <span class="number">0</span>, <span class="number">90</span>)<span class="comment">;</span>
+canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>由于<code>new RectF(10, 10, 600, 600)</code>为正方形，又截取 <code>0 ~ 90 度</code> ，则所得曲线为四分之一圆的弧线。</p>
+<p>效果如图：</p>
+<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013223920.jpg" alt="2014-10-13%2FQQ%E5%9B%BE%E7%89%8720141013223920.jpg"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/大学/">大学</a><a href="/tags/生活/">生活</a><a href="/tags/青春/">青春</a>
+  <span></span> <a href="/tags/安卓/">安卓</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
+  <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/03/28/the_world_ending/" data-title="世界的尽头——广州 东莞 南沙(广州)骑行之旅 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/10/15/android_path/" data-title="Android Path | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -218,18 +196,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/04/06/talkingcallback/" title="谈回调函数(基于Java)">
+ <a href="/2014/10/15/waveloadingview/" title="Wave Loading View">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  谈回调函数(基于Java)</span>
+  Wave Loading View</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/03/15/2014march/"  title="2014的三月——雾里的奔跑">
+<a href="/2014/08/05/activeandroid/"  title="Activeandroid笔记">
  <strong>NEXT:</strong><br/> 
- <span>2014的三月——雾里的奔跑
+ <span>Activeandroid笔记
 </span>
 </a>
 </div>
@@ -246,7 +224,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Why"><span class="toc-number">1.</span> <span class="toc-text">1、Why</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、moveTo"><span class="toc-number">2.</span> <span class="toc-text">2、moveTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、lineTo"><span class="toc-number">3.</span> <span class="toc-text">3、lineTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、quadTo"><span class="toc-number">4.</span> <span class="toc-text">4、quadTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、cubicTo"><span class="toc-number">5.</span> <span class="toc-text">5、cubicTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、arcTo"><span class="toc-number">6.</span> <span class="toc-text">6、arcTo</span></a></li></ol>
   </div>
 
 <div id="asidepart">

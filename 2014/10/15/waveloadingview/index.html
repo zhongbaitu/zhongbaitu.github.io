@@ -4,21 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>世界的尽头——广州 东莞 南沙(广州)骑行之旅 | 钟买能个人博客</title>
+    <title>Wave Loading View | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="今天 28 号了，其实一直想把这个旅程记录下来，只是找不到一个安静的地方写点东西。
-难得又来了次图书馆（刚又给正前方的师妹搭讪了、=_=），刚把荣泰的海报改完，虽有点不符合客户（老师）要求，但，这个客户的要求带点歪。没按他意思做，坚持了自己，当然，完全是不可能的，还是改了小部分。喝喝。
-不扯了，正题。
-#life·mark# 世界的尽头 plan a .
-22 号：机电 - 增城 - 麻涌 - 万江 - 道滘 - 厚街 - 虎门 - 南沙。
-23 号：南沙 - 番禺 - 海珠 - 天河 - 机电。
-成功挑战 224 公里。
-人生能有多少回青春。青春能有多少回难得的疯狂。
+    <meta name="description" content="1、What
+昨天写了一篇 blog 说了一下Path类里面的几个方法。为什么会写的？ 因为这几天写 view 的时候用到了，现在分享一个波浪加载的 view。
+2、上图
 
-出发咯（宿舍楼下）！！！">
+3、思路
+实际上为一条正弦曲线。使用屏幕对应的 x 坐标求得 y 坐标，然后画出一条正弦曲线，然后把路径封闭，填充，添加动态，">
     
     
     
@@ -80,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/03/28/the_world_ending/" title="世界的尽头——广州 东莞 南沙(广州)骑行之旅" itemprop="url">世界的尽头——广州 东莞 南沙(广州)骑行之旅</a>
+      <a href="/2014/10/15/waveloadingview/" title="Wave Loading View" itemprop="url">Wave Loading View</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-03-28T04:50:28.000Z" itemprop="datePublished">Mar 28 2014</time>
-    Updated:<time datetime="2014-05-02T02:39:31.000Z" itemprop="dateModified">May 2 2014</time>
+    <time datetime="2014-10-15T15:45:20.000Z" itemprop="datePublished">Oct 15 2014</time>
+    Updated:<time datetime="2014-10-15T16:00:15.000Z" itemprop="dateModified">Oct 16 2014</time>
     
   </p>
 </header>
@@ -97,118 +93,101 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、What"><span class="toc-number">1.</span> <span class="toc-text">1、What</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、上图 "><span class="toc-number">2.</span> <span class="toc-text">2、上图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、思路 "><span class="toc-number">3.</span> <span class="toc-text">3、思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、代码 "><span class="toc-number">4.</span> <span class="toc-text">4、代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、总结 "><span class="toc-number">5.</span> <span class="toc-text">5、总结</span></a></li></ol>
 		</div>
 		
-		<p>今天 28 号了，其实一直想把这个旅程记录下来，只是找不到一个安静的地方写点东西。</p>
-<p>难得又来了次图书馆（刚又给正前方的师妹搭讪了、=_=），刚把荣泰的海报改完，虽有点不符合客户（老师）要求，但，这个客户的要求带点歪。没按他意思做，坚持了自己，当然，完全是不可能的，还是改了小部分。喝喝。</p>
-<p>不扯了，正题。</p>
-<p><a href="http://huati.weibo.com/k/life%C2%B7mark?from=501" target="_blank">#life·mark#</a> 世界的尽头 plan a .</p>
-<p>22 号：机电 - 增城 - 麻涌 - 万江 - 道滘 - 厚街 - 虎门 - 南沙。</p>
-<p>23 号：南沙 - 番禺 - 海珠 - 天河 - 机电。</p>
-<p>成功挑战 224 公里。</p>
-<p>人生能有多少回青春。青春能有多少回难得的疯狂。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2080.JPG" alt=""></p>
-<p>出发咯（宿舍楼下）！！！</p>
-<a id="more"></a>
+		<h2 id="1、What">1、What</h2>
+<p>昨天写了一篇 <a href="http://hackeris.me/2014/10/15/android_path/">blog</a> 说了一下<code>Path</code>类里面的几个方法。<br>为什么会写的？ 因为这几天写 view 的时候用到了，现在分享一个波浪加载的 view。</p>
+<h2 id="2、上图 ">2、上图</h2>
+<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2Ftest.gif" alt=" 图片描述 "></p>
+<h2 id="3、思路 ">3、思路</h2>
+<p>实际上为一条正弦曲线。使用屏幕对应的 x 坐标求得 y 坐标，然后画出一条正弦曲线，然后把路径封闭，填充，添加动态，即可。</p>
+<h2 id="4、代码 ">4、代码</h2>
+<p>首先设置画笔 style 来分析一下。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>wavePaint<span class="preprocessor">.setStyle</span>(Style<span class="preprocessor">.STROKE</span>)<span class="comment">;</span>
+wavePaint<span class="preprocessor">.setStrokeWidth</span>(<span class="number">20</span>)<span class="comment">;</span>
+</pre></td></tr></table></figure>
 
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2082.JPG" alt=""></p>
-<p>刚过马洞村进入了一个比较悠闲的道路，感觉爽歪歪。超级舒服~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2083.JPG" alt=""></p>
-<p>接近增城中，正在开发状态的这里，灰尘滚滚~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_094821.jpg" alt=""></p>
-<p>第一次休息，主要原因还是有两个是带着感冒上路的，停下来弄鼻涕~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_101247.jpg" alt=""></p>
-<p>在农工商 300 米外，海浩的单车掉链了，第二站休息。华仔努力中。两个小伙伴趁机去了“放水”，放水图就不上了，哈哈。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_112307.jpg" alt=""></p>
-<p>新堂。来了碗超抵超好吃的河粉。顺便附近超市搞了点下午的下午茶。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_130103.jpg" alt=""></p>
-<p>吃完河粉继续出发，经过数次休息，中途还捡钱了~ 标志着这是幸运的一天，终于到达东莞麻涌。</p>
-<p>刚进麻涌，道路左右两边，全是 xx 酒店，xx 沐足。还有几间带着锁链锁着，大概是封了。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_142122.jpg" alt=""></p>
-<p>东莞万江，下午茶。面包而已~~ 加点炼奶。嘎嘎~ 万江还真名副其实是“万江”。还真的够多江的，上桥爬坡都爬怕了。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_142206.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_145842.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_145908.jpg" alt=""></p>
-<p>还是在东莞，道滘。有点“荡失路”的感觉~~。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_151157.jpg" alt=""></p>
-<p>东莞厚街，正望着虎门渡口前进。厚街到处都是泥头车 + 各种车，横行霸道，见了好几个司机把车直接冲上人行道来逆行。。~ 牛哄哄。</p>
-<p>此时，大家已经很疲惫了。南沙，好像都已经忘记了，只是想像快点到渡口。。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165439.jpg" alt=""></p>
-<p>经过艰辛的路程，终于到达渡口了，还能欣赏一下夕阳。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165515.jpg" alt=""></p>
-<p>上船。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165549.jpg" alt=""></p>
-<p>坐的正式这样的船，小伙伴们都好激动。但这船比起 10 年前在涯南坐的大小差远了。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_165645.jpg" alt=""></p>
-<p>此时好有 feel。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_170159.jpg" alt=""></p>
-<p>来张小合照更有 feel。还有一个拿相机。哈哈</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_170028.jpg" alt=""></p>
-<p>装装帅先。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_173624.jpg" alt=""></p>
-<p>下了船立刻去填填肚子先。这个时候，带出来的卷纸给偷了。。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_182005.jpg" alt=""></p>
-<p>无节操。屁股顶不住了。好好放松一下，扭两扭。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_183808.jpg" alt=""></p>
-<p>到达南沙天后宫。这里得省略部分内容，因实际偏离了我们的计划。属于我们的不可告人秘密。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_201434.jpg" alt=""></p>
-<p>江边休息，聊天。能偏离金钱，女人么？</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_210732.jpg" alt=""></p>
-<p>啤啤距。为青春干瓶。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_212238.jpg" alt=""></p>
-<p>因计划变化，带着酒驾上路，先来张大合照先。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_213321.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_213448.jpg" alt=""></p>
-<p>享受夜骑。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_034344.jpg" alt=""></p>
-<p>凌晨，KFC 小睡一下。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_050223.jpg" alt=""></p>
-<p>凌晨 4 点，继续上路，返程。前进了 10+ 公里左右，饿爆了的肚子看到个大排档果断靠近了。大概 5 点钟这个时候，老伯伯们都起来吃早餐了，赞一个。奇怪的是，怎么一个老奶奶都没有的。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_051652.jpg" alt=""></p>
-<p>这两天最奢侈的一顿。原以普通的早餐变了喝早茶。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140322_213426.jpg" alt=""></p>
-<p>凌晨的道路是我们的~ 耶</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_062323.jpg" alt=""></p>
-<p>累爆了。玩玩拍戏先。地面少了行字：精通 java、php，求捡走。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_063339.jpg" alt=""></p>
-<p>继续玩，弃车。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_062745.jpg" alt=""></p>
-<p>哇哈哈。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_073138.jpg" alt=""></p>
-<p>到市区了，市区穿梭的感觉也很不错。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_20140323_100259.jpg" alt=""></p>
-<p>重头戏。番禺的洛溪大桥。上桥，上了一半后，我们是用推的。下桥，却是用生命下的，刺激、惊险等等形容词都无法形容这座桥的经历。单车道很窄、没护栏，不得不走汽车道。汽车道的大巴高速飞驰而过，大巴与人的距离大概就那 5cm。靠近单车道的边边还坑坑洼洼。吓得腿都软了。最终安全到达桥下。有惊无险。呼~~~</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2169.JPG" alt=""></p>
-<p>广州塔这一带去过很多次，但还是第一次骑车去。在塔底控制不了眼皮，睡着了一会，为了不破坏形象，继续启程。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-3-28/IMG_2190.JPG" alt=""></p>
-<p>旅程的最后，来点小插曲，到南校去转转，还是头一次呢。南校没有想象中的“破”，当然，是出了宿舍。南校都要给黑坏了，但显示在眼前的却是鸟语花香。</p>
-<p>进到南校，有点受关注，还给几个妹子问是不是北校过来的。有点奇怪的是，难道南校的男生不会这么般出现在她们眼前？怎么一看就知道是北校来的呢~~</p>
-<p>最后，队伍安全顺利回到了我们亲爱的大机电，时间是：下午 5：00.</p>
-<p>这次的旅程，难以用我的笨笔（现在是笨键盘）来形容出来。</p>
-<p>这是我活了这么多年，做了最疯狂的一件事。</p>
-<p>谢谢各位参与这场演出的小伙伴。</p>
-<p>生活就系要咁，间唔中嚟 D 期待、刺激、疯狂。生活就唔会再枯燥。</p>
+<p>效果如图：<br><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141015002903.jpg" alt=" 图片描述 "></p>
+<p>蓝色部分为我们画的路径，形成一个封闭路径。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="code"><pre><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setPath</span>(){
+	<span class="keyword">int</span> x = <span class="number">0</span>;
+	<span class="keyword">int</span> y = <span class="number">0</span>;
+    <span class="comment">// 每次进来都把 path 重置一下</span>
+	path.reset();
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; width; i++) {
+		x = i;
+		y = (<span class="keyword">int</span>) (a * Math.sin((i * w + fai) * Math.PI / <span class="number">180</span>) + k);
+		<span class="keyword">if</span> (i == <span class="number">0</span>) {
+            <span class="comment">//x=0 的时候，即左上角的点，移动画笔于此</span>
+			path.moveTo(x, y);
+		}
+        <span class="comment">// 用每个 x 求得每个 y，用 quadTo 方法连接成一条贝塞尔曲线</span>
+		path.quadTo(x, y, x + <span class="number">1</span>, y);
+	}
+    <span class="comment">// 最后连接到右下角底部</span>
+	path.lineTo(width, height);
+    <span class="comment">// 连接到左下角底部</span>
+	path.lineTo(<span class="number">0</span>, height);
+    <span class="comment">// 起点在左上角，这个时候可以封闭路径了，封闭。</span>
+	path.close();
+}
+</pre></td></tr></table></figure>
+
+<p>这样变可以画出上图。</p>
+<p>现在我们把画笔的 style 设置回 fill 或者不设置（默认为 fill），即可。</p>
+<p>然后开启一个线程，或者用一个 handle 发送消息去更新画面左右移动即可形成波浪动画。</p>
+<p>最后把进度更新、进度上升加上，相信这个不是难点了，定义一个接口，设置一个回调函数即可实现进度更新，进度跟着波浪上升就好了。</p>
+<h2 id="5、总结 ">5、总结</h2>
+<p>代码已放在<code>github</code>，大家可以拿来用，或者有更好的实现方法可以一起修改修改。</p>
+<blockquote>
+<p>地址：<a href="https://github.com/zhongbaitu/WaveLoadingView" target="_blank">https://github.com/zhongbaitu/WaveLoadingView</a></p>
+</blockquote>
+<p>对于参与开源，我还是比较少，虽会用一点 git 命令，会使用 github，但平时只会伸手就拿，也没贡献过点什么，这次也算是个开始吧，但还是有些东西不是很清楚，需要摸索一下，例如怎么把库上传到<code>maven 中心库</code>，让开发者可以使用 <code>gradle</code> 或者 <code>maven dependency</code> 就可以把整个库拿下来直接使用呢？ 明晚再摸索，晚安。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/大学/">大学</a><a href="/tags/生活/">生活</a><a href="/tags/青春/">青春</a>
+  <span></span> <a href="/tags/安卓/">安卓</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
+  <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/03/28/the_world_ending/" data-title="世界的尽头——广州 东莞 南沙(广州)骑行之旅 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2014/10/15/waveloadingview/" data-title="Wave Loading View | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -217,19 +196,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/04/06/talkingcallback/" title="谈回调函数(基于Java)">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  谈回调函数(基于Java)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/03/15/2014march/"  title="2014的三月——雾里的奔跑">
+<a href="/2014/10/15/android_path/"  title="Android Path">
  <strong>NEXT:</strong><br/> 
- <span>2014的三月——雾里的奔跑
+ <span>Android Path
 </span>
 </a>
 </div>
@@ -246,7 +217,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、What"><span class="toc-number">1.</span> <span class="toc-text">1、What</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、上图 "><span class="toc-number">2.</span> <span class="toc-text">2、上图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、思路 "><span class="toc-number">3.</span> <span class="toc-text">3、思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、代码 "><span class="toc-number">4.</span> <span class="toc-text">4、代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、总结 "><span class="toc-number">5.</span> <span class="toc-text">5、总结</span></a></li></ol>
   </div>
 
 <div id="asidepart">
