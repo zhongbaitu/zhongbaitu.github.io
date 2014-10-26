@@ -82,7 +82,7 @@ You can configure your app to use the material theme on devices that support it 
     </p>
   <p class="article-time">
     <time datetime="2014-10-22T16:15:56.000Z" itemprop="datePublished">Oct 23 2014</time>
-    Updated:<time datetime="2014-10-22T16:22:32.000Z" itemprop="dateModified">Oct 23 2014</time>
+    Updated:<time datetime="2014-10-26T14:16:37.000Z" itemprop="dateModified">Oct 26 2014</time>
     
   </p>
 </header>
@@ -91,35 +91,101 @@ You can configure your app to use the material theme on devices that support it 
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Material_theme"><span class="toc-number">1.</span> <span class="toc-text">1、Material theme</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Activity 的过渡和退出动画 "><span class="toc-number">2.</span> <span class="toc-text">2、Activity 的过渡和退出动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、Customize_the_Status_Bar"><span class="toc-number">3.</span> <span class="toc-text">3、Customize the Status Bar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Lists_and_Cards"><span class="toc-number">4.</span> <span class="toc-text">4、Lists and Cards</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、Working_with_Drawables"><span class="toc-number">5.</span> <span class="toc-text">5、Working with Drawables</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Tint_Drawable_Resources"><span class="toc-number">5.1.</span> <span class="toc-text">1、Tint Drawable Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Extract_Prominent_Colors_from_an_Image"><span class="toc-number">5.2.</span> <span class="toc-text">2、Extract Prominent Colors from an Image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、Create_Vector_Drawables"><span class="toc-number">5.3.</span> <span class="toc-text">3、Create Vector Drawables</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#6、Defining_Custom_Animations"><span class="toc-number">6.</span> <span class="toc-text">6、Defining Custom Animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、Maintaining_Compatibility"><span class="toc-number">7.</span> <span class="toc-text">7、Maintaining Compatibility</span></a></li></ol>
 		</div>
 		
-		<p>1、Material theme</p>
+		<h2 id="1、Material_theme">1、Material theme</h2>
 <hr>
 <blockquote>
 <p>You can configure your app to use the material theme on devices that support it and revert to an older theme on devices running earlier versions of Android:<br>Define a theme that inherits from an older theme (like Holo) in res/values/styles.xml.<br>Define a theme with the same name that inherits from the material theme in res/values-v21/styles.xml.<br>Set this theme as your app’s theme in the manifest file.<br><strong>Note: If your app uses the material theme but does not provide an alternative theme in this manner, your app will not run on versions of Android earlier than 5.0.</strong></p>
 </blockquote>
 <p>定义样式的时候，可以定义分别在 values/styles.xml 和 values-v21/styles.xml 定义一个相同名字的样式，供系统自动选择。<br>说明 material theme 仅在 5.0 有效。</p>
-<p>2、Activity 的过渡和退出动画</p>
+<h2 id="2、Activity 的过渡和退出动画 ">2、Activity 的过渡和退出动画</h2>
 <hr>
 <blockquote>
 <p>Android 5.0 (API level 21) includes new APIs to create custom animations in your app. For example, you can enable activity transitions and define an exit transition inside an activity</p>
 </blockquote>
 <p><img src="http://zhongsir.qiniudn.com/2014-10-21%2FQQ%E5%9B%BE%E7%89%8720141021234603.jpg" alt=""></p>
 <p>同样地，Activity 的过渡和退出动画只有 5.0 支持。</p>
-<p>3、Customize the Status Bar</p>
+<h2 id="3、Customize_the_Status_Bar">3、Customize the Status Bar</h2>
 <hr>
 <blockquote>
 <p>To set a custom color for the status bar, use the android:statusBarColor attribute when you extend the material theme.</p>
 </blockquote>
 <p>又是只给 5.0 用。</p>
-<p>4、Lists and Cards</p>
+<h2 id="4、Lists_and_Cards">4、Lists and Cards</h2>
 <hr>
 <p>终于有用到 v7 兼容包的了。RecyclerView 和 CardView 坚持到 Android 2.1 (API level 7)。</p>
 <blockquote>
 <p>使用详情：<a href="http://developer.android.com/training/material/lists-cards.html" target="_blank">http://developer.android.com/training/material/lists-cards.html</a></p>
 </blockquote>
 <p>答应了馥馥，明天起，早早就要洗白白，早早就睡觉。答应了就做到！做不到是小狗！</p>
+<hr>
+<p>继续写</p>
+<hr>
+<h2 id="5、Working_with_Drawables">5、Working with Drawables</h2>
+<hr>
+<h3 id="1、Tint_Drawable_Resources">1、Tint Drawable Resources</h3>
+<blockquote>
+<p>With Android 5.0 (API level 21) and above, you can tint bitmaps and nine-patches defined as alpha masks. You can tint them with color resources or theme attributes that resolve to color resources (for example, ?android:attr/colorPrimary). Usually, you create these assets only once and color them automatically to match your theme.</p>
+</blockquote>
+<p>给资源着色，自动适配主题，又是 5.0 以上。</p>
+<h3 id="2、Extract_Prominent_Colors_from_an_Image">2、Extract Prominent Colors from an Image</h3>
+<blockquote>
+<p>The Android Support Library r21 and above includes the Palette class, which lets you extract prominent colors from an image. </p>
+</blockquote>
+<p>提取 image 的主要颜色，这个在 r21 的 v7 支持。</p>
+<blockquote>
+<p>dependencies {<br>    …<br>    compile ‘com.android.support:palette-v7:21.0.+’<br>}</p>
+</blockquote>
+<h3 id="3、Create_Vector_Drawables">3、Create Vector Drawables</h3>
+<hr>
+<blockquote>
+<p>In Android 5.0 (API Level 21) and above, you can define vector drawables, which scale without losing definition. You need only one asset file for a vector image, as opposed to an asset file for each screen density in the case of bitmap images. </p>
+</blockquote>
+<p>创建矢量图片。又是 5.0 以上！</p>
+<h2 id="6、Defining_Custom_Animations">6、Defining Custom Animations</h2>
+<hr>
+<p>最期待的动画！！全都是 Android 5.0 (API level 21) and above。</p>
+<h2 id="7、Maintaining_Compatibility">7、Maintaining Compatibility</h2>
+<hr>
+<p>1、定义可供选择的 style<br>2、提供可选择的 layout<br>3、使用 Support Library<br>这些是 v7 r21 支持的：</p>
+<blockquote>
+<p>The <strong>RecyclerView</strong> widget to display data collections.<br>The <strong>CardView</strong> widget to create cards.<br>The <strong>Palette</strong> class to extract prominent colors from images.</p>
+</blockquote>
+<p>还有小部分系统控件：</p>
+<blockquote>
+<p>EditText<br>Spinner<br>CheckBox<br>RadioButton<br>SwitchCompat<br>CheckedTextView</p>
+</blockquote>
+<p>4、用代码检测系统版本</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="comment">// Check if we're running on Android 5.0 or higher</span>
+<span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) {
+    <span class="comment">// Call some material design APIs here</span>
+} <span class="keyword">else</span> {
+    <span class="comment">// Implement this feature without material design</span>
+}
+</pre></td></tr></table></figure>
+
+<p>以下的新特性只有在 5.0(API level 21) 及以上的提供：</p>
+<blockquote>
+<p>Activity transitions<br>Touch feedback<br>Reveal animations<br>Path-based animations<br>Vector drawables<br>Drawable tinting</p>
+</blockquote>
+<hr>
+<p>Android 5.0 (LOLLIPOP) 新特性一览小笔记。</p>
+<blockquote>
+<p>参考：Android Training 的 <a href="http://developer.android.com/training/material/index.html" target="_blank">Creating Apps with Material Design</a></p>
+</blockquote>
+<p>突然发现还有<code>Toolbar</code> 等没有提及。再推荐两篇安卓大神写的<code>material design</code> 好文看看：</p>
+<blockquote>
+<p><a href="https://chris.banes.me/2014/10/17/appcompat-v21/" target="_blank">appcompat v21: material design for pre-Lollipop devices!</a></p>
+<p><a href="http://antonioleiva.com/material-design-everywhere" target="_blank">Material Design Everywhere: Using AppCompat 21</a></p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -177,7 +243,7 @@ You can configure your app to use the material theme on devices that support it 
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Material_theme"><span class="toc-number">1.</span> <span class="toc-text">1、Material theme</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Activity 的过渡和退出动画 "><span class="toc-number">2.</span> <span class="toc-text">2、Activity 的过渡和退出动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、Customize_the_Status_Bar"><span class="toc-number">3.</span> <span class="toc-text">3、Customize the Status Bar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Lists_and_Cards"><span class="toc-number">4.</span> <span class="toc-text">4、Lists and Cards</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、Working_with_Drawables"><span class="toc-number">5.</span> <span class="toc-text">5、Working with Drawables</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Tint_Drawable_Resources"><span class="toc-number">5.1.</span> <span class="toc-text">1、Tint Drawable Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Extract_Prominent_Colors_from_an_Image"><span class="toc-number">5.2.</span> <span class="toc-text">2、Extract Prominent Colors from an Image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、Create_Vector_Drawables"><span class="toc-number">5.3.</span> <span class="toc-text">3、Create Vector Drawables</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#6、Defining_Custom_Animations"><span class="toc-number">6.</span> <span class="toc-text">6、Defining Custom Animations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、Maintaining_Compatibility"><span class="toc-number">7.</span> <span class="toc-text">7、Maintaining Compatibility</span></a></li></ol>
   </div>
 
 <div id="asidepart">
