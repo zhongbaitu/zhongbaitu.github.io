@@ -4,37 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Share Sdk短信验证码功能开发（Android） | 钟买能个人博客</title>
+    <title>建立一个属于自己的框架 | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="之前就想在毕设实际的注册里加上手机验证码验证功能，但那时候找了好几个短信网关都不好用而且收费贵。最终还是没做了。
-之后，看到 shareSDK 出了这个功能，想试试好久了。
-参考文档
-
-
-官方参考文档
-
-注册 demo
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-">
+    <meta name="description" content="拥有属于自己的一套框架和代码库是非常重要的事情。这里面有个词语“属于”，嗯，没错，只有属于自己的事物才能真正掌控着并把它玩转起来。
+一套框架、一套成熟的解决方案、一套成熟的代码库是你去谈项目或者和产品经理交涉时候的筹码，它有多少，你心中就有多少底，即使你的学习能力再强，也是不能胜过已经有的代码，因为">
     
     
     
@@ -96,15 +72,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/07/29/sharesdk_messagesdk/" title="Share Sdk短信验证码功能开发（Android）" itemprop="url">Share Sdk短信验证码功能开发（Android）</a>
+      <a href="/2015/06/10/buid_your_framework/" title="建立一个属于自己的框架" itemprop="url">建立一个属于自己的框架</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-07-29T15:16:10.000Z" itemprop="datePublished">Jul 29 2014</time>
-    Updated:<time datetime="2014-07-29T15:18:11.000Z" itemprop="dateModified">Jul 29 2014</time>
+    <time datetime="2015-06-10T14:31:28.000Z" itemprop="datePublished">Jun 10 2015</time>
+    Updated:<time datetime="2015-06-10T14:35:11.000Z" itemprop="dateModified">Jun 10 2015</time>
     
   </p>
 </header>
@@ -113,254 +89,41 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 参考文档 "><span class="toc-number">1.</span> <span class="toc-text">参考文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 注册 demo"><span class="toc-number">2.</span> <span class="toc-text">注册 demo</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 本次构建的框架主要用到以下的组建："><span class="toc-number">1.</span> <span class="toc-text">本次构建的框架主要用到以下的组建：</span></a></li></ol><li class="toc-item toc-level-4"><a class="toc-link" href="#———————-_ 未完，待续更新 _———————-"><span class="toc-number"></span> <span class="toc-text">———————- 未完，待续更新 ———————-</span></a></li></ol>
 		</div>
 		
-		<p>之前就想在<code>毕设实际</code>的注册里加上手机验证码验证功能，但那时候找了好几个短信网关都不好用而且收费贵。最终还是没做了。</p>
-<p>之后，看到 shareSDK 出了这个功能，想试试好久了。</p>
-<h2 id=" 参考文档 ">参考文档</h2>
-<hr>
+		<p>拥有属于自己的一套框架和代码库是非常重要的事情。这里面有个词语<code>“属于”</code>，嗯，没错，只有属于自己的事物才能真正掌控着并把它玩转起来。</p>
+<p>一套框架、一套成熟的解决方案、一套成熟的代码库是你去谈项目或者和产品经理交涉时候的筹码，它有多少，你心中就有多少底，即使你的学习能力再强，也是不能胜过已经有的代码，因为商业项目讲求的是质量 + 效率，只有经过多次实践而不败的代码才是拥有高质量的，而不是把 demo 实现了就拿来用这么简单。</p>
+<p>由于我没有一套属于自己的框架（或称成熟的架构）。所以在做这外包之前就开始写一属于自己的框架。既然是自己的东西，就无需强求高度集成丰富的组建，而是根据实际的业务需求而定制一套框架，所以，框架并不是能万能套用，而是要看需求、看情况而定，盲目使用“漂亮”的框架的后果之一就是造成项目的臃肿。</p>
+<p>注：本文说的框架，指的是一应用的体系结构，如：应用骨架 + 网络访问 + 数据库存取 + 消息通知 +UI 显示。</p>
+<h5 id=" 本次构建的框架主要用到以下的组建：">本次构建的框架主要用到以下的组建：</h5>
+<ul>
+<li><p>1、Activity + Fragment</p>
 <blockquote>
-<p><a href="http://wiki.sharesdk.cn/Android_%E7%9F%AD%E4%BF%A1SDK%E9%9B%86%E6%88%90%E6%96%87%E6%A1%A3" target="_blank">官方参考文档</a></p>
+<p>单个 Activity 控制多个 fragment，每个 fragment 充当控制器的角色，每个页面对应自己的控制器，控制器控制自己的 view（界面），view 用 java 实现，view 中也绑定自己对应的控制器，页面的跳转使用用 eventbus 通知 activity 进行跳转。</p>
 </blockquote>
-<h2 id=" 注册 demo">注册 demo</h2>
-<hr>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> {</span>
-	
-	<span class="keyword">private</span> RegisterPage registerPage;
-	<span class="keyword">private</span> Button registerBut;
-	
-	<span class="annotation">@Override</span>
-	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span>(Bundle savedInstanceState) {
-		<span class="keyword">super</span>.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
-		<span class="comment">// 初始化短信 SDK</span>
-		SMSSDK.initSDK(<span class="keyword">this</span>, <span class="string">"2784af5d6350"</span>, <span class="string">"b0e314ffc11ce447ad0a0be0156ba12c"</span>);
-		<span class="comment">// 集成的 GUI</span>
-		registerPage=<span class="keyword">new</span> RegisterPage();
-		<span class="comment">// 注册按钮</span>
-		registerBut=(Button) <span class="keyword">this</span>.findViewById(R.id.button1);
-		
-		
-		registerBut.setOnClickListener(<span class="keyword">new</span> OnClickListener() {
-			
-			<span class="annotation">@Override</span>
-			<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View arg0) {
-				
-				registerPage.setRegisterCallback(<span class="keyword">new</span> EventHandler(){
-
-					<span class="annotation">@Override</span>
-					<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterEvent</span>(<span class="keyword">int</span> event, <span class="keyword">int</span> result, Object data) {
-				        <span class="comment">// 解析注册结果</span>
-				        <span class="keyword">if</span> (result == SMSSDK.RESULT_COMPLETE) {
-				                <span class="annotation">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)
-				                HashMap&lt;String,Object&gt; phoneMap = (HashMap&lt;String, Object&gt;) data;
-				                String country = (String) phoneMap.get(<span class="string">"country"</span>);
-				                String phone = (String) phoneMap.get(<span class="string">"phone"</span>);
-				                
-				                <span class="comment">// 验证成功跳转到设置密码、信息界面，继续完成注册</span>
-				                Intent intent=<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, Info.class);
-				                intent.putExtra(<span class="string">"country"</span>, country);
-				                intent.putExtra(<span class="string">"phone"</span>, phone);
-				                startActivity(intent);
-				        }
-					}
-					
-					
-				});
-				registerPage.show(MainActivity.<span class="keyword">this</span>);
-			}
-		});
-
-	}
-
-
-}
-</pre></td></tr></table></figure>
-
-<p><code>RegisterPage</code>这个类集成了一个注册 GUI，使用这个类相当方便。</p>
-<p>点击按钮触发事件，就进入到它做好了的 UI 界面，直至验证成功。跳出来。</p>
-<p>所以这里从在了<code>afterEvent</code>方法，验证成功调用此方法，在这里我做了一个跳转，跳转到<code>Info.class</code>，从而继续以下的注册环节。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> <span class="keyword">extends</span> <span class="title">Activity</span> {</span>
-	
-	<span class="keyword">private</span> EditText passwordET;
-	<span class="keyword">private</span> Button sureButton;
-	<span class="keyword">private</span> String phone,password,country;
-	<span class="keyword">private</span> RequestQueue rQueue;
-	
-	<span class="annotation">@Override</span>
-	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span>(Bundle savedInstanceState) {
-		<span class="keyword">super</span>.onCreate(savedInstanceState);
-		setContentView(R.layout.info);
-		
-		rQueue = Volley.newRequestQueue(<span class="keyword">this</span>);
-		
-		Intent intent=getIntent();
-		phone=intent.getStringExtra(<span class="string">"phone"</span>);
-		country=intent.getStringExtra(<span class="string">"country"</span>);
-		
-		passwordET=(EditText) <span class="keyword">this</span>.findViewById(R.id.password);
-		sureButton=(Button) <span class="keyword">this</span>.findViewById(R.id.sureButton);
-		
-		sureButton.setOnClickListener(<span class="keyword">new</span> OnClickListener() {
-			
-			<span class="annotation">@Override</span>
-			<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View arg0) {
-				
-				password=passwordET.getText().toString();
-				Toast.makeText(Info.<span class="keyword">this</span>, phone+<span class="string">","</span>+password+<span class="string">","</span>+country, Toast.LENGTH_SHORT).show();
-				postData();
-				
-			}
-		});
-		
-	} 
-
-	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postData</span>(){
-		<span class="keyword">final</span> String URL = <span class="string">"http://192.168.191.1:8080/ShareSdkMessageService/servlet/Register?phone="</span>+phone+<span class="string">"&password="</span>+password+<span class="string">"&country="</span>+country;
-
-		JsonObjectRequest req = <span class="keyword">new</span> JsonObjectRequest(URL, <span class="keyword">null</span>,
-		       <span class="keyword">new</span> Response.Listener&lt;JSONObject&gt;() {
-		           <span class="annotation">@Override</span>
-		           <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span>(JSONObject response) {
-
-		           }
-		       }, <span class="keyword">new</span> Response.ErrorListener() {
-		           <span class="annotation">@Override</span>
-		           <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span>(VolleyError error) {
-
-		           }
-		       });
-		rQueue.add(req);
-		rQueue.start();
-	}
-
-}
-</pre></td></tr></table></figure>
-
-<p>在此继续完成注册资料的填写，然后提交到馥务器，写入到数据库。</p>
-<p>OK。完成。</p>
-<p>同时，shareSDK 同提供了无 GUI 的接口。</p>
+</li>
+<li><p>2、ORM 使用 Activeandroid</p>
 <blockquote>
-<p><a href="http://wiki.sharesdk.cn/Android_%E7%9F%AD%E4%BF%A1SDK%E6%97%A0GUI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8" target="_blank">无 GUI 开发文档</a></p>
+<p>操作数据库还是使用 ORM 比较好，相对传统的 SqlHelper 更方便简单，不易出错，减少代码工作量。</p>
 </blockquote>
-<hr>
-<p><a href="http://pan.baidu.com/s/1qWwh60W" target="_blank">完成代码点击下载</a></p>
+</li>
+<li><p>3、网络请求使用 retrofit，中间自己做了个解析器</p>
+<blockquote>
+<p>网络请求返回的数据自动用 gson 解析并赋入对应的数据结构 bean 类，和 ORM 的性质有点相似，因为 retrofit 只是网络请求并解析，并没有封装好回调到 UI 线程的消息通知机制，所以自己实现了一个。</p>
+</blockquote>
+</li>
+</ul>
+<p>如果这一切都只是放在 demo 的角度来实现的话，都是很简单的事情。但如果放在一个商业项目里面去实践，便会发现好多问题，这里指的不是单单我上面提到的，而是每一种技术或者解决方案，真的要拿到真实场景去实践才能测试到问题的存在。</p>
+<p>在这里面我已经快给多个 fragment、fragment 嵌套的问题搞死了。也终于明白到为什么 <code>square</code> 建议不要用 fragment。不过致命的 bug 都解决得七七八八。不过还是存在一些奇怪现象，这得再另外一篇博文去探讨了。用 fragment 始终比用多个 activity 跳转这个老方法好多了。</p>
+<h4 id="———————-_ 未完，待续更新 _———————-">———————- 未完，待续更新 ———————-</h4>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/安卓/">安卓</a>
+  <span></span> <a href="/tags/android/">android</a>
   </div>
 
 
@@ -373,7 +136,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/07/29/sharesdk_messagesdk/" data-title="Share Sdk短信验证码功能开发（Android） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2015/06/10/buid_your_framework/" data-title="建立一个属于自己的框架 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -382,19 +145,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/08/05/activeandroid/" title="Activeandroid笔记">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Activeandroid笔记</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/07/20/struts_demo_2/"  title="Struts Demo —— 认识拦截器">
+<a href="/2015/06/09/2015june/"  title="喘不过气来的六月">
  <strong>NEXT:</strong><br/> 
- <span>Struts Demo —— 认识拦截器
+ <span>喘不过气来的六月
 </span>
 </a>
 </div>
@@ -411,7 +166,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 参考文档 "><span class="toc-number">1.</span> <span class="toc-text">参考文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 注册 demo"><span class="toc-number">2.</span> <span class="toc-text">注册 demo</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 本次构建的框架主要用到以下的组建："><span class="toc-number">1.</span> <span class="toc-text">本次构建的框架主要用到以下的组建：</span></a></li></ol><li class="toc-item toc-level-4"><a class="toc-link" href="#———————-_ 未完，待续更新 _———————-"><span class="toc-number"></span> <span class="toc-text">———————- 未完，待续更新 ———————-</span></a></li></ol>
   </div>
 
 <div id="asidepart">
