@@ -9,9 +9,9 @@
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="http://www-technotalkative-com/part-2-welcome-snackbar-goodbye-toast/&quot;&gt;原文地址：http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/
+    <meta name="description" content="原文地址： http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/
 
-欢迎看">
+欢迎看 Android design support library 教程系列的第二篇文章。在第一篇文章我们讲了关于 Floating actio">
     
     
     
@@ -81,7 +81,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-07-12T13:49:33.000Z" itemprop="datePublished">Jul 12 2015</time>
-    Updated:<time datetime="2015-07-12T13:56:14.000Z" itemprop="dateModified">Jul 12 2015</time>
+    Updated:<time datetime="2015-07-12T14:04:53.000Z" itemprop="dateModified">Jul 12 2015</time>
     
   </p>
 </header>
@@ -90,10 +90,10 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 原文地址：<a_href="><span class="toc-number">1.</span> <span class="toc-text">http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/</a></span></a></li></ol></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 拥抱 Snackbar，和 Toast 说再见！"><span class="toc-number"></span> <span class="toc-text">拥抱 Snackbar，和 Toast 说再见！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 我们来看看 Snackbar 的语法："><span class="toc-number"></span> <span class="toc-text">我们来看看 Snackbar 的语法：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 方法："><span class="toc-number"></span> <span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 属性 "><span class="toc-number"></span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example："><span class="toc-number"></span> <span class="toc-text">Example：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Snackbar 的配置选项 "><span class="toc-number"></span> <span class="toc-text">Snackbar 的配置选项</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 参考："><span class="toc-number"></span> <span class="toc-text">参考：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 拥抱 Snackbar，和 Toast 说再见！"><span class="toc-number">1.</span> <span class="toc-text">拥抱 Snackbar，和 Toast 说再见！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 我们来看看 Snackbar 的语法："><span class="toc-number">2.</span> <span class="toc-text">我们来看看 Snackbar 的语法：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 方法："><span class="toc-number">2.1.</span> <span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 属性 "><span class="toc-number">2.2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example："><span class="toc-number">2.3.</span> <span class="toc-text">Example：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Snackbar 的配置选项 "><span class="toc-number">3.</span> <span class="toc-text">Snackbar 的配置选项</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 参考："><span class="toc-number">3.1.</span> <span class="toc-text">参考：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 总结："><span class="toc-number">4.</span> <span class="toc-text">总结：</span></a></li></ol>
 		</div>
 		
-		<h5 id=" 原文地址：<a_href="http://www-technotalkative-com/part-2-welcome-snackbar-goodbye-toast/" target="_blank">http://www-technotalkative-com/part-2-welcome-snackbar-goodbye-toast/</a>">原文地址：<a href="http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/" target="_blank">http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/</a></h5>
+		<p><a href="http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/" target="_blank">原文地址： http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/</a></p>
 <hr>
 <p>欢迎看 Android design support library 教程系列的第二篇文章。在第一篇文章我们讲了关于<br><a href="http://hackeris.me/2015/07/12/floating_action_button/"> Floating action button</a>的属性使用和一些 FAB 使用中会遇到的一些问题。</p>
 <p>今天我们来学习另外一个控件“Snackbar”。</p>
@@ -246,7 +246,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 原文地址：<a_href="><span class="toc-number">1.</span> <span class="toc-text">http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/</a></span></a></li></ol></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 拥抱 Snackbar，和 Toast 说再见！"><span class="toc-number"></span> <span class="toc-text">拥抱 Snackbar，和 Toast 说再见！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 我们来看看 Snackbar 的语法："><span class="toc-number"></span> <span class="toc-text">我们来看看 Snackbar 的语法：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 方法："><span class="toc-number"></span> <span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 属性 "><span class="toc-number"></span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example："><span class="toc-number"></span> <span class="toc-text">Example：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Snackbar 的配置选项 "><span class="toc-number"></span> <span class="toc-text">Snackbar 的配置选项</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 参考："><span class="toc-number"></span> <span class="toc-text">参考：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 拥抱 Snackbar，和 Toast 说再见！"><span class="toc-number">1.</span> <span class="toc-text">拥抱 Snackbar，和 Toast 说再见！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 我们来看看 Snackbar 的语法："><span class="toc-number">2.</span> <span class="toc-text">我们来看看 Snackbar 的语法：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 方法："><span class="toc-number">2.1.</span> <span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 属性 "><span class="toc-number">2.2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example："><span class="toc-number">2.3.</span> <span class="toc-text">Example：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Snackbar 的配置选项 "><span class="toc-number">3.</span> <span class="toc-text">Snackbar 的配置选项</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 参考："><span class="toc-number">3.1.</span> <span class="toc-text">参考：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 总结："><span class="toc-number">4.</span> <span class="toc-text">总结：</span></a></li></ol>
   </div>
 
 <div id="asidepart">
