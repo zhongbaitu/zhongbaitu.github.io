@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Part 1 – Floating Action Button | 钟买能个人博客</title>
+    <title>Part 1 – Floating Action Button（翻译） | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="Floating Action Button
-Floating action button (FAB)是一个带有阴影的简单圆形按钮，它上浮于其他 UI 之中，它通常用来驱动一些动作，例如添加一个 item、新建一封 email 等等。
-查看 Floating action button (FAB) ">
+    <meta name="description" content="在 Android weekly 上看到篇挺不错的文章，在拜读学习后，趁着有点时间翻译一下，提高下英语水平，因为翻译的时候会比较认真斟酌原文的真正意思，从而达到更深入学习的效果。
+
+http://www-technotalkative-com/part-1-floating-action-butto">
     
     
     
@@ -73,7 +73,7 @@ Floating action button (FAB)是一个带有阴影的简单圆形按钮，它上�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/12/floating_action_button/" title="Part 1 – Floating Action Button" itemprop="url">Part 1 – Floating Action Button</a>
+      <a href="/2015/07/12/floating_action_button/" title="Part 1 – Floating Action Button（翻译）" itemprop="url">Part 1 – Floating Action Button（翻译）</a>
   </h1>
   <p class="article-author">By
     
@@ -81,7 +81,7 @@ Floating action button (FAB)是一个带有阴影的简单圆形按钮，它上�
     </p>
   <p class="article-time">
     <time datetime="2015-07-12T12:52:42.000Z" itemprop="datePublished">Jul 12 2015</time>
-    Updated:<time datetime="2015-07-12T12:54:53.000Z" itemprop="dateModified">Jul 12 2015</time>
+    Updated:<time datetime="2015-07-12T13:55:22.000Z" itemprop="dateModified">Jul 12 2015</time>
     
   </p>
 </header>
@@ -90,10 +90,14 @@ Floating action button (FAB)是一个带有阴影的简单圆形按钮，它上�
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Floating_Action_Button"><span class="toc-number">1.</span> <span class="toc-text">Floating Action Button</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 备注："><span class="toc-number">1.1.</span> <span class="toc-text">备注：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 独立添加 Android_design_support_library"><span class="toc-number">1.2.</span> <span class="toc-text">独立添加 Android design support library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step1："><span class="toc-number">1.3.</span> <span class="toc-text">Step1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Attributes："><span class="toc-number">1.4.</span> <span class="toc-text">Attributes：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step2："><span class="toc-number">1.5.</span> <span class="toc-text">Step2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step3："><span class="toc-number">1.6.</span> <span class="toc-text">Step3：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 问题："><span class="toc-number">2.</span> <span class="toc-text">问题：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_1:_Margin_issue_in_Android_4-4_and_5-0"><span class="toc-number">2.1.</span> <span class="toc-text">Issue 1: Margin issue in Android 4.4 and 5.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_2:_ 在 Android_5-0 中还存在阴影问题 "><span class="toc-number">2.2.</span> <span class="toc-text">Issue 2: 在 Android 5.0 中还存在阴影问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_3_RotateAnimation 在 FAB 中不能使用 _(<a_href="><span class="toc-number">2.3.</span> <span class="toc-text">)</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 代码下载 "><span class="toc-number">3.</span> <span class="toc-text">代码下载</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 原文地址：<a_href="><span class="toc-number">1.</span> <span class="toc-text">http://www.technotalkative.com/part-1-floating-action-button/</a></span></a></li></ol></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Floating_Action_Button"><span class="toc-number"></span> <span class="toc-text">Floating Action Button</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 备注："><span class="toc-number"></span> <span class="toc-text">备注：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 独立添加 Android_design_support_library"><span class="toc-number"></span> <span class="toc-text">独立添加 Android design support library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step1："><span class="toc-number"></span> <span class="toc-text">Step1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Attributes："><span class="toc-number"></span> <span class="toc-text">Attributes：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step2："><span class="toc-number"></span> <span class="toc-text">Step2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step3："><span class="toc-number"></span> <span class="toc-text">Step3：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 问题："><span class="toc-number"></span> <span class="toc-text">问题：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_1:_Margin_issue_in_Android_4-4_and_5-0"><span class="toc-number"></span> <span class="toc-text">Issue 1: Margin issue in Android 4.4 and 5.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_2:_ 在 Android_5-0 中还存在阴影问题 "><span class="toc-number"></span> <span class="toc-text">Issue 2: 在 Android 5.0 中还存在阴影问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_3_RotateAnimation 在 FAB 中不能使用 _<a_href="><span class="toc-number"></span> <span class="toc-text">Issue ID: #176116</a></span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 代码下载 "><span class="toc-number"></span> <span class="toc-text">代码下载</span></a></li></ol>
 		</div>
 		
-		<h3 id="Floating_Action_Button">Floating Action Button</h3>
+		<p>在 Android weekly 上看到篇挺不错的文章，在拜读学习后，趁着有点时间翻译一下，提高下英语水平，因为翻译的时候会比较认真斟酌原文的真正意思，从而达到更深入学习的效果。</p>
+<hr>
+<h5 id=" 原文地址：<a_href="http://www-technotalkative-com/part-1-floating-action-button/" target="_blank">http://www-technotalkative-com/part-1-floating-action-button/</a>">原文地址：<a href="http://www.technotalkative.com/part-1-floating-action-button/" target="_blank">http://www.technotalkative.com/part-1-floating-action-button/</a></h5>
+<hr>
+<h3 id="Floating_Action_Button">Floating Action Button</h3>
 <p><a href="http://www.google.co.in/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-floating-action-button" target="_blank">Floating action button (FAB)</a>是一个带有阴影的简单圆形按钮，它上浮于其他 UI 之中，它通常用来驱动一些动作，例如添加一个 item、新建一封 email 等等。</p>
 <p>查看 Floating action button (FAB) 的代码，我们发现 FAB 可以有两个大小：i），正常（56dp）或者 ii）小型（40dp）</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -254,7 +258,7 @@ btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class=
    android:layout_marginRight=<span class="string">"@dimen/fab_margin_right"</span>/&gt;
 </pre></td></tr></table></figure>
 
-<h4 id="Issue_3_RotateAnimation 在 FAB 中不能使用 _(<a_href="https://code-google-com/p/android/issues/detail?id=176116" target="_blank">Issue_ID:_#176116</a>)">Issue 3 RotateAnimation 在 FAB 中不能使用 (<a href="https://code.google.com/p/android/issues/detail?id=176116" target="_blank">Issue ID: #176116</a>)</h4>
+<h4 id="Issue_3_RotateAnimation 在 FAB 中不能使用 _<a_href="https://code-google-com/p/android/issues/detail?id=176116" target="_blank">Issue_ID:_#176116</a>">Issue 3 RotateAnimation 在 FAB 中不能使用 <a href="https://code.google.com/p/android/issues/detail?id=176116" target="_blank">Issue ID: #176116</a></h4>
 <h3 id=" 代码下载 ">代码下载</h3>
 <p>demo 代码下载:<br><a href="https://github.com/PareshMayani/DesignSupportLibraryExamples" target="_blank">https://github.com/PareshMayani/DesignSupportLibraryExamples</a></p>
   
@@ -287,7 +291,7 @@ btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class=
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2015/07/12/floating_action_button/" data-title="Part 1 – Floating Action Button | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2015/07/12/floating_action_button/" data-title="Part 1 – Floating Action Button（翻译） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -296,6 +300,14 @@ btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class=
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/07/12/snackbar/" title="Part 2 – 拥抱Snackbar, 和Toast说再见（翻译）">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Part 2 – 拥抱Snackbar, 和Toast说再见（翻译）</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2015/06/10/buid_your_framework/"  title="建立一个属于自己的框架">
@@ -317,7 +329,7 @@ btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class=
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Floating_Action_Button"><span class="toc-number">1.</span> <span class="toc-text">Floating Action Button</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 备注："><span class="toc-number">1.1.</span> <span class="toc-text">备注：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 独立添加 Android_design_support_library"><span class="toc-number">1.2.</span> <span class="toc-text">独立添加 Android design support library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step1："><span class="toc-number">1.3.</span> <span class="toc-text">Step1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Attributes："><span class="toc-number">1.4.</span> <span class="toc-text">Attributes：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step2："><span class="toc-number">1.5.</span> <span class="toc-text">Step2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step3："><span class="toc-number">1.6.</span> <span class="toc-text">Step3：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 问题："><span class="toc-number">2.</span> <span class="toc-text">问题：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_1:_Margin_issue_in_Android_4-4_and_5-0"><span class="toc-number">2.1.</span> <span class="toc-text">Issue 1: Margin issue in Android 4.4 and 5.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_2:_ 在 Android_5-0 中还存在阴影问题 "><span class="toc-number">2.2.</span> <span class="toc-text">Issue 2: 在 Android 5.0 中还存在阴影问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_3_RotateAnimation 在 FAB 中不能使用 _(<a_href="><span class="toc-number">2.3.</span> <span class="toc-text">)</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 代码下载 "><span class="toc-number">3.</span> <span class="toc-text">代码下载</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 原文地址：<a_href="><span class="toc-number">1.</span> <span class="toc-text">http://www.technotalkative.com/part-1-floating-action-button/</a></span></a></li></ol></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Floating_Action_Button"><span class="toc-number"></span> <span class="toc-text">Floating Action Button</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 备注："><span class="toc-number"></span> <span class="toc-text">备注：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 独立添加 Android_design_support_library"><span class="toc-number"></span> <span class="toc-text">独立添加 Android design support library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step1："><span class="toc-number"></span> <span class="toc-text">Step1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Attributes："><span class="toc-number"></span> <span class="toc-text">Attributes：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step2："><span class="toc-number"></span> <span class="toc-text">Step2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step3："><span class="toc-number"></span> <span class="toc-text">Step3：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 问题："><span class="toc-number"></span> <span class="toc-text">问题：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_1:_Margin_issue_in_Android_4-4_and_5-0"><span class="toc-number"></span> <span class="toc-text">Issue 1: Margin issue in Android 4.4 and 5.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_2:_ 在 Android_5-0 中还存在阴影问题 "><span class="toc-number"></span> <span class="toc-text">Issue 2: 在 Android 5.0 中还存在阴影问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_3_RotateAnimation 在 FAB 中不能使用 _<a_href="><span class="toc-number"></span> <span class="toc-text">Issue ID: #176116</a></span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 代码下载 "><span class="toc-number"></span> <span class="toc-text">代码下载</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -351,9 +363,9 @@ btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class=
 		
 			<li><a href="/categories/安卓前端开发/" title="安卓前端开发">安卓前端开发<sup>5</sup></a></li>
 		
-			<li><a href="/categories/安卓开发杂锦/" title="安卓开发杂锦">安卓开发杂锦<sup>7</sup></a></li>
-		
 			<li><a href="/categories/安卓网络开发/安卓开发杂锦/" title="安卓开发杂锦">安卓开发杂锦<sup>1</sup></a></li>
+		
+			<li><a href="/categories/安卓开发杂锦/" title="安卓开发杂锦">安卓开发杂锦<sup>7</sup></a></li>
 		
 			<li><a href="/categories/安卓网络开发/" title="安卓网络开发">安卓网络开发<sup>3</sup></a></li>
 		
@@ -361,7 +373,7 @@ btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class=
 		
 			<li><a href="/categories/电脑常识杂锦/" title="电脑常识杂锦">电脑常识杂锦<sup>2</sup></a></li>
 		
-			<li><a href="/categories/翻译/" title="翻译">翻译<sup>1</sup></a></li>
+			<li><a href="/categories/翻译/" title="翻译">翻译<sup>2</sup></a></li>
 		
 		</ul>
 </div>
@@ -378,7 +390,7 @@ btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class=
 		
 			<li><a href="/tags/RxAndroid/" title="RxAndroid">RxAndroid<sup>1</sup></a></li>
 		
-			<li><a href="/tags/android/" title="android">android<sup>6</sup></a></li>
+			<li><a href="/tags/android/" title="android">android<sup>7</sup></a></li>
 		
 			<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
 		

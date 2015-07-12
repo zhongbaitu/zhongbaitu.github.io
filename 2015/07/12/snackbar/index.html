@@ -4,26 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>另一道风景 | 钟买能个人博客</title>
+    <title>Part 2 – 拥抱Snackbar, 和Toast说再见（翻译） | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="最后的一晚
+    <meta name="description" content="http://www-technotalkative-com/part-2-welcome-snackbar-goodbye-toast/&quot;&gt;原文地址：http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/
 
-
-宿舍第一次完整聚餐。
-餐后去找馥（送了个小盒子给我）。
-再去部门唱 K，玩骰子骗了好多酒喝。
-出 KTV，见到班上伙伴，坐下。
-回到宿舍，和苹果体验中心的伙伴畅聊到凌晨。
-继续欣赏机电夜景
-
-离开那天
-
-离开，百感交集。
-想了好多，好多。
-今天搬出来了。一年前，我们的约定，今年，没有">
+欢迎看">
     
     
     
@@ -85,15 +73,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/07/06/new_scenery/" title="另一道风景" itemprop="url">另一道风景</a>
+      <a href="/2015/07/12/snackbar/" title="Part 2 – 拥抱Snackbar, 和Toast说再见（翻译）" itemprop="url">Part 2 – 拥抱Snackbar, 和Toast说再见（翻译）</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-07-06T06:18:37.000Z" itemprop="datePublished">Jul 6 2014</time>
-    Updated:<time datetime="2014-07-06T06:22:21.000Z" itemprop="dateModified">Jul 6 2014</time>
+    <time datetime="2015-07-12T13:49:33.000Z" itemprop="datePublished">Jul 12 2015</time>
+    Updated:<time datetime="2015-07-12T13:56:14.000Z" itemprop="dateModified">Jul 12 2015</time>
     
   </p>
 </header>
@@ -102,47 +90,102 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 最后的一晚 "><span class="toc-number">1.</span> <span class="toc-text">最后的一晚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 离开那天 "><span class="toc-number">2.</span> <span class="toc-text">离开那天</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 第二天 "><span class="toc-number">3.</span> <span class="toc-text">第二天</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 原文地址：<a_href="><span class="toc-number">1.</span> <span class="toc-text">http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/</a></span></a></li></ol></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 拥抱 Snackbar，和 Toast 说再见！"><span class="toc-number"></span> <span class="toc-text">拥抱 Snackbar，和 Toast 说再见！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 我们来看看 Snackbar 的语法："><span class="toc-number"></span> <span class="toc-text">我们来看看 Snackbar 的语法：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 方法："><span class="toc-number"></span> <span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 属性 "><span class="toc-number"></span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example："><span class="toc-number"></span> <span class="toc-text">Example：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Snackbar 的配置选项 "><span class="toc-number"></span> <span class="toc-text">Snackbar 的配置选项</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 参考："><span class="toc-number"></span> <span class="toc-text">参考：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a></li></ol>
 		</div>
 		
-		<h2 id=" 最后的一晚 ">最后的一晚</h2>
+		<h5 id=" 原文地址：<a_href="http://www-technotalkative-com/part-2-welcome-snackbar-goodbye-toast/" target="_blank">http://www-technotalkative-com/part-2-welcome-snackbar-goodbye-toast/</a>">原文地址：<a href="http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/" target="_blank">http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/</a></h5>
 <hr>
+<p>欢迎看 Android design support library 教程系列的第二篇文章。在第一篇文章我们讲了关于<br><a href="http://hackeris.me/2015/07/12/floating_action_button/"> Floating action button</a>的属性使用和一些 FAB 使用中会遇到的一些问题。</p>
+<p>今天我们来学习另外一个控件“Snackbar”。</p>
+<h3 id=" 拥抱 Snackbar，和 Toast 说再见！">拥抱 Snackbar，和 Toast 说再见！</h3>
+<blockquote>
+<p>Snackbar 提供轻量级、方便、快速的反馈操作。</p>
+</blockquote>
+<p>Snackbar 是 design support library 中的一个部件，我们可以使用它在屏幕底部显示一个消息。它就像我们以前用的 Toast，但，它更灵活一些：</p>
 <ul>
-<li>宿舍第一次完整聚餐。</li>
-<li>餐后去找馥（送了个小盒子给我）。</li>
-<li>再去部门唱 K，玩骰子骗了好多酒喝。</li>
-<li>出 KTV，见到班上伙伴，坐下。</li>
-<li>回到宿舍，和苹果体验中心的伙伴畅聊到凌晨。</li>
-<li>继续欣赏机电夜景</li>
+<li>超时后它会自动消失，或者，用户操作反馈后自动消失</li>
+<li>它可以包含一些可供选择操作在里面</li>
+<li>我们可以通过点击屏幕后令它消失</li>
+<li>它是根据上下文来显示消息的，它是 UI 的一部分，并且在所有的 UI 上面显示，不像 Toast 是可以跨越自己应用显示在屏幕上的</li>
+<li>在同一时间内，仅且只能显示一个 snackbar</li>
 </ul>
-<h2 id=" 离开那天 ">离开那天</h2>
-<hr>
-<p>离开，百感交集。</p>
-<p>想了好多，好多。</p>
-<p>今天搬出来了。一年前，我们的约定，今年，没有履行。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/20140706003703.jpg" alt=""></p>
-<p>而这一承诺，同样触动了冷血无情的海浩。</p>
-<hr>
-<p>来到这里，感觉好了好多，可能是没停下来的感觉吧。一直在搬运行李。整理行李，没有去想太多。</p>
-<p>而，现在闲下来了，情绪又要发作了。这也是我记下这篇日志的原因。</p>
-<hr>
-<p>晓冰和馥家的文佳也来了这边，和我们隔了三个巷子。</p>
-<p>再附照片几张</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3255.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3256.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3254.jpg" alt=""></p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3259.jpg" alt=""></p>
-<h2 id=" 第二天 ">第二天</h2>
-<hr>
-<p>今天我们去超市买了好多东西回来装备我们的家，我们还说这是一个正在崛起的 IT 巨头，哈哈。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3261.jpg" alt=""></p>
-<p>但依然还有好多东西没买，因为我们都没什么钱了。原来一个房子是需要这么多东西的。</p>
-<p>好吧，只能 mark 下来，下个月、下下个月发工资再买。</p>
-<p>我们下个月的目标。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3260.jpg" alt=""></p>
-<p>真的太好玩了，让我加强了对以后生活的幻想，嗯，是和老婆的生活，我们那时候会是怎样去装扮我们的家庭的呢，真让人期待。</p>
-<p>锅、面等都买好了。也该自己动手做午餐了。原本是想下楼去买两根葱回来煮面的，但结果却买了两根韭菜回来。难道卖菜的阿姨不奇怪我为什么会买两根葱的么？ 不过其实我真的懂的，葱是圆的，韭菜是扁的，只是粗心大意没留意而已。哈哈。</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-7-6/IMAG3262.jpg" alt=""></p>
+<p>Snackbar 里面大部分方法和属性都和 Toast 很像，例如在显示时间上的设置 LENGTH_LONG 和 LENGTH_SHORT。</p>
+<h3 id=" 我们来看看 Snackbar 的语法：">我们来看看 Snackbar 的语法：</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>Snackbar<span class="preprocessor">.make</span>(view, message, duration)
+       <span class="preprocessor">.setAction</span>(action message, click listener)
+       <span class="preprocessor">.show</span>()<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<h4 id=" 方法：">方法：</h4>
+<ul>
+<li><code>make()</code> - 在 Snackbar 上面显示一个消息</li>
+<li><code>setAction()</code> - 设置反馈响应事件</li>
+<li><code>show()</code> - 显示一个 Snackbar</li>
+</ul>
+<h4 id=" 属性 ">属性</h4>
+<ul>
+<li>make() 的第一个传入的参数是一个 view，snackbar 需要一个父 view 作为这个参数，可以传入任何一个合适的父 view，甚至是 coordinatorLayout 或者 decorView。</li>
+<li>上面已经提到过和 Toast 设置好像的显示时间长短，可以选择 LENGTH_SHORT 或者 LENGTH_LONG。</li>
+</ul>
+<h4 id="Example：">Example：</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>Snackbar.make(rootlayout, <span class="string">"Hello SnackBar!"</span>, Snackbar.LENGTH_SHORT)
+       .setAction(<span class="string">"Undo"</span>, <span class="keyword">new</span> View.OnClickListener() {
+           <span class="annotation">@Override</span>
+           <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View v) {
+               <span class="comment">// Perform anything for the action selected</span>
+           }
+       })
+       .show();
+</pre></td></tr></table></figure>
+
+<p>在这里，根布局元素是放置了 FAB 的 framelayout，可以看一看 FAB 的例子的布局代码。</p>
+<p>点击 FAB 看看效果：</p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-framelayout1.gif" alt=""></p>
+<p>可能你已经发现了，这个交互看起来并不是那么地正常，它应该把 FAB 顶上去一些，就像下面这幅图的效果那样。文档是这么解释的：</p>
+<blockquote>
+<p>Having a CoordinatorLayout in your view hierarchy allows Snackbar to enable certain features, such as swipe-to-dismiss and automatically moving of widgets like FloatingActionButton.</p>
+</blockquote>
+<p>我们将会在下一篇文章讨论和学习 CoordinatorLayout 。</p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-with-CoordinatorLayout1.gif" alt=""></p>
+<h3 id="Snackbar 的配置选项 ">Snackbar 的配置选项</h3>
+<p>我们可以对 snackbar 设置一些额外的配置，例如<code>setActionTextColor</code>和<code>setDuration</code>：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>Snackbar<span class="preprocessor">.make</span>(rootlayout, <span class="string">"Hello SnackBar!"</span>, Snackbar<span class="preprocessor">.LENGTH</span>_SHORT)
+       <span class="preprocessor">.setAction</span>(<span class="string">"Undo"</span>, new View<span class="preprocessor">.OnClickListener</span>() {
+           @Override
+           public void onClick(View v) {
+               // Perform anything for the action selected
+           }
+       })
+       <span class="preprocessor">.setActionTextColor</span>(R<span class="preprocessor">.color</span><span class="preprocessor">.material</span>_blue)
+       <span class="preprocessor">.setDuration</span>(<span class="number">4000</span>)<span class="preprocessor">.show</span>()<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>你可以从这里下载这个例子的源代码：<br><a href="https://github.com/PareshMayani/DesignSupportLibraryExamples" target="_blank">https://github.com/PareshMayani/DesignSupportLibraryExamples</a></p>
+<h4 id=" 参考：">参考：</h4>
+<p><a href="https://developer.android.com/reference/android/support/design/widget/Snackbar.html" target="_blank">https://developer.android.com/reference/android/support/design/widget/Snackbar.html</a></p>
+<h3 id=" 总结：">总结：</h3>
+<p>在这一 part，我们学习了 Snackbar，Snackbar 就是一个比 TOAST 更灵活的显示消息提示的通知控件，它还可以设置一个反馈操作，点击屏幕任何位置它会自动消失，或者超时后它也会自动消失。</p>
+<p>我们将会在 CoordinatorLayout 看到 Snackbar 更多的效果和行为反馈，我们将会在下一篇文章学习 CoordinatorLayout。</p>
   
 	</div>
 	<center>
@@ -160,20 +203,20 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/大学/">大学</a><a href="/tags/生活/">生活</a><a href="/tags/感悟/">感悟</a><a href="/tags/青春/">青春</a>
+  <span></span> <a href="/tags/android/">android</a><a href="/tags/翻译/">翻译</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
+  <a class="article-category-link" href="/categories/翻译/">翻译</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/07/06/new_scenery/" data-title="另一道风景 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2015/07/12/snackbar/" data-title="Part 2 – 拥抱Snackbar, 和Toast说再见（翻译） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -182,19 +225,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/07/20/struts_demo_2/" title="Struts Demo —— 认识拦截器">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Struts Demo —— 认识拦截器</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/06/29/tianjin/"  title="天津之行——国赛+毕业旅游">
+<a href="/2015/07/12/floating_action_button/"  title="Part 1 – Floating Action Button（翻译）">
  <strong>NEXT:</strong><br/> 
- <span>天津之行——国赛+毕业旅游
+ <span>Part 1 – Floating Action Button（翻译）
 </span>
 </a>
 </div>
@@ -211,7 +246,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="# 最后的一晚 "><span class="toc-number">1.</span> <span class="toc-text">最后的一晚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 离开那天 "><span class="toc-number">2.</span> <span class="toc-text">离开那天</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="# 第二天 "><span class="toc-number">3.</span> <span class="toc-text">第二天</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="# 原文地址：<a_href="><span class="toc-number">1.</span> <span class="toc-text">http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/</a></span></a></li></ol></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 拥抱 Snackbar，和 Toast 说再见！"><span class="toc-number"></span> <span class="toc-text">拥抱 Snackbar，和 Toast 说再见！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 我们来看看 Snackbar 的语法："><span class="toc-number"></span> <span class="toc-text">我们来看看 Snackbar 的语法：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 方法："><span class="toc-number"></span> <span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 属性 "><span class="toc-number"></span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example："><span class="toc-number"></span> <span class="toc-text">Example：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Snackbar 的配置选项 "><span class="toc-number"></span> <span class="toc-text">Snackbar 的配置选项</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 参考："><span class="toc-number"></span> <span class="toc-text">参考：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a></li></ol>
   </div>
 
 <div id="asidepart">
