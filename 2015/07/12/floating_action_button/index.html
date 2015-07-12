@@ -1,0 +1,613 @@
+
+ <!DOCTYPE HTML>
+<html lang="chinese">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Part 1 – Floating Action Button | 钟买能个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="钟买能">
+    
+    <meta name="description" content="Floating Action Button
+Floating action button (FAB)是一个带有阴影的简单圆形按钮，它上浮于其他 UI 之中，它通常用来驱动一些动作，例如添加一个 item、新建一封 email 等等。
+查看 Floating action button (FAB) ">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/me.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/me.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="钟买能个人博客" title="钟买能个人博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="钟买能个人博客">钟买能个人博客</a></h1>
+				<h2 class="blog-motto">love . to love . to be love .</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/About">About</a></li>
+					
+						<li><a href="/Resume">Resume</a></li>
+					
+						<li><a href="/Works">Works</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/12/floating_action_button/" title="Part 1 – Floating Action Button" itemprop="url">Part 1 – Floating Action Button</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://hackeris.me" title="钟买能">钟买能</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-07-12T12:52:42.000Z" itemprop="datePublished">Jul 12 2015</time>
+    Updated:<time datetime="2015-07-12T12:54:53.000Z" itemprop="dateModified">Jul 12 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Floating_Action_Button"><span class="toc-number">1.</span> <span class="toc-text">Floating Action Button</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 备注："><span class="toc-number">1.1.</span> <span class="toc-text">备注：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 独立添加 Android_design_support_library"><span class="toc-number">1.2.</span> <span class="toc-text">独立添加 Android design support library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step1："><span class="toc-number">1.3.</span> <span class="toc-text">Step1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Attributes："><span class="toc-number">1.4.</span> <span class="toc-text">Attributes：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step2："><span class="toc-number">1.5.</span> <span class="toc-text">Step2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step3："><span class="toc-number">1.6.</span> <span class="toc-text">Step3：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 问题："><span class="toc-number">2.</span> <span class="toc-text">问题：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_1:_Margin_issue_in_Android_4-4_and_5-0"><span class="toc-number">2.1.</span> <span class="toc-text">Issue 1: Margin issue in Android 4.4 and 5.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_2:_ 在 Android_5-0 中还存在阴影问题 "><span class="toc-number">2.2.</span> <span class="toc-text">Issue 2: 在 Android 5.0 中还存在阴影问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_3_RotateAnimation 在 FAB 中不能使用 _(<a_href="><span class="toc-number">2.3.</span> <span class="toc-text">)</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 代码下载 "><span class="toc-number">3.</span> <span class="toc-text">代码下载</span></a></li></ol>
+		</div>
+		
+		<h3 id="Floating_Action_Button">Floating Action Button</h3>
+<p><a href="http://www.google.co.in/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-floating-action-button" target="_blank">Floating action button (FAB)</a>是一个带有阴影的简单圆形按钮，它上浮于其他 UI 之中，它通常用来驱动一些动作，例如添加一个 item、新建一封 email 等等。</p>
+<p>查看 Floating action button (FAB) 的代码，我们发现 FAB 可以有两个大小：i），正常（56dp）或者 ii）小型（40dp）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">final</span> <span class="keyword">int</span> getSizeDimension() {
+   <span class="keyword">switch</span>(<span class="keyword">this</span>.mSize) {
+   <span class="keyword">case</span> <span class="number">0</span>:
+   <span class="keyword">default</span>:
+       <span class="keyword">return</span> <span class="keyword">this</span>.getResources().getDimensionPixelSize(dimen.fab_size_normal);
+   <span class="keyword">case</span> <span class="number">1</span>:
+       <span class="keyword">return</span> <span class="keyword">this</span>.getResources().getDimensionPixelSize(dimen.fab_size_mini);
+   }
+}
+</pre></td></tr></table></figure>
+
+<h4 id=" 备注：">备注：</h4>
+<p>FloatingActionButton 只是一个继承了 ImageView 的 view。</p>
+<h4 id=" 独立添加 Android_design_support_library">独立添加 Android design support library</h4>
+<p>首先，添加以下代码到 gradle 文件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>compile <span class="string">'com.android.support:design:22.2.0'</span>
+</pre></td></tr></table></figure>
+
+<h4 id="Step1：">Step1：</h4>
+<p>把 FloatingActionButton 引入 xml 布局文件:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>&lt;FrameLayout
+   android:id=<span class="string">"@+id/layoutInner"</span>
+   android:layout_width=<span class="string">"match_parent"</span>
+   android:layout_height=<span class="string">"match_parent"</span>&gt;
+ 
+   &lt;android<span class="preprocessor">.support</span><span class="preprocessor">.design</span><span class="preprocessor">.widget</span><span class="preprocessor">.FloatingActionButton</span>
+       android:id=<span class="string">"@+id/btnFloatingAction"</span>
+       android:layout_width=<span class="string">"wrap_content"</span>
+       android:layout_height=<span class="string">"wrap_content"</span>
+       android:layout_gravity=<span class="string">"bottom|right"</span> /&gt;
+ 
+&lt;/FrameLayout&gt;
+</pre></td></tr></table></figure>
+
+<h4 id="Attributes：">Attributes：</h4>
+<p>开发者手册只描述了 fabSize 这个属性，已经有人提了<a href="https://code.google.com/p/android/issues/detail?id=178117" target="_blank">issue#178117</a>，里面有其他属性的详细解释。以下是那些属性：</p>
+<ul>
+<li>默认 Floating action button 的背景色是应用主题的 ascent color，但可以通过<strong>app:backgroundTint </strong>属性或者<strong>setBackgroundTintList (ColorStateList tint)</strong>方法去改变背景颜色。</li>
+<li>上面提到 Floating action button 的大小尺寸，可以用过<strong>app:fabSize </strong>属性设置（normal or mini）</li>
+<li><strong> android:src</strong> 属性改变 drawable </li>
+<li><strong>app:rippleColor</strong>设置点击 button 时候的颜色</li>
+<li><strong>app:borderWidth</strong>设置 button 的边框宽度</li>
+<li><strong>app:elevation</strong>设置普通状态阴影的深度（默认是 6dp）</li>
+<li><strong>app:pressedTranslationZ</strong>设置点击状态的阴影深度（默认是 12dp）</li>
+</ul>
+<h4 id="Step2：">Step2：</h4>
+<p>使用部分属性的例子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>&lt;android<span class="preprocessor">.support</span><span class="preprocessor">.design</span><span class="preprocessor">.widget</span><span class="preprocessor">.FloatingActionButton</span>
+   android:id=<span class="string">"@+id/btnFloatingAction"</span>
+   android:layout_width=<span class="string">"wrap_content"</span>
+   android:layout_height=<span class="string">"wrap_content"</span>
+   android:layout_gravity=<span class="string">"bottom|right"</span>
+   android:src=<span class="string">"@drawable/ic_plus"</span>
+   app:fabSize=<span class="string">"normal"</span>
+   app:rippleColor=<span class="string">"@android:color/background_dark"</span>/&gt;
+</pre></td></tr></table></figure>
+
+<h4 id="Step3：">Step3：</h4>
+<p>我们可以像普通控件那样去注册它的监听事件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>FloatingActionButton btnFab = (FloatingActionButton) findViewById(R<span class="preprocessor">.id</span><span class="preprocessor">.btnFloatingAction</span>)<span class="comment">;</span>
+btnFab<span class="preprocessor">.setOnClickListener</span>(new View<span class="preprocessor">.OnClickListener</span>() {
+ 
+   @Override
+   public void onClick(View v) {
+       Toast<span class="preprocessor">.makeText</span>(MainActivity<span class="preprocessor">.this</span>, <span class="string">"Hello FAB!"</span>, Toast<span class="preprocessor">.LENGTH</span>_SHORT)<span class="preprocessor">.show</span>()<span class="comment">;</span>
+   }
+})<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>这样，我们就完成了一个 FloatingActionButton 的 demo 了！</p>
+<h3 id=" 问题：">问题：</h3>
+<p>在写这篇博文的同时，发现了 FAB 的一些 bugs。我们来看看上面这个 demo 运行在<strong>Kitkat </strong>和<strong>Lollipop </strong>时候的效果：<br><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/FloatingActionButton-Lollipop-300x126.png" alt="FloatingActionButton Lollipop"></p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/FloatingActionButton-Kitkat-300x127.png" alt="FloatingActionButton Kitkat"></p>
+<h4 id="Issue_1:_Margin_issue_in_Android_4-4_and_5-0">Issue 1: Margin issue in Android 4.4 and 5.0</h4>
+<p>很明显地可以看出，在 Lollipop 使用 FAB 的时候 margin 出现问题，我们可以这样来解决这个问题，在 API 21+ 定义 bottom 和 right margin 为 16dp，21 之前的都定义为 0dp</p>
+<p>values/dimens.xml</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">dimen</span> <span class="attribute">name</span>=<span class="value">"fab_margin_right"</span>&gt;</span>0dp<span class="tag">&lt;/<span class="title">dimen</span>&gt;</span>
+<span class="tag">&lt;<span class="title">dimen</span> <span class="attribute">name</span>=<span class="value">"fab_margin_bottom"</span>&gt;</span>0dp<span class="tag">&lt;/<span class="title">dimen</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>values-v21/dimens.xml</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">dimen</span> <span class="attribute">name</span>=<span class="value">"fab_margin_right"</span>&gt;</span>16dp<span class="tag">&lt;/<span class="title">dimen</span>&gt;</span>
+<span class="tag">&lt;<span class="title">dimen</span> <span class="attribute">name</span>=<span class="value">"fab_margin_bottom"</span>&gt;</span>16dp<span class="tag">&lt;/<span class="title">dimen</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>在设置 FAB 属性的时候：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>&lt;android.support.design.widget.FloatingActionButton
+   <span class="keyword">...</span>
+   <span class="keyword">...</span>
+   android:layout_marginBottom=<span class="string">"@dimen/fab_margin_bottom"</span>
+   android:layout_marginRight=<span class="string">"@dimen/fab_margin_right"</span>/&gt;
+</pre></td></tr></table></figure>
+
+<h4 id="Issue_2:_ 在 Android_5-0 中还存在阴影问题 ">Issue 2: 在 Android 5.0 中还存在阴影问题</h4>
+<p>你应该也在上面的图中发现到这个问题了，我们可以通过设置边框宽度给它来解决这个问题：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>&lt;android.support.design.widget.FloatingActionButton
+   <span class="keyword">...</span>
+   <span class="keyword">...</span>  
+   app:fabSize=<span class="string">"normal"</span>
+   app:borderWidth=<span class="string">"0dp"</span>
+   android:layout_marginBottom=<span class="string">"@dimen/fab_margin_bottom"</span>
+   android:layout_marginRight=<span class="string">"@dimen/fab_margin_right"</span>/&gt;
+</pre></td></tr></table></figure>
+
+<h4 id="Issue_3_RotateAnimation 在 FAB 中不能使用 _(<a_href="https://code-google-com/p/android/issues/detail?id=176116" target="_blank">Issue_ID:_#176116</a>)">Issue 3 RotateAnimation 在 FAB 中不能使用 (<a href="https://code.google.com/p/android/issues/detail?id=176116" target="_blank">Issue ID: #176116</a>)</h4>
+<h3 id=" 代码下载 ">代码下载</h3>
+<p>demo 代码下载:<br><a href="https://github.com/PareshMayani/DesignSupportLibraryExamples" target="_blank">https://github.com/PareshMayani/DesignSupportLibraryExamples</a></p>
+  
+	</div>
+	<center>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 文章底部栏广告 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-5613406035583127"
+         data-ad-slot="5556362497"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    </center>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/android/">android</a><a href="/tags/翻译/">翻译</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/翻译/">翻译</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://hackeris.me/2015/07/12/floating_action_button/" data-title="Part 1 – Floating Action Button | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/06/10/buid_your_framework/"  title="建立一个属于自己的框架">
+ <strong>NEXT:</strong><br/> 
+ <span>建立一个属于自己的框架
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Floating_Action_Button"><span class="toc-number">1.</span> <span class="toc-text">Floating Action Button</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="# 备注："><span class="toc-number">1.1.</span> <span class="toc-text">备注：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 独立添加 Android_design_support_library"><span class="toc-number">1.2.</span> <span class="toc-text">独立添加 Android design support library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step1："><span class="toc-number">1.3.</span> <span class="toc-text">Step1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Attributes："><span class="toc-number">1.4.</span> <span class="toc-text">Attributes：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step2："><span class="toc-number">1.5.</span> <span class="toc-text">Step2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step3："><span class="toc-number">1.6.</span> <span class="toc-text">Step3：</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 问题："><span class="toc-number">2.</span> <span class="toc-text">问题：</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_1:_Margin_issue_in_Android_4-4_and_5-0"><span class="toc-number">2.1.</span> <span class="toc-text">Issue 1: Margin issue in Android 4.4 and 5.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_2:_ 在 Android_5-0 中还存在阴影问题 "><span class="toc-number">2.2.</span> <span class="toc-text">Issue 2: 在 Android 5.0 中还存在阴影问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue_3_RotateAnimation 在 FAB 中不能使用 _(<a_href="><span class="toc-number">2.3.</span> <span class="toc-text">)</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 代码下载 "><span class="toc-number">3.</span> <span class="toc-text">代码下载</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  	<center>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 文章底部栏广告 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-5613406035583127"
+         data-ad-slot="5556362497"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    </center>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/git版本控制/" title="git版本控制">git版本控制<sup>3</sup></a></li>
+		
+			<li><a href="/categories/java杂锦/" title="java杂锦">java杂锦<sup>1</sup></a></li>
+		
+			<li><a href="/categories/struts/" title="struts">struts<sup>2</sup></a></li>
+		
+			<li><a href="/categories/生活点滴/外包/" title="外包">外包<sup>1</sup></a></li>
+		
+			<li><a href="/categories/安卓前端开发/" title="安卓前端开发">安卓前端开发<sup>5</sup></a></li>
+		
+			<li><a href="/categories/安卓开发杂锦/" title="安卓开发杂锦">安卓开发杂锦<sup>7</sup></a></li>
+		
+			<li><a href="/categories/安卓网络开发/安卓开发杂锦/" title="安卓开发杂锦">安卓开发杂锦<sup>1</sup></a></li>
+		
+			<li><a href="/categories/安卓网络开发/" title="安卓网络开发">安卓网络开发<sup>3</sup></a></li>
+		
+			<li><a href="/categories/生活点滴/" title="生活点滴">生活点滴<sup>12</sup></a></li>
+		
+			<li><a href="/categories/电脑常识杂锦/" title="电脑常识杂锦">电脑常识杂锦<sup>2</sup></a></li>
+		
+			<li><a href="/categories/翻译/" title="翻译">翻译<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Git权威指南/" title="Git权威指南">Git权威指南<sup>2</sup></a></li>
+		
+			<li><a href="/tags/ReJava/" title="ReJava">ReJava<sup>1</sup></a></li>
+		
+			<li><a href="/tags/RxAndroid/" title="RxAndroid">RxAndroid<sup>1</sup></a></li>
+		
+			<li><a href="/tags/android/" title="android">android<sup>6</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
+		
+			<li><a href="/tags/github/" title="github">github<sup>3</sup></a></li>
+		
+			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+		
+			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+		
+			<li><a href="/tags/java ee/" title="java ee">java ee<sup>2</sup></a></li>
+		
+			<li><a href="/tags/struts/" title="struts">struts<sup>2</sup></a></li>
+		
+			<li><a href="/tags/兼职/" title="兼职">兼职<sup>2</sup></a></li>
+		
+			<li><a href="/tags/函数响应式编程/" title="函数响应式编程">函数响应式编程<sup>1</sup></a></li>
+		
+			<li><a href="/tags/大学/" title="大学">大学<sup>6</sup></a></li>
+		
+			<li><a href="/tags/安卓/" title="安卓">安卓<sup>11</sup></a></li>
+		
+			<li><a href="/tags/工作/" title="工作">工作<sup>2</sup></a></li>
+		
+			<li><a href="/tags/思想/" title="思想">思想<sup>2</sup></a></li>
+		
+			<li><a href="/tags/感悟/" title="感悟">感悟<sup>7</sup></a></li>
+		
+			<li><a href="/tags/毕设/" title="毕设">毕设<sup>2</sup></a></li>
+		
+			<li><a href="/tags/生活/" title="生活">生活<sup>11</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi ^_^  I am ZhongMaiNeng . I love to share anything here. <br/>
+			for my collage . for coding . for traveling . for all of my life.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2162115292" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/zhongbaitu" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://hackeris.me" target="_blank" title="钟买能">钟买能</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zhongsir"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-49779500-1', 'hackeris.me');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
