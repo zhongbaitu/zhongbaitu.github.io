@@ -4,33 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android——Notifications笔记 | 钟买能个人博客</title>
+    <title>Part 3 – 装饰我们的Snackbar | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="NotificationNotification.BuilderNotificationCompat.Builder
-一开始给这三个类给搞糊涂了。
-官网是这样解释的：
+    <meta name="description" content="原文地址：http://www.technotalkative.com/part-3-styling-snackbar/
 
-Notification：A class that represents how a persistent notification is to be presented to the user using the NotificationManager.The Notification.Builder has been added to make it easier to construct Notifications.
-
-
-构建 Notifications 主要用的类，发现好多方法都给移除给 NotificationCompat.Builder 替代了
-
-
-Notification.Builder：Builder class for Notification objects. Provides a convenient way to set the various fields of a Notification and generate content views using the platform’s notification layout template.If your app supports versions of Android as old as API level 4, you can instead use NotificationCompat.Builder, available in the Android Support library.
-
-
-Notification.Builder 是为了让开发者更容易构建出 Notifications 而诞生的。
-
-
-NotificationCompat.BuilderBuilder class for NotificationCompat objects. Allows easier control over all the flags, as well as help constructing the typical notification layouts.
-
-
-NotificationCompat.Builder，由上面的加粗可以看出，NotificationCompat.Builder 是解决 Notification.Builder 的兼容问题而诞生的。compat：兼容性
-
-把这三个搞清楚之后，我直接用 NotificationCompat.Builder 来构建 Notifications。">
+这是 Android design support library 教程的第三部分。到目前为止，我们在这一系列教程中只讲了 Floating action button (FA">
     
     
     
@@ -92,15 +73,15 @@ NotificationCompat.Builder，由上面的加粗可以看出，NotificationCompat
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/02/01/android-notifications/" title="Android——Notifications笔记" itemprop="url">Android——Notifications笔记</a>
+      <a href="/2015/07/29/styling-snackbar/" title="Part 3 – 装饰我们的Snackbar" itemprop="url">Part 3 – 装饰我们的Snackbar</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-02-01T15:23:16.000Z" itemprop="datePublished">Feb 1 2014</time>
-    Updated:<time datetime="2014-05-02T03:09:14.000Z" itemprop="dateModified">May 2 2014</time>
+    <time datetime="2015-07-29T12:29:26.000Z" itemprop="datePublished">Jul 29 2015</time>
+    Updated:<time datetime="2015-07-29T12:33:05.000Z" itemprop="dateModified">Jul 29 2015</time>
     
   </p>
 </header>
@@ -109,129 +90,25 @@ NotificationCompat.Builder，由上面的加粗可以看出，NotificationCompat
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 装饰 Snackbar"><span class="toc-number">1.</span> <span class="toc-text">装饰 Snackbar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 如何改变 Snackbar 的背景颜色 "><span class="toc-number">2.</span> <span class="toc-text">如何改变 Snackbar 的背景颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 如何使用？"><span class="toc-number">3.</span> <span class="toc-text">如何使用？</span></a></li></ol>
 		</div>
 		
-		<p>Notification<br>Notification.Builder<br>NotificationCompat.Builder</p>
-<p>一开始给这三个类给搞糊涂了。</p>
-<p>官网是这样解释的：</p>
-<blockquote>
-<p>Notification：<br>A class that represents how a persistent notification is to be presented to the user using the NotificationManager.<br>The Notification.Builder has been added to make it easier to construct Notifications.</p>
-</blockquote>
-<ul>
-<li>构建 Notifications 主要用的类，发现好多方法都给移除给 NotificationCompat.Builder 替代了</li>
-</ul>
-<blockquote>
-<p>Notification.Builder：<br>Builder class for Notification objects. Provides a convenient way to set the various fields of a Notification and generate content views using the platform’s notification layout template.If your app supports versions of Android as old as API level 4, you can instead use NotificationCompat.Builder, available in the Android Support library.</p>
-</blockquote>
-<ul>
-<li>Notification.Builder 是为了让开发者更容易构建出 Notifications 而诞生的。</li>
-</ul>
-<blockquote>
-<p>NotificationCompat.Builder<br>Builder class for NotificationCompat objects. Allows easier control over all the flags, as well as help constructing the typical notification layouts.</p>
-</blockquote>
-<ul>
-<li>NotificationCompat.Builder，由上面的加粗可以看出，NotificationCompat.Builder 是解决 Notification.Builder 的兼容问题而诞生的。compat：兼容性</li>
-</ul>
-<p>把这三个搞清楚之后，我直接用 NotificationCompat.Builder 来构建 Notifications。</p>
-<p><a id="more"></a></p>
+		<p><a href="http://www.technotalkative.com/part-3-styling-snackbar/" target="_blank">原文地址：http://www.technotalkative.com/part-3-styling-snackbar/</a></p>
+<hr>
+<p>这是 Android design support library 教程的第三部分。到目前为止，我们在这一系列教程中只讲了 Floating action button (FAB) 和 Snackbar  ，并且还没有讲到它们的真正迷人之处，come on. 今天我们继续。</p>
+<h3 id=" 装饰 Snackbar">装饰 Snackbar</h3>
+<p>在上一篇文章，我们学会了如何显示一个 Snackbar，今天我们来看看如何显示一个不同 Snackbar，使用户可以得到一个更有意义的指示，例如显示一个红色的 Snackbar 来表示警告信息。</p>
+<p>对了，我还对<a href="https://play.google.com/store/apps/details?id=org.gdg.frisbee.android" target="_blank"> GDG android application</a>做了一个改进，就是用 Snackbar 替换了<a href="https://github.com/keyboardsurfer/Crouton" target="_blank">Crouton</a>，但 Crouton 提供了不同的样式，例如 STYLE.ALERT, STYLE.INFO ，所以我也想 Snackbar 能显示和 Crouton 一样类型的颜色，然后我从<a href="https://plus.google.com/+GabrieleMariotti" target="_blank">Gabriele Mariotti</a>的 Gist 中得到了一个灵感。这就是我修改后的<a href="https://github.com/gdg-x/frisbee/commit/f439412256e44127a61cdce7932abe9754ce3ec4" target="_blank">GDG android app 的 Snackbar 部分 </a>。</p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/07/Styling-snackbar-1024x477.png" alt=""></p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/07/Styling-snackbar-1-1024x477.png" alt=""></p>
+<h3 id=" 如何改变 Snackbar 的背景颜色 ">如何改变 Snackbar 的背景颜色</h3>
+<p>你可以通过 getView() 这个方法获取到 Snackbar 这个 view，然后就可以设置你随心所欲的颜色。</p>
+<p>example：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-</pre></td><td class="code"><pre>NotificationCompat<span class="preprocessor">.Builder</span> mBuilder =           //Notification 的兼容类
-
-                new NotificationCompat<span class="preprocessor">.Builder</span>(this)
-
-                <span class="preprocessor">.setSmallIcon</span>(R<span class="preprocessor">.drawable</span><span class="preprocessor">.ic</span>_launcher)   // 若没有设置 largeicon，此为左边的大 icon，设置了 largeicon，则为右下角的小 icon，无论怎样，都影响 Notifications area 显示的图标
-
-                <span class="preprocessor">.setContentTitle</span>(<span class="string">"My notification"</span>) // 标题
-
-                <span class="preprocessor">.setContentText</span>(<span class="string">"Hello World!"</span>)         // 正文
-
-                <span class="preprocessor">.setNumber</span>(<span class="number">3</span>)                       // 设置信息条数
-
-//              <span class="preprocessor">.setContentInfo</span>(<span class="string">"3"</span>)        // 作用同上，设置信息的条数
-
-                <span class="preprocessor">.setLargeIcon</span>(smallicon)           //largeicon，
-
-                <span class="preprocessor">.setDefaults</span>(Notification<span class="preprocessor">.DEFAULT</span>_SOUND)// 设置声音，此为默认声音
-
-                <span class="preprocessor">.setVibrate</span>(vT) // 设置震动，此震动数组为：long vT[]={<span class="number">300</span>,<span class="number">100</span>,<span class="number">300</span>,<span class="number">100</span>}<span class="comment">; 还可以设置灯光.setLights(argb, onMs, offMs)</span>
-
-                <span class="preprocessor">.setOngoing</span>(true)      //true 使 notification 变为 ongoing，用户不能手动清除，类似 QQ,false 或者不设置则为普通的通知
-
-                <span class="preprocessor">.setAutoCancel</span>(true)<span class="comment">;             // 点击之后自动消失</span>
+</pre></td><td class="code"><pre>snackbar<span class="preprocessor">.getView</span>()<span class="preprocessor">.setBackgroundColor</span>(colorId)<span class="comment">;</span>
 </pre></td></tr></table></figure>
 
-<p>一个 Notifications 完成，现在已经可以把它显示出来，但我们继续 coding，添加点击通知后的跳转。</p>
-<p>实例化一个 intent</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>Intent resultIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, ResultActivity.<span class="keyword">class</span>);
-</pre></td></tr></table></figure>
-
-<p>实例化一个 TaskStackBuilder , 用于添加动作，就像一个 stack 一样，一个一个压进去</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>TaskStackBuilder stackBuilder = TaskStackBuilder.<span class="operator"><span class="keyword">create</span>(this);</span>
-</pre></td></tr></table></figure>
-
-<p>添加父 stack，添加下一个 intent</p>
-<figure class="highlight stackBuilder.addParentStack(this);"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>
-stackBuilder<span class="preprocessor">.addNextIntent</span>(resultIntent)<span class="comment">;</span>
-
-PendingIntent resultPendingIntent =
-                stackBuilder<span class="preprocessor">.getPendingIntent</span>(
-                    <span class="number">0</span>,
-                    PendingIntent<span class="preprocessor">.FLAG</span>_UPDATE_CURRENT
-                )<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>把刚才的 pending 添加进去</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>mBuilder<span class="preprocessor">.setContentIntent</span>(resultPendingIntent)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>获得 NotificationManager</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="attribute">NotificationManager mNotificationManager </span>=<span class="string">
-            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);</span>
-</pre></td></tr></table></figure>
-
-<p>mBuilder.build() 会返回一个 Notifications 对象，1000 为 Notifications 的 id，可变动。就可以 notify 出来了。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>mNotificationManager<span class="preprocessor">.notify</span>(<span class="number">1000</span>, mBuilder<span class="preprocessor">.build</span>())<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>效果：<a href="http://segmentfault.com/img/bVbQMt/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbQMt" alt=" 请输入图片描述 "></a></p>
-<p>接下来是构建一个进度条 Notifications</p>
+<p>以下这个 ColoredSnackbar 类包含了一些显示不同颜色的方法。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -258,43 +135,69 @@ PendingIntent resultPendingIntent =
 24
 25
 26
-</pre></td><td class="code"><pre>        <span class="keyword">new</span> Thread(
-            <span class="keyword">new</span> Runnable() {
-
-                <span class="annotation">@Override</span>
-                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
-                    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++){
-                        mBuilder.setProgress(<span class="number">100</span>, i, <span class="keyword">false</span>); <span class="comment">// 最后一个参数设置  determinate 还是  indeterminate ，</span>
-                        <span class="comment">//false 的进度条是可以看到增加的，true 是无限循环的，但设置为 true 的时候，前面连个参数可以忽略设置为 0,0 或者任意</span>
-
-                        mNotificationManager.notify(<span class="number">1000</span>, mBuilder.build());
-
-                        <span class="keyword">try</span> {
-                            Thread.sleep(<span class="number">50</span>);
-                        } <span class="keyword">catch</span> (InterruptedException e) {
-                            <span class="comment">// TODO Auto-generated catch block</span>
-                            e.printStackTrace();
-                        }
-                    }
-
-                    mBuilder.setContentText(<span class="string">"OK"</span>)
-                    .setDefaults(Notification.DEFAULT_ALL)   <span class="comment">// 设置后不会出现当进度完成之后奔溃，不设置会奔溃，原因不明。求大神指点</span>
-                    .setProgress(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">false</span>);
-                    mNotificationManager.notify(<span class="number">1000</span>, mBuilder.build());
-
-                }
-            }).start();
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ColoredSnackbar</span> {</span>
+ 
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> red = <span class="number">0xfff44336</span>;
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> green = <span class="number">0xff4caf50</span>;
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> blue = <span class="number">0xff2195f3</span>;
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> orange = <span class="number">0xffffc107</span>;
+ 
+    <span class="keyword">private</span> <span class="keyword">static</span> View <span class="title">getSnackBarLayout</span>(Snackbar snackbar) {
+        <span class="keyword">if</span> (snackbar != <span class="keyword">null</span>) {
+            <span class="keyword">return</span> snackbar.getView();
+        }
+        <span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+ 
+    <span class="keyword">private</span> <span class="keyword">static</span> Snackbar <span class="title">colorSnackBar</span>(Snackbar snackbar, <span class="keyword">int</span> colorId) {
+        View snackBarView = getSnackBarLayout(snackbar);
+        <span class="keyword">if</span> (snackBarView != <span class="keyword">null</span>) {
+            snackBarView.setBackgroundColor(colorId);
+        }
+ 
+        <span class="keyword">return</span> snackbar;
+    }
+ 
+    <span class="keyword">public</span> <span class="keyword">static</span> Snackbar <span class="title">info</span>(Snackbar snackbar) {
+        <span class="keyword">return</span> colorSnackBar(snackbar, blue);
+    }
+ 
+    <span class="keyword">public</span> <span class="keyword">static</span> Snackbar <span class="title">warning</span>(Snackbar snackbar) {
+        <span class="keyword">return</span> colorSnackBar(snackbar, orange);
+    }
+ 
+    <span class="keyword">public</span> <span class="keyword">static</span> Snackbar <span class="title">alert</span>(Snackbar snackbar) {
+        <span class="keyword">return</span> colorSnackBar(snackbar, red);
+    }
+ 
+    <span class="keyword">public</span> <span class="keyword">static</span> Snackbar <span class="title">confirm</span>(Snackbar snackbar) {
+        <span class="keyword">return</span> colorSnackBar(snackbar, green);
+    }
+}
 </pre></td></tr></table></figure>
 
-<p>效果：<br><a href="http://segmentfault.com/img/bVbQMu/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbQMu" alt=" 请输入图片描述 "></a></p>
-<p>若</p>
+<h3 id=" 如何使用？">如何使用？</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>mBuilder.setProgress(<span class="number">0</span>, <span class="number">0</span>, <span class="literal">true</span>);
+2
+</pre></td><td class="code"><pre>Snackbar snackbar = Snackbar<span class="preprocessor">.make</span>(getView(), R<span class="preprocessor">.string</span><span class="preprocessor">.hello</span>_snackbar, Snackbar<span class="preprocessor">.LENGTH</span>_SHORT)<span class="comment">;</span>
+ColoredSnackBar<span class="preprocessor">.alert</span>(snackbar)<span class="preprocessor">.show</span>()<span class="comment">;</span>
 </pre></td></tr></table></figure>
 
-<p>则：<br><a href="http://segmentfault.com/img/bVbQMv/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbQMv" alt=" 请输入图片描述 "></a></p>
-<p>还有好多功能没有写上去。例如 setstyle，震动到用户进行一些动作才停止等等功能，有空再补上。</p>
-<p>还有自定义 Notifications 没搞。先搁置，接下来学 service。加油</p>
+<p>这里我是在 fragment 里用<code>getView()</code>方法，你可以使用在 FrameLayout 或 CoordinatorLayout。</p>
+<p>还有，如果你知道如何在 Snackbar 的左边显示一个 icon 的话，记得分享一下哦。下次再见。</p>
   
 	</div>
 	<center>
@@ -312,20 +215,20 @@ PendingIntent resultPendingIntent =
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/安卓/">安卓</a>
+  <span></span> <a href="/tags/android/">android</a><a href="/tags/翻译/">翻译</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
+  <a class="article-category-link" href="/categories/翻译/">翻译</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/02/01/android-notifications/" data-title="Android——Notifications笔记 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2015/07/29/styling-snackbar/" data-title="Part 3 – 装饰我们的Snackbar | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -334,19 +237,11 @@ PendingIntent resultPendingIntent =
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/02/02/android-processesthreadasynctask/" title="Android——Processes,Thread,Async Task（未完，待续。）">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Android——Processes,Thread,Async Task（未完，待续。）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/01/28/android_SaveInstanceState/"  title="Android保存当前活动状态">
+<a href="/2015/07/12/snackbar/"  title="Part 2 – 拥抱Snackbar, 和Toast说再见（翻译）">
  <strong>NEXT:</strong><br/> 
- <span>Android保存当前活动状态
+ <span>Part 2 – 拥抱Snackbar, 和Toast说再见（翻译）
 </span>
 </a>
 </div>
@@ -363,7 +258,7 @@ PendingIntent resultPendingIntent =
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 装饰 Snackbar"><span class="toc-number">1.</span> <span class="toc-text">装饰 Snackbar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 如何改变 Snackbar 的背景颜色 "><span class="toc-number">2.</span> <span class="toc-text">如何改变 Snackbar 的背景颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 如何使用？"><span class="toc-number">3.</span> <span class="toc-text">如何使用？</span></a></li></ol>
   </div>
 
 <div id="asidepart">
