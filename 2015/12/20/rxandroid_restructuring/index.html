@@ -4,17 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Rx Android初步探究（一） | 钟买能个人博客</title>
+    <title>Rx Android实战（重构项目） | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="上个星期看到trello招聘远程 android 工程师，其中trello说道他们是RxJava的重度用者。
-RxJava ？ 什么是 RxJava 。
-RxJava 是 Reactivex 库的一个扩展。
-Reactivex 又是什么？ 官方是这样解释的：
+    <meta name="description" content="扯扯
 
-ReactiveX is a libr">
+上一次捣蛋 RxAndroid 是今年二月份的事情了，当时 RxAndroid 还处于一个资料甚少交流难的状态，当时还特意建了一个交流群，让搞这个的人可以加进来讨论讨论，毕竟这玩意还是挺有意思的，于是到今天群里已经有 124 人。
+在这里我发现了一个现象，进入这个群的小伙伴很多都是中级工程师">
     
     
     
@@ -76,15 +74,15 @@ ReactiveX is a libr">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/02/11/reandroid1/" title="Rx Android初步探究（一）" itemprop="url">Rx Android初步探究（一）</a>
+      <a href="/2015/12/20/rxandroid_restructuring/" title="Rx Android实战（重构项目）" itemprop="url">Rx Android实战（重构项目）</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-02-10T16:03:21.000Z" itemprop="datePublished">Feb 11 2015</time>
-    Updated:<time datetime="2015-12-20T13:00:49.000Z" itemprop="dateModified">Dec 20 2015</time>
+    <time datetime="2015-12-20T12:59:24.000Z" itemprop="datePublished">Dec 20 2015</time>
+    Updated:<time datetime="2015-12-20T13:05:09.000Z" itemprop="dateModified">Dec 20 2015</time>
     
   </p>
 </header>
@@ -93,33 +91,139 @@ ReactiveX is a libr">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 扯扯 "><span class="toc-number">1.</span> <span class="toc-text">扯扯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 背景 "><span class="toc-number">2.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 正题 "><span class="toc-number">3.</span> <span class="toc-text">正题</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RxAndroid_+_Retrofit"><span class="toc-number">3.1.</span> <span class="toc-text">RxAndroid + Retrofit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RxBinding"><span class="toc-number">3.2.</span> <span class="toc-text">RxBinding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 事件总线，RxBus"><span class="toc-number">3.3.</span> <span class="toc-text">事件总线，RxBus</span></a></li></ol>
 		</div>
 		
-		<p>上个星期看到<code>trello</code>招聘远程 android 工程师，其中<code>trello</code>说道他们是<code>RxJava</code>的重度用者。</p>
-<p><code>RxJava</code> ？ 什么是 <code>RxJava</code> 。</p>
-<p><code>RxJava</code> 是 <a href="http://reactivex.io/" target="_blank">Reactivex</a> 库的一个扩展。</p>
-<p><code>Reactivex</code> 又是什么？ 官方是这样解释的：</p>
-<blockquote>
-<p>ReactiveX is a library for composing asynchronous and event-based programs by using observable sequences.</p>
-<p>It extends the observer pattern to support sequences of data and/or events and adds operators that allow you to compose sequences together declaratively while abstracting away concerns about things like low-level threading, synchronization, thread-safety, concurrent data structures, and non-blocking I/O.</p>
-</blockquote>
-<p>总结一下特点：</p>
-<p>1、<a href="https://github.com/benjycui/introrx-chinese-edition" target="_blank">函数响应式编程</a>（Functional Reactive Programming）简称 FRP</p>
-<p>2、异步</p>
-<p>3、事件驱动（事件作为可观察序列）</p>
-<p>4、基于观察者模式</p>
-<p>5、组合式</p>
-<p>6、专门出错处理</p>
-<p>7、适用于处理并发问题</p>
-<p><a href="https://github.com/ReactiveX/RxAndroid" target="_blank">RxAndroid</a> 是 <code>RxJava</code> 的一个特别版，主要是提供了可设置计算的所在线程以及更新 UI 时可在主线程更新。</p>
-<blockquote>
-<p>provides a Scheduler that schedules an Observable on a given Android Handler thread, particularly the main UI thread<br>provides base Observer implementations that make guarantees w.r.t. to reliable and thread-safe use throughout Fragment and Activity life-cycle callbacks (coming soon)<br>provides reusable, self-contained reactive components for common Android use cases and UI concerns (coming soon)</p>
-</blockquote>
-<p>这块新大陆开垦的人少之又少，没猜错的话，大家几乎都是在看 <code>Grokking RxJava</code> 这四篇文章，其中第四篇<a href="http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/" target="_blank">Grokking RxJava, Part 4: Reactive Android</a>就是讲<code>RxAndroid</code>的。虽然这篇文章是发表于 2014 年 10 月 8 日，但<code>RxAndroid</code>里面已经有很多改动，例如：<code>AndroidObservable</code> 变成 <code>AppObservable</code>，<code>ViewObservable</code> 的这个<code>text()</code>方法已经移到<code>WidgetObservable</code>这个类下面等等。<br>不过四篇文章的思想还是在的，变的只是类和方法的改动，所以不能直接拷贝代码到 IDE 里面去运行，不然都是报错，然后就怀疑这是什么鬼玩意啊，就不再深究下去了。</p>
-<p>接下来我们来体验一番基于事件的函数响应式编程。<br>我们来实现一个这样的一个需求，点击复选框，检查输入框是否为空，效果如图：</p>
-<p><img src="http://zhongsir.qiniudn.com/2015-2-10/test.gif" alt="enter image description here"></p>
-<p>我们平时的话一般都是给这三个控件设置事件监控，声明一个复选框选中标识 flag，然后在监控控件的回调函数去判断，代码大概是这个样子：</p>
+		<h3 id=" 扯扯 ">扯扯</h3>
+<hr>
+<p>上一次捣蛋 RxAndroid 是今年二月份的事情了，当时 RxAndroid 还处于一个资料甚少交流难的状态，当时还特意建了一个交流群，让搞这个的人可以加进来讨论讨论，毕竟这玩意还是挺有意思的，于是到今天群里已经有 124 人。</p>
+<p>在这里我发现了一个现象，进入这个群的小伙伴很多都是中级工程师 or 以上的水准，没有像很多 XXXXXAndroid 交流群那样，小白和伸手党一大堆（在这里没有任何贬义看待，任何人都是从小白过来，只想说明一个现象）。嗯，分层了，越是接触新颖的事物、并把事物专研进去的人才会有更大的几率发现并加入到这个群。就像很多 HR 一样，从古老的前程无忧到拉勾、周伯通、BOSS 直聘、100offer、github、甚至知乎等等新颖且聚集大量优秀工程师的地方招人。以后 HR 姐姐们也可以到各大框架的讨论区去挖人了 [笑哭]。</p>
+<h3 id=" 背景 ">背景</h3>
+<hr>
+<p>将要重构的项目是本人的一个业余项目，由于上个公司工作太忙，导致进度缓慢，到现在功能点也还没完成多少个。趁着这几天失业，好好追追进度（工作还得要找，毕竟饭还是要吃~），顺便重构一下之前考虑不周到 or 不规范的地方，在这里 RxAndroid 充当一个辅助作用，并不是每一处地方都用上场，毕竟具体问题具体分析。</p>
+<h3 id=" 正题 ">正题</h3>
+<hr>
+<h4 id="RxAndroid_+_Retrofit">RxAndroid + Retrofit</h4>
+<p>登陆功能重构之前 (只用 Retrofit 做请求)：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="code"><pre>    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLogin</span>(String phone, String psw) {
+        mLoginPage.showProgressBar();
+        HttpUtils.getApiManager().login(phone, psw)
+                .enqueue(<span class="keyword">new</span> Callback&lt;LoginResponse&gt;() {
+                    <span class="annotation">@Override</span>
+                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span>(Response&lt;LoginResponse&gt; response, Retrofit retrofit) {
+                        mLoginPage.hideProgressBar();
+                        LoginResponse result = response.body();
+                        <span class="keyword">if</span>(result.error_code == <span class="number">0</span>){
+                            <span class="keyword">if</span>(saveUserInfo(result)){
+                                Oxygen.getInstance().closeAllPopupPage();
+                            }<span class="keyword">else</span>{
+                                mLoginPage.showSnackbar(<span class="string">" 未知错误 "</span>);
+                            }
+                        }<span class="keyword">else</span>{
+                            mLoginPage.showSnackbar(result.error_msg);
+                        }
+                    }
+
+                    <span class="annotation">@Override</span>
+                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span>(Throwable t) {
+                        mLoginPage.hideProgressBar();
+                        handleError(t);
+                    }
+                });
+
+    }
+
+    <span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">saveUserInfo</span>(LoginResponse response){
+        Oxygen.setUserInfo(response.data);
+        <span class="keyword">return</span> Oxygen.getUserInfo().save();
+    }
+</pre></td></tr></table></figure>
+
+<p>流程大概是这样的：账号密码请求服务器 —&gt; 服务器返回用户资料（此处仅含 accessToken 和 refreshToken）—&gt; 保存用户资料到本地（文件保存） —&gt; 保存成功则登陆成功，保存失败则登陆失败。</p>
+<p>可见，我要等 UserInfo.getInstance().save() 的返回来作出判断登陆成功与否，在这里，我放了在主线程去做，显然这样是会有性能问题。</p>
+<p>办法 2：new Thread 去做这个保存，等待返回结果，然后再回到主 Thread 去更新 UI，大概是这样的：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre>    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">saveUserInfo</span>(<span class="keyword">final</span> LoginResponse response){
+        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
+            <span class="annotation">@Override</span>
+            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+                Oxygen.setUserInfo(response.data);
+                <span class="keyword">if</span>(Oxygen.getUserInfo().save()){
+                    ((Activity)context).runOnUiThread(<span class="keyword">new</span> Runnable() {
+                        <span class="annotation">@Override</span>
+                        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+                            Oxygen.getInstance().closeAllPopupPage();
+                        }
+                    });
+                }<span class="keyword">else</span>{
+                    ((Activity)context).runOnUiThread(<span class="keyword">new</span> Runnable() {
+                        <span class="annotation">@Override</span>
+                        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+                            mLoginPage.showSnackbar(<span class="string">" 未知错误 "</span>);
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+</pre></td></tr></table></figure>
+
+<p>这样就把卡顿主线程的问题解决了，但~~~ 有没更直观、简单的方法？</p>
+<p>RxAndroid ！！</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -165,215 +269,87 @@ ReactiveX is a libr">
 43
 44
 45
-</pre></td><td class="code"><pre>        checkButton.setOnCheckedChangeListener(<span class="keyword">new</span> CompoundButton.OnCheckedChangeListener() {
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCheckedChanged</span>(CompoundButton compoundButton, <span class="keyword">boolean</span> b) {
-                needCheck = b;
-                <span class="keyword">if</span>(needCheck){
-                    <span class="keyword">if</span>(mEditText.getText().toString().equals(<span class="string">""</span>)){
-                        okBtn.setEnabled(<span class="keyword">false</span>);
-                    }<span class="keyword">else</span>{
-                        okBtn.setEnabled(<span class="keyword">true</span>);
+46
+47
+48
+</pre></td><td class="code"><pre>    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLogin</span>(String phone, String psw) {
+        HttpUtils.getApiManager().login(phone, psw)
+                .subscribeOn(Schedulers.io()) <span class="comment">// 请求服务器在 io 线程</span>
+                .map(<span class="keyword">new</span> Func1&lt;LoginResponse, String&gt;() {
+                    <span class="annotation">@Override</span>
+                    <span class="keyword">public</span> String <span class="title">call</span>(LoginResponse response) {
+                        <span class="keyword">if</span>(response.error_code == <span class="number">0</span>){
+                            <span class="keyword">return</span> saveUserInfo(response) ? <span class="string">""</span> : <span class="string">" 未知错误 "</span>;
+                        }<span class="keyword">else</span>{
+                            <span class="keyword">return</span>  response.error_msg;
+                        }
                     }
-                }<span class="keyword">else</span>{
-                    okBtn.setEnabled(<span class="keyword">true</span>);
+                })
+                .observeOn(AndroidSchedulers.mainThread()) <span class="comment">// 指定 doOnSubscribe 在主线程，若没有 finallyDo 可不加，否则必须加上</span>
+                .doOnSubscribe(<span class="keyword">new</span> Action0() {
+                    <span class="annotation">@Override</span>
+                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span>() {
+                        mLoginPage.showProgressBar();
+                    }
+                })
+                .finallyDo(<span class="keyword">new</span> Action0() {
+                    <span class="annotation">@Override</span>
+                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span>() {
+                        mLoginPage.hideProgressBar();
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() {
+                    <span class="annotation">@Override</span>
+                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span>(String result) {
+                        <span class="keyword">if</span>(!TextUtils.isEmpty(result)){
+                            mLoginPage.showSnackbar(result);
+                        }<span class="keyword">else</span>{
+                            Oxygen.getInstance().closeAllPopupPage();
+                        }
+                    }
+                }, <span class="keyword">new</span> Action1&lt;Throwable&gt;() {
+                    <span class="annotation">@Override</span>
+                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span>(Throwable throwable) {
+                        handleError(throwable);
+                    }
+                });
+    }
+
+    <span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">saveUserInfo</span>(LoginResponse response){
+        Oxygen.setUserInfo(response.data);
+        <span class="keyword">return</span> Oxygen.getUserInfo().save();
+    }
+</pre></td></tr></table></figure>
+
+<p>响应式编程，一条链式反应，有专门处理请求前、数据返回后处理、请求完成处理、异常等等的函数，还可以给它们特指专门的线程，思路清晰多了。</p>
+<h4 id="RxBinding">RxBinding</h4>
+<p>俺身边有一位朋友可能由于单身多年，手速达到惊人地步，年轻人嘛，急，按个按钮总喜欢连续猛按几下，而页面也连续弹出几个。。。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>RxAdapterView.itemClickEvents(mListView)
+                .throttleFirst(<span class="number">1</span>, TimeUnit.SECONDS)
+                .subscribe(<span class="keyword">new</span> Action1&lt;AdapterViewItemClickEvent&gt;() {
+            @Override
+            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span>(AdapterViewItemClickEvent adapterViewItemClickEvent) {
+                <span class="keyword">if</span>(mCallback != <span class="keyword">null</span>){
+                    mCallback.onOpenDetailPage(<span class="keyword">event</span>.position());
                 }
             }
         });
-
-        mEditText.addTextChangedListener(<span class="keyword">new</span> TextWatcher() {
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeTextChanged</span>(CharSequence charSequence, <span class="keyword">int</span> i, <span class="keyword">int</span> i2, <span class="keyword">int</span> i3) {
-
-            }
-
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTextChanged</span>(CharSequence charSequence, <span class="keyword">int</span> i, <span class="keyword">int</span> i2, <span class="keyword">int</span> i3) {
-                <span class="keyword">if</span>(needCheck){
-                    <span class="keyword">if</span>(charSequence.toString().equals(<span class="string">""</span>)){
-                        okBtn.setEnabled(<span class="keyword">false</span>);
-                    }<span class="keyword">else</span>{
-                        okBtn.setEnabled(<span class="keyword">true</span>);
-                    }
-                }
-            }
-
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterTextChanged</span>(Editable editable) {
-
-            }
-        });
-
-        okBtn.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span>(View view) {
-                Toast.makeText(MainActivity.<span class="keyword">this</span>, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
 </pre></td></tr></table></figure>
 
-<p>而我们使用<code>RxAndroid</code> 的话，就是这个样子：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-</pre></td><td class="code"><pre>        Observable&lt;Boolean&gt; needCheckObservable = WidgetObservable.input(checkButton, <span class="keyword">true</span>).map(<span class="keyword">new</span> Func1&lt;OnCheckedChangeEvent, Boolean&gt;() {
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> Boolean <span class="title">call</span>(OnCheckedChangeEvent onCheckedChangeEvent) {
-                <span class="keyword">return</span> onCheckedChangeEvent.value();
-            }
-        });
-
-        Observable&lt;OnTextChangeEvent&gt; editTextObservable = WidgetObservable.text(mEditText, <span class="keyword">true</span>);
-
-        Observable.combineLatest(needCheckObservable, editTextObservable, <span class="keyword">new</span> Func2&lt;Boolean, OnTextChangeEvent, Boolean&gt;() {
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> Boolean <span class="title">call</span>(Boolean aBoolean, OnTextChangeEvent onTextChangeEvent) {
-                <span class="keyword">return</span> aBoolean ? !TextUtils.isEmpty(onTextChangeEvent.text()) : <span class="keyword">true</span>;
-            }
-        }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(<span class="keyword">new</span> Action1&lt;Boolean&gt;() {
-                    <span class="annotation">@Override</span>
-                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span>(Boolean aBoolean) {
-                        okBtn.setEnabled(aBoolean);
-                    }
-                });
-
-        ViewObservable.clicks(okBtn)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(<span class="keyword">new</span> Action1&lt;OnClickEvent&gt;() {
-                    <span class="annotation">@Override</span>
-                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span>(OnClickEvent onClickEvent) {
-                        Toast.makeText(MainActivity.<span class="keyword">this</span>, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-</pre></td></tr></table></figure>
-
-<p>平时的方法，用了 45 行代码，用 RxAndroid 则是 29 行，那句什么话来着，less is more.</p>
-<p>用代码行数去衡量一段代码的好坏？ 似乎太庸俗，太傻 X 了，当然，我们不会这样去衡量。只是开个玩笑.</p>
-<p>来，我们来看看上面的代码。</p>
-<p>1、函数式表达<br>2、基于事件的可组合模式（以上就是把复选框的选中事件和输入框的输入事件组合在一起）</p>
-<p>上面的例子我没有理会错误的处理和完成的处理，其实我们还可以这样做：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="code"><pre>        ViewObservable.clicks(okBtn)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(<span class="keyword">new</span> Observer&lt;OnClickEvent&gt;() {
-                    <span class="annotation">@Override</span>
-                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span>() {
-
-                    }
-
-                    <span class="annotation">@Override</span>
-                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span>(Throwable e) {
-                        Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">" 哎呀，出错了 "</span>, Toast.LENGTH_SHORT).show();
-                    }
-
-                    <span class="annotation">@Override</span>
-                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span>(OnClickEvent onClickEvent) {
-                        Toast.makeText(MainActivity.<span class="keyword">this</span>, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-</pre></td></tr></table></figure>
-
-<p>专门有出错的处理回调。</p>
-<p>上面的例子也没有体现出异步的功能，我们再来个例子，在输入框输入一个图片 url 然后去下载图片并显示：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-</pre></td><td class="code"><pre>        ViewObservable.clicks(okBtn).map(<span class="keyword">new</span> Func1&lt;OnClickEvent, Bitmap&gt;() {
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> Bitmap <span class="title">call</span>(OnClickEvent onClickEvent) {
-                <span class="keyword">return</span> <span class="keyword">null</span>;
-            }
-        })
-        .subscribeOn(Schedulers.newThread())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(<span class="keyword">new</span> Observer&lt;Bitmap&gt;() {
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span>() {
-                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">" 图片加载完成 "</span>, Toast.LENGTH_SHORT).show();
-            }
-
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span>(Throwable e) {
-                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">" 哎呀，出错了 "</span>, Toast.LENGTH_SHORT).show();
-            }
-
-            <span class="annotation">@Override</span>
-            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span>(Bitmap bitmap) {
-                <span class="comment">//show your bitmap</span>
-            }
-        });
-</pre></td></tr></table></figure>
-
-<p>体验到函数响应式编程的魅力了吗？ 反正我已经上瘾了，这片新的技术等着你和我去探究。</p>
-<p>现在研究这个的人实在太少了，很少能找到交流的人，也没搜到相关的交流群，我在这里建了一个群：16703352   ， 有兴趣的同学可以加一加，大家一起来探究探究哦。</p>
-<p>可能有同学发现了，以上说的都是函数式编程的好处，那它有不好的地方吗？ 当然有啦。这个下次再来探讨，有点困了，又 12 点了，我的早睡好习惯呢。</p>
-<p>PS：这块领域比较新，可参考的文献也较少，有，也是英文居多，本人精力有限，暂只能领会这么多，也难免有错误理解之处，如有，望帮忙校正，谢谢。</p>
+<p>throttleFirst 能帮我们解决手速问题，如上。<br>注意，用了 RxBinding 之后，它就不仅仅是一个点击事件这么简单了，它成为了一个 Observable，然而我们可以用上它的各种特异功能 duang 的一声解决问题。</p>
+<h4 id=" 事件总线，RxBus">事件总线，RxBus</h4>
+<p>细心的小伙伴们可能已经发现我的代码有点奇怪，不太像是在用传统的开发模式下做操作。对，我是在自己构建的一个 MVC 架构上做的，由于还不很很成熟，就先不放出来讨论，例如模块间的耦合度还是挺大的，所以我想用 RxBus 当事件总线来解耦，这个考虑的东西比较多，先写到这里，未完待续。</p>
   
 	</div>
 	<center>
@@ -404,7 +380,7 @@ ReactiveX is a libr">
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2015/02/11/reandroid1/" data-title="Rx Android初步探究（一） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2015/12/20/rxandroid_restructuring/" data-title="Rx Android实战（重构项目） | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -413,19 +389,11 @@ ReactiveX is a libr">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/06/09/2015june/" title="喘不过气来的六月">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  喘不过气来的六月</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/12/20/comeback_to_school_first/"  title="工作后第一次回母校的矫情乱想">
+<a href="/2015/07/29/styling-snackbar/"  title="Part 3 – 装饰我们的Snackbar">
  <strong>NEXT:</strong><br/> 
- <span>工作后第一次回母校的矫情乱想
+ <span>Part 3 – 装饰我们的Snackbar
 </span>
 </a>
 </div>
@@ -442,7 +410,7 @@ ReactiveX is a libr">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 扯扯 "><span class="toc-number">1.</span> <span class="toc-text">扯扯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 背景 "><span class="toc-number">2.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 正题 "><span class="toc-number">3.</span> <span class="toc-text">正题</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RxAndroid_+_Retrofit"><span class="toc-number">3.1.</span> <span class="toc-text">RxAndroid + Retrofit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RxBinding"><span class="toc-number">3.2.</span> <span class="toc-text">RxBinding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 事件总线，RxBus"><span class="toc-number">3.3.</span> <span class="toc-text">事件总线，RxBus</span></a></li></ol>
   </div>
 
 <div id="asidepart">
