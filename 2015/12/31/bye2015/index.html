@@ -4,19 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>安卓自定义圆形Image View | 钟买能个人博客</title>
+    <title>Bye 2015，这一年走过的风景 | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="微信等很多软件都有使用圆形头像，圆形头像的确挺好看的，之前都是直接 P 一个圆形图片头像上去骗骗人家，不过时间长了，总得升升级来弄个真的吧。这次就把这个圆形头像效果加进我的毕设实际。
-思路
+    <meta name="description" content="引用阮一峰的一句话作序：
 
+在海边，在山间，在喧嚣的黄昏，在静寂的清晨，你总在寻找你自己。过去的日子像朝露一样消散，而未来恰似绚丽的晚霞，依然在你的面前变幻莫测。
 
-自定义一个圆形 ImageView.
-写一个方法来专门剪切图片.
-
-其实两种方法的实现都差不多，把剪切的方">
+始终要坚持到 2015 的最后一天，即今天，才肯动手去写下今年的年终总结，因为我在等着一个结尾。
+换了住处
+三月份，住了 9 个月的阴">
     
     
     
@@ -78,15 +77,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/31/androidroundimageview/" title="安卓自定义圆形Image View" itemprop="url">安卓自定义圆形Image View</a>
+      <a href="/2015/12/31/bye2015/" title="Bye 2015，这一年走过的风景" itemprop="url">Bye 2015，这一年走过的风景</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-05-30T16:31:59.000Z" itemprop="datePublished">May 31 2014</time>
-    Updated:<time datetime="2014-05-30T23:51:00.000Z" itemprop="dateModified">May 31 2014</time>
+    <time datetime="2015-12-31T10:07:07.000Z" itemprop="datePublished">Dec 31 2015</time>
+    Updated:<time datetime="2015-12-31T10:09:05.000Z" itemprop="dateModified">Dec 31 2015</time>
     
   </p>
 </header>
@@ -95,232 +94,67 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="# 思路 "><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 实现 "><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 使用 "><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="# 换了住处 "><span class="toc-number">1.</span> <span class="toc-text">换了住处</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 毕业了 "><span class="toc-number">2.</span> <span class="toc-text">毕业了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 干了一远程私活 "><span class="toc-number">3.</span> <span class="toc-text">干了一远程私活</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 跳槽 "><span class="toc-number">4.</span> <span class="toc-text">跳槽</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 再次找工作 "><span class="toc-number">5.</span> <span class="toc-text">再次找工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 业余项目 "><span class="toc-number">6.</span> <span class="toc-text">业余项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 旅游 "><span class="toc-number">7.</span> <span class="toc-text">旅游</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 结尾 "><span class="toc-number">8.</span> <span class="toc-text">结尾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2016 寄语 "><span class="toc-number">9.</span> <span class="toc-text">2016 寄语</span></a></li></ol>
 		</div>
 		
-		<p>微信等很多软件都有使用圆形头像，圆形头像的确挺好看的，之前都是直接 P 一个圆形图片头像上去骗骗人家，不过时间长了，总得升升级来弄个真的吧。<br>这次就把这个圆形头像效果加进我的<code>毕设实际</code>。</p>
-<h1 id=" 思路 ">思路</h1>
-<hr>
-<ol>
-<li>自定义一个圆形 ImageView.</li>
-<li>写一个方法来专门剪切图片.</li>
-</ol>
-<p>其实两种方法的实现都差不多，把剪切的方法放到 ImageView 的 onDraw 方法里面去，再作修正，就 OK 了。</p>
-<h1 id=" 实现 ">实现</h1>
-<hr>
-<p>下面我们来开始实现，上代码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-</pre></td><td class="code"><pre>
-<span class="keyword">package</span> com.bookingSystem.widget;
-
-<span class="keyword">import</span> android.content.Context;
-<span class="keyword">import</span> android.graphics.Bitmap;
-<span class="keyword">import</span> android.graphics.Bitmap.Config;
-<span class="keyword">import</span> android.graphics.Canvas;
-<span class="keyword">import</span> android.graphics.Matrix;
-<span class="keyword">import</span> android.graphics.Paint;
-<span class="keyword">import</span> android.graphics.PorterDuff;
-<span class="keyword">import</span> android.graphics.PorterDuffXfermode;
-<span class="keyword">import</span> android.graphics.drawable.BitmapDrawable;
-<span class="keyword">import</span> android.graphics.drawable.Drawable;
-<span class="keyword">import</span> android.util.AttributeSet;
-<span class="keyword">import</span> android.widget.ImageView;
-<span class="javadoc">/**
- * 自定义圆形 ImageView
- *<span class="javadoctag"> @author</span> 钟买能
- *<span class="javadoctag"> @version</span> 1.0
- *<span class="javadoctag"> @since</span> 2014-5-30
- */</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoundImageView</span> <span class="keyword">extends</span> <span class="title">ImageView</span> {</span>
-	
-	<span class="keyword">public</span> <span class="title">RoundImageView</span>(Context context) {
-		<span class="keyword">super</span>(context);
-		<span class="comment">// TODO Auto-generated constructor stub</span>
-	}
-
-	<span class="keyword">public</span> <span class="title">RoundImageView</span>(Context context, AttributeSet attrs) {
-		<span class="keyword">super</span>(context, attrs);
-
-	}
-
-	<span class="keyword">public</span> <span class="title">RoundImageView</span>(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle) {
-		<span class="keyword">super</span>(context, attrs, defStyle);
-
-	}
-
-	<span class="annotation">@Override</span>
-	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span>(Canvas canvas) {
-		
-		<span class="comment">// 获取当前控件的 drawable</span>
-		Drawable drawable = getDrawable();
-
-		<span class="keyword">if</span> (drawable == <span class="keyword">null</span>) {
-			<span class="keyword">return</span>;
-		}
-
-		<span class="comment">// 这里 get 回来的宽度和高度是当前控件相对应的宽度和高度（在 xml 设置）</span>
-		<span class="keyword">if</span> (getWidth() == <span class="number">0</span> || getHeight() == <span class="number">0</span>) {
-			<span class="keyword">return</span>; 
-		}
-	
-		<span class="comment">// 画笔</span>
-		Paint paint = <span class="keyword">new</span> Paint();
-		<span class="comment">// 颜色设置</span>
-		paint.setColor(<span class="number">0xff424242</span>);
-		<span class="comment">// 抗锯齿</span>
-		paint.setAntiAlias(<span class="keyword">true</span>);
-		<span class="comment">//Paint 的 Xfermode，PorterDuff.Mode.SRC_IN 取两层图像的交集部门, 只显示上层图像。 </span>
-		PorterDuffXfermode xfermode = <span class="keyword">new</span> PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
-		<span class="comment">// 获取 bitmap，即传入 imageview 的 bitmap</span>
-		Bitmap bitmap =  ((BitmapDrawable)drawable).getBitmap() ;
-
-		<span class="comment">// 标志</span>
-		<span class="keyword">int</span> saveFlags = Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG | Canvas.FULL_COLOR_LAYER_SAVE_FLAG | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
-		canvas.saveLayer(<span class="number">0</span>, <span class="number">0</span>, getWidth(), getHeight(), <span class="keyword">null</span>, saveFlags);
-		
-		<span class="comment">// 画遮罩，画出来就是一个和空间大小相匹配的圆</span>
-		canvas.drawCircle(getWidth()/<span class="number">2</span>, getHeight()/<span class="number">2</span>, getWidth()/<span class="number">2</span>, paint);
-		paint.setXfermode(xfermode);
-		
-		<span class="comment">// 空间的大小 /bitmap 的大小 =bitmap 缩放的倍数</span>
-		<span class="keyword">float</span> scaleWidth = ((<span class="keyword">float</span>) getWidth()) / bitmap.getWidth();
-		<span class="keyword">float</span> scaleHeight = ((<span class="keyword">float</span>) getHeight()) / bitmap.getHeight();
-		
-	    Matrix matrix = <span class="keyword">new</span> Matrix();
-	    matrix.postScale(scaleWidth, scaleHeight); 
-	    
-	    <span class="comment">//bitmap 缩放</span>
-	    bitmap = Bitmap.createBitmap(bitmap, <span class="number">0</span>, <span class="number">0</span>, bitmap.getWidth(), bitmap.getHeight(), matrix, <span class="keyword">true</span>);
-	    
-	    <span class="comment">//draw 上去</span>
-		canvas.drawBitmap(bitmap, <span class="number">0</span>, <span class="number">0</span>, paint);
-<span class="comment">//		paint.setXfermode(null);</span>
-		canvas.restore();
-
-	}
-
-}
-</pre></td></tr></table></figure>
-
-<h1 id=" 使用 ">使用</h1>
-<hr>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre>        &lt;<span class="keyword">com</span><span class="preprocessor">.bookingSystem</span><span class="preprocessor">.widget</span><span class="preprocessor">.RoundImageView</span>
-            android:id=<span class="string">"@+id/comment_from_image"</span>
-            android:layout_width=<span class="string">"70dp"</span>
-            android:layout_height=<span class="string">"70dp"</span>
-            android:layout_marginTop=<span class="string">"5dp"</span>
-            android:src=<span class="string">"@drawable/ic_launcher"</span> /&gt;
-</pre></td></tr></table></figure>
-
-<p>效果：</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-5-31/20140531074741.jpg" alt=""></p>
-<p>其中有点不是很明白的就是，以下这两句的真正用处。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>int saveFlags = Canvas<span class="preprocessor">.MATRIX</span>_SAVE_FLAG | Canvas<span class="preprocessor">.CLIP</span>_SAVE_FLAG | Canvas<span class="preprocessor">.HAS</span>_ALPHA_LAYER_SAVE_FLAG | Canvas<span class="preprocessor">.FULL</span>_COLOR_LAYER_SAVE_FLAG | Canvas<span class="preprocessor">.CLIP</span>_TO_LAYER_SAVE_FLAG<span class="comment">;</span>
-canvas<span class="preprocessor">.saveLayer</span>(<span class="number">0</span>, <span class="number">0</span>, getWidth(), getHeight(), null, saveFlags)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>若把这两行代码删掉的话，会出现圆形头像闪现现象，圆形会出现一秒钟立刻打回原型。<br>这里是参考</p>
+		<p>引用阮一峰的一句话作序：</p>
 <blockquote>
-<p><a href="http://blog.csdn.net/xyz_lmn/article/details/22745997" target="_blank">http://blog.csdn.net/xyz_lmn/article/details/22745997</a></p>
+<p>在海边，在山间，在喧嚣的黄昏，在静寂的清晨，你总在寻找你自己。过去的日子像朝露一样消散，而未来恰似绚丽的晚霞，依然在你的面前变幻莫测。</p>
 </blockquote>
-<p>有大神可以为我解答解答吗~？</p>
+<p>始终要坚持到 2015 的最后一天，即今天，才肯动手去写下今年的年终总结，因为我在等着一个结尾。</p>
+<h4 id=" 换了住处 ">换了住处</h4>
+<p>三月份，住了 9 个月的阴暗小屋终于到期了。猪哥和伟哥说想搬出去独住，而我这个喜欢群居、害怕寂寞的人去投奔了海浩和陈坤，一个满满阳光的一室一厅，海浩和陈坤原本一个睡厅，一个睡房。因为我的加入，在兴其那里买了一张上下铺放房间里，从此，这个小房子也顺理成章地瓜分了部分空间给我。<strong>真的好感谢你们</strong>，我真心承受不了下班回到住处没人说话的感觉，有人说，这是不成熟的象征。我很少和别人说我们三个人住在一个一房一厅的城中村房子里，因为广州的租房还不算太贵，特别是城中村，对于北上广深来说，可谓是便宜了，但只要我和别人说我们三个人挤在一个一房一厅里，接下来就有一大堆问题要问了~，也难怪，哈哈，因为这不会是经济问题，只是住下来，习惯了，也舒服，节省是德。比起大学时的宿舍，这房子可算大了。</p>
+<h4 id=" 毕业了 ">毕业了</h4>
+<p>6 月 25 日，毕业了，没有太多的仪式，接过超哥颁发的毕业证书，就毕业了！</p>
+<p>装傻扮懵的日子走完了。找实习工作的时候，顶着大城市的生活压力，被迫着装傻说自己是应届生，装得一自认为实习生就是应届生的样子，其实就一真正实习生！想起来也想笑。就是为了避免无良老板打压工资。试过有一次，和一公司聊得还挺开心，挺认同，但最后知道我还没毕业，只是找实习工作，就说 3K/ 月的工资给实习生太多了。我当场就想翻桌子！！既然你认同我的技术，却还要拿着实习生这话打压薪酬！这些公司我也不屑。</p>
+<p>好多好久没见的同学在这一天我们再次相见，各种感叹时光飞速，下一次再相见不知道会是什么时候，or 还有没机会。下一次这么大型的、这么整齐的聚在一起的机会也许要等到谁谁谁的婚礼了呀，期待。</p>
+<h4 id=" 干了一远程私活 ">干了一远程私活</h4>
+<p>六月份，因想了解 Remote job，加入了“竞鹿”开的一个 Remote job 微信群，误打误撞认识了孙总，远程加入了孙总的团队，完成了一个金融产品项目，在团队里认识到几个优秀的小伙伴。后来的两三个月孙总陆陆续续诚意邀请了几次我正式全职加入他们团队当 Android 组 leader，<strong>再次感谢孙总赏识</strong>，不过我还是拒绝了。1、不看好产品形态。2、个人觉得自己还不够当 leader 的能力。</p>
+<h4 id=" 跳槽 ">跳槽</h4>
+<p>八月份，离开了 POCO，加入了一从 0 开始的创业公司，不贰。</p>
+<p>说一下离开 POCO 的原因？ 其实更多的是我自身原因。说公司抠门么？在我提出辞职的时候总监也说给我提薪，<strong>在这里再次感谢 YY（技术总监）</strong>对我的选择表示支持，还给了好多职场和个人职业生涯上的建议我，真的好谢谢 YY。<br>更多的原因</p>
+<ul>
+<li>看腻了这种写代码的方式，腻了这种工作的方式</li>
+<li>太过舒适，不够挑战，急于证明自己，用大树的那句话就是：是马是驴，出去溜溜就知道</li>
+<li>也许穷得太久了，好渴望有钱的生活，跳槽是一个很快的方式，当然也要有个限度，经常跳槽的人肯定有问题。</li>
+</ul>
+<p>还有更多的是不舍</p>
+<ul>
+<li>不舍公司的那群 Pocoer，你们真的好可爱，好喜欢和你们一起工作 / 生活的感觉</li>
+</ul>
+<p>今天早上地铁站遇到船长，听说现在 Android 组已经增长到 40+ 人，祝 POCO 和约约更上一层楼，一个我曾经呆过、喜欢过的地方。</p>
+<p>不贰，CROSS</p>
+<p>一个全明星团队，微信、阿里 UC、google、各个中大高材生。嗯，就我来自深山里的专科学校，刚开始进入团队时真心感觉到压力的存在，各种谈论 ACM、算法、各清华 / 中大 / 北大、各名企，有时候讲个笑话我甚至连梗都不知道。</p>
+<p>我是团队第一个对外招回来的成员，其他已经在的伙伴都是创始人的朋友 or 同学。当看到 offer 的时候，一个这样的称谓，甚是激动。</p>
+<p>连勋（CEO）也和我说过好几次，学历不重要，不要太过介意这些东西。很快也开始习惯，在这样的一个环境里也获取到很多新潮和有意思的信息。</p>
+<p>办公室在 CCIC，一个土豪级别的孵化基地，我以前把这种地方理解成“开放办公室”，一直觉得在这些地方里面呆的人都特别 hacker，特别酷，如今，可以尽情酷一番了。</p>
+<p>12 月，公司经济出现状况，由于久久产品不见成果，投资人撤资，先是减薪，后是砍人，砍了设计和安卓，可以自愿无偿工作留下。作为一个穷人，也是挺难和公司共度难关，我还是老老实实出去找工作。<br>有人问我后不后悔，约约（上个公司的产品）A 轮 3800 万，越做越大。真心不后悔，世界好大，这一路的风景我没白看。</p>
+<h4 id=" 再次找工作 ">再次找工作</h4>
+<p>年底找工作 + 工作经验年限不长，还是不是太顺利，年底少人跳槽，都在等着年终奖，企业也不缺人，什么都慢，简历处理慢，招人慢，面试完还要等他们面试多几个对比一下哪个优秀。</p>
+<p>谢谢 Bruce 帮推荐我去面 UC，不然靠我那学校名气和我的工作经历还早着呢。去 UC 也给虐得厉害，可谓遍体鳞伤。</p>
+<p>怎么啦？ 就是自己渣呗，Java 不够扎实，Android 不够深入学习。白话说一句：你咁屎，抵你俾人虐啦！</p>
+<p>也好，见识过，知道自己的弱点，好回去恶补一下。</p>
+<h4 id=" 业余项目 ">业余项目</h4>
+<ul>
+<li><p>14 年的年底开始做的一个业余项目《你造么》，一款基于提问问题的 APP，由于没有人给我写后台，自学 ruby，自学 ruby 的同时先使用着 LeanCloud 先开发着，用着用着还真挺好用~~~~ 说这么多干嘛！ 最后还不是烂尾了！</p>
+</li>
+<li><p>《氧气》一个和室友开发的旅游产品，我安卓，他后台，最近进度也慢，甚至看到几乎同类型的产品出现，导致信心大跌。不过还是希望能继续完成下去，就为一句，不甘心。</p>
+</li>
+</ul>
+<h4 id=" 旅游 ">旅游</h4>
+<ul>
+<li>五月份，和大学小伙伴去了惠州玩耍</li>
+<li>六月份，和可爱的 POCOER 们去了一趟沙扒湾</li>
+<li>八月份，和 POCO 探险组去了韶关风流</li>
+<li>十月份，和二家姐去了趟海陵岛</li>
+</ul>
+<p>噢！ 发现了！ 都在广东范围，哈哈，[笑 cry]，省都没出，每一年都说要去看雪最终还是没去成，下一年可以完成否？</p>
+<h4 id=" 结尾 ">结尾</h4>
+<p>谢谢考拉先生帮我做个结尾，刚收到了 HR 给我发的 offer。</p>
+<h4 id="2016 寄语 ">2016 寄语</h4>
+<blockquote>
+<p>技术提升的同时，不失生活细节，当一名生活家。</p>
+</blockquote>
   
 	</div>
 	<center>
@@ -338,20 +172,20 @@ canvas<span class="preprocessor">.saveLayer</span>(<span class="number">0</span>
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/安卓/">安卓</a><a href="/tags/毕设/">毕设</a>
+  <span></span> <a href="/tags/感悟/">感悟</a><a href="/tags/生活/">生活</a><a href="/tags/年度总结/">年度总结</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
+  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/05/31/androidroundimageview/" data-title="安卓自定义圆形Image View | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2015/12/31/bye2015/" data-title="Bye 2015，这一年走过的风景 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -360,19 +194,11 @@ canvas<span class="preprocessor">.saveLayer</span>(<span class="number">0</span>
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/06/08/socket_intentservice/" title="实现Socket Io和Service通信使用Notification通知">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  实现Socket Io和Service通信使用Notification通知</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/05/31/2014may/"  title="2014五月记忆">
+<a href="/2015/12/20/rxandroid_restructuring/"  title="Rx Android实战（重构项目）">
  <strong>NEXT:</strong><br/> 
- <span>2014五月记忆
+ <span>Rx Android实战（重构项目）
 </span>
 </a>
 </div>
@@ -389,7 +215,7 @@ canvas<span class="preprocessor">.saveLayer</span>(<span class="number">0</span>
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="# 思路 "><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 实现 "><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="# 使用 "><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="# 换了住处 "><span class="toc-number">1.</span> <span class="toc-text">换了住处</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 毕业了 "><span class="toc-number">2.</span> <span class="toc-text">毕业了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 干了一远程私活 "><span class="toc-number">3.</span> <span class="toc-text">干了一远程私活</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 跳槽 "><span class="toc-number">4.</span> <span class="toc-text">跳槽</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 再次找工作 "><span class="toc-number">5.</span> <span class="toc-text">再次找工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 业余项目 "><span class="toc-number">6.</span> <span class="toc-text">业余项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 旅游 "><span class="toc-number">7.</span> <span class="toc-text">旅游</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 结尾 "><span class="toc-number">8.</span> <span class="toc-text">结尾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2016 寄语 "><span class="toc-number">9.</span> <span class="toc-text">2016 寄语</span></a></li></ol>
   </div>
 
 <div id="asidepart">
