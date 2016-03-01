@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>关于Path的几个&quot;to&quot;详解 | 钟买能个人博客</title>
+    <title>捧着 X T10 ，体验一番 16 50mm 里的花城广场 | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="1、Why
-最近在写 android 画图经常用到这几个什么什么 To，一开始还真不知道cubicTo这个方法，更不用说能不能分清楚它们了，所以特此来做个小笔记，记录下 moveTo、lineTo、quadTo、cubicTo、arcTo 的作用，在自定义 view 的时候经常用到。接下来也会分享下">
+    <meta name="description" content="广州花城广场由海心沙、广州图书馆、博物馆、大剧院等大型建筑组成。
+广州的小伙伴也会叫这里是，珠江新城，海心沙。
+这里有超大、超宽阔的广场，有 56 万平方米占地（数据来自百度百科）。
+每次来到这里总会感觉到一种和平、平等的气息。这里不用收费、没有刺激游乐设施、甚至连娱乐消费地方如影院、餐厅等都没有，">
     
     
     
@@ -72,15 +74,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/15/android_path/" title="关于Path的几个&quot;to&quot;详解" itemprop="url">关于Path的几个&quot;to&quot;详解</a>
+      <a href="/2016/03/01/with_xt10_haixinsha_night/" title="捧着 X T10 ，体验一番 16 50mm 里的花城广场" itemprop="url">捧着 X T10 ，体验一番 16 50mm 里的花城广场</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-10-15T15:37:35.000Z" itemprop="datePublished">Oct 15 2014</time>
-    Updated:<time datetime="2014-10-22T16:19:17.000Z" itemprop="dateModified">Oct 23 2014</time>
+    <time datetime="2016-03-01T05:50:45.000Z" itemprop="datePublished">Mar 1 2016</time>
+    Updated:<time datetime="2016-03-01T05:52:45.000Z" itemprop="dateModified">Mar 1 2016</time>
     
   </p>
 </header>
@@ -89,84 +91,62 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Why"><span class="toc-number">1.</span> <span class="toc-text">1、Why</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、moveTo"><span class="toc-number">2.</span> <span class="toc-text">2、moveTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、lineTo"><span class="toc-number">3.</span> <span class="toc-text">3、lineTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、quadTo"><span class="toc-number">4.</span> <span class="toc-text">4、quadTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、cubicTo"><span class="toc-number">5.</span> <span class="toc-text">5、cubicTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、arcTo"><span class="toc-number">6.</span> <span class="toc-text">6、arcTo</span></a></li></ol>
+		
 		</div>
 		
-		<h2 id="1、Why">1、Why</h2>
-<p>最近在写 android 画图经常用到这几个<code>什么什么 To</code>，一开始还真不知道<code>cubicTo</code>这个方法，更不用说能不能分清楚它们了，所以特此来做个小笔记，记录下 moveTo、lineTo、quadTo、cubicTo、arcTo 的作用，在自定义 view 的时候经常用到。<br>接下来也会分享下这几天写的几个东西。相信对于新手也会有点帮助，高手也帮忙看看有没错，欢迎吐槽吐槽。</p>
-<h2 id="2、moveTo">2、moveTo</h2>
-<p><code>moveTo</code> 不会进行绘制，只用于移动移动画笔。<br>结合以下方法进行使用。</p>
-<h2 id="3、lineTo">3、lineTo</h2>
-<p><code>lineTo</code> 用于进行直线绘制。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>mPath<span class="preprocessor">.lineTo</span>(<span class="number">300</span>, <span class="number">300</span>)<span class="comment">;</span>
-canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>默认从坐标 (0,0) 开始绘制。如图：</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013214930.jpg" alt=" 图片描述 "></p>
-<p>刚才我们不说了<code>moveTo</code>是用来移动画笔的吗？</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>mPath<span class="preprocessor">.moveTo</span>(<span class="number">100</span>, <span class="number">100</span>)<span class="comment">;</span>
-mPath<span class="preprocessor">.lineTo</span>(<span class="number">300</span>, <span class="number">300</span>)<span class="comment">;</span>
-canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>把画笔移动 (100,100) 处开始绘制，效果如图：</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013215407.jpg" alt=" 图片描述 "></p>
-<h2 id="4、quadTo">4、quadTo</h2>
-<p><code>quadTo</code> 用于绘制圆滑曲线，即贝塞尔曲线。</p>
-<p><code>mPath.quadTo(x1, y1, x2, y2)</code> (x1,y1) 为控制点，(x2,y2) 为结束点。</p>
-<p>同样地，我们还是得需要<code>moveTo</code>来协助控制。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>mPath<span class="preprocessor">.moveTo</span>(<span class="number">100</span>, <span class="number">500</span>)<span class="comment">;</span>
-mPath<span class="preprocessor">.quadTo</span>(<span class="number">300</span>, <span class="number">100</span>, <span class="number">600</span>, <span class="number">500</span>)<span class="comment">;</span>
-canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>效果如图：</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013220857.jpg" alt=" 图片描述 "></p>
-<h2 id="5、cubicTo">5、cubicTo</h2>
-<p><code>cubicTo</code> 同样是用来实现贝塞尔曲线的。</p>
-<p><code>mPath.cubicTo(x1, y1, x2, y2, x3, y3)</code> (x1,y1) 为控制点，(x2,y2) 为控制点，(x3,y3) 为结束点。</p>
-<p>那么，<code>cubicTo</code> 和 <code>quadTo</code> 有什么不一样呢？ </p>
-<p>官方是这么说的：</p>
+		<p>广州花城广场由海心沙、广州图书馆、博物馆、大剧院等大型建筑组成。</p>
+<p>广州的小伙伴也会叫这里是，珠江新城，海心沙。</p>
+<p>这里有超大、超宽阔的广场，有 56 万平方米占地（数据来自百度百科）。</p>
+<p>每次来到这里总会感觉到一种和平、平等的气息。这里不用收费、没有刺激游乐设施、甚至连娱乐消费地方如影院、餐厅等都没有，这里只是一个很纯粹的广场，一个给市民欣赏新广州面貌的广场。所以无论穷富、男女老少、各种各样的人群都会同时在这里出现，共享这繁华丽人的夜景。</p>
+<p>扛着三脚架，捧着去年入手的 X-T10，我也出现了在这里，参与了今晚这里的故事的发生。</p>
+<p>这也是我第一次拍夜景，或者说，第一次拿着稍微专业一点点的设备去拍夜景。以下图片都是<strong>相机直出，无作后期处理</strong>（懒，捂脸）。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1441.jpg" alt=" 人来人往 "></p>
+<p>来到广场的第一张照。刚架起三脚架就有位吸烟大叔走过、搭讪了我几句：你是专业的还是业余的呀？ 这位置不错啊，刚好中间。 经常出来拍照吗？blablalbalbla</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1447.jpg" alt=" 博物馆一角，像一个熔炉 "></p>
+<p>第一次去这博物馆参加是在大一的圣诞节，老赵（思修老师）介绍说这里有免费的博物馆，值得一看。于是我们也挑了他那节课，也是圣诞节那天的唯一一节课，逃了，去参观博物馆去！（重点是广州塔那天免费开放第二层，博物馆是附带的形成啦）</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1453.jpg" alt=" 好浪漫的江边小路，有个女友就更合适了 "></p>
+<p>图左边一条灯光充足的浪漫小路，右边是一条阴暗的浪漫小路，任君选择。猎德大桥霸气地漏了一点点出来。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1458.jpg" alt=" 金黄的小蛮腰，抱一抱可好 "></p>
+<p>这么多种颜色，醉喜欢金黄的小蛮腰。至于七彩这款色。。不想评论。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1461.jpg" alt=" 好幸运，遇到喷泉 "></p>
+<p>来了这么多次，也是第一次看这里的喷泉。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1465.jpg" alt=" 海心沙观众席 "></p>
+<p>当年亚运开幕式就在这里。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1472.jpg" alt=" 不完整的中轴线 "></p>
+<p>辉煌的西塔，还没开始运营的东塔。雾霾把中信大厦遮盖了。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1476.jpg" alt="^_^"></p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1478.jpg" alt=""></p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1483.jpg" alt=" 浪漫江边上的情侣 "></p>
+<p>走进江边上，其实这时挺多人的，只是长曝了 30 秒，在动的人都消失了。至于左边石凳上的情侣为何没消失，答案是他们一动不动。右边也有两个人摄影爱好者在拍猎德大桥。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1484.jpg" alt=""></p>
+<p>他们主动过来搭上了几句，说这构图不错。聊聊曝光啥的，其实我都不怎么懂。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1488.jpg" alt=""></p>
+<p>聊了几句，我走到他们刚才的位置，给猎德大桥来一张。</p>
+<p>猎德大桥，徒步走过一次。一个字，美。</p>
+<p>很喜欢徒步，很喜欢那种脚踏实地的感觉，用脚走出来的风景可以回味很久。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1501.jpg" alt=""></p>
+<p>特斯拉充电停车场，上一年每次路过这停车场也就只有一两辆特斯拉在这充电，现在已经满满了。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1504.jpg" alt=""></p>
+<p>该回去了，西塔也关灯了。</p>
+<p><img src="http://7bv9ty.com1.z0.glb.clouddn.com/DSCF1506.jpg" alt=""></p>
+<p>虽夜深，但还是人来人往，回忆也不断涌现。</p>
+<hr>
+<p>在广州生活了差不多 4 年，和不同的人游过很多地方。</p>
+<p>有相同的，有不同的。</p>
+<p>有熟悉的，也有第一次去的。</p>
+<p>每当自己一人再次路过，或者有意去这些地方游荡的时候，总会回忆不断。</p>
+<p>也会幻想，如果有一天我离开广州了，那会是一种怎样的心情。</p>
+<p>因为这里真的变得很熟悉，大街小巷，每个公交站、地铁站，地铁哪个门离电梯最近。</p>
+<p>广州，就像我的第二个故乡。</p>
+<hr>
+<p>而今天，充当了一个摄影师的角色，只身一人在这里游荡了一个晚上。</p>
+<p>似乎今晚帮人拍合照的几率提高了，事后的道谢也言重了，专业、厉害的字眼也出现了。</p>
+<p>路过的大叔会以为我是高手。</p>
+<p>在旁的摄影爱好者会把我当成同行、志同道合的伙伴。</p>
+<p>原来，捧着相机，扛起三脚架，会使一个人的身份特征有所改变。</p>
 <blockquote>
-<p>Same as cubicTo, but the coordinates are considered relative to the current point on this contour.</p>
+<p>扛着 macbook，敲着 hhkb，我是否就变成一位 coding 大神了呢？</p>
 </blockquote>
-<p>说白了，就是多了一个控制点而已。</p>
-<p>然后，我们想绘制和上一个一样的曲线，应该怎么写呢？</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>mPath<span class="preprocessor">.moveTo</span>(<span class="number">100</span>, <span class="number">500</span>)<span class="comment">;</span>
-mPath<span class="preprocessor">.cubicTo</span>(<span class="number">100</span>, <span class="number">500</span>, <span class="number">300</span>, <span class="number">100</span>, <span class="number">600</span>, <span class="number">500</span>)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>看看效果：</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013222234.jpg" alt="QQ%E5%9B%BE%E7%89%8720141013222234.jpg"></p>
-<p>一模一样！</p>
-<p>如果我们不加 <code>moveTo</code> 呢？ </p>
-<p>则以 (0,0) 为起点，(100,500) 和 (300,100) 为控制点绘制贝塞尔曲线：</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013223204.jpg" alt="2014-10-13%2FQQ%E5%9B%BE%E7%89%8720141013223204.jpg"></p>
-<h2 id="6、arcTo">6、arcTo</h2>
-<p><code>arcTo</code> 用于绘制弧线（实际是截取圆或椭圆的一部分）。</p>
-<p><code>mPath.arcTo(ovalRectF, startAngle, sweepAngle)</code> , <code>ovalRectF</code>为椭圆的矩形，<code>startAngle</code> 为开始角度，<code>sweepAngle</code> 为结束角度。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>mRectF = new RectF(<span class="number">10</span>, <span class="number">10</span>, <span class="number">600</span>, <span class="number">600</span>)<span class="comment">;</span>
-mPath<span class="preprocessor">.arcTo</span>(mRectF, <span class="number">0</span>, <span class="number">90</span>)<span class="comment">;</span>
-canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>由于<code>new RectF(10, 10, 600, 600)</code>为正方形，又截取 <code>0 ~ 90 度</code> ，则所得曲线为四分之一圆的弧线。</p>
-<p>效果如图：</p>
-<p><img src="http://zhongsir.qiniudn.com/2014-10-15%2FQQ%E5%9B%BE%E7%89%8720141013223920.jpg" alt="2014-10-13%2FQQ%E5%9B%BE%E7%89%8720141013223920.jpg"></p>
   
 	</div>
 	<center>
@@ -184,20 +164,20 @@ canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="com
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/安卓/">安卓</a>
+  <span></span> <a href="/tags/生活/">生活</a><a href="/tags/感悟/">感悟</a><a href="/tags/摄影/">摄影</a><a href="/tags/X-T10/">X-T10</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
+  <a class="article-category-link" href="/categories/生活点滴/">生活点滴</a>►<a class="article-category-link" href="/categories/生活点滴/摄影/">摄影</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/10/15/android_path/" data-title="关于Path的几个&quot;to&quot;详解 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2016/03/01/with_xt10_haixinsha_night/" data-title="捧着 X T10 ，体验一番 16 50mm 里的花城广场 | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -206,19 +186,11 @@ canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="com
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/10/15/waveloadingview/" title="自定义水波浪加载View">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  自定义水波浪加载View</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/08/05/activeandroid/"  title="Activeandroid笔记">
+<a href="/2016/02/22/package_by_feature/"  title="按功能建立包结构（Package）">
  <strong>NEXT:</strong><br/> 
- <span>Activeandroid笔记
+ <span>按功能建立包结构（Package）
 </span>
 </a>
 </div>
@@ -235,7 +207,7 @@ canvas<span class="preprocessor">.drawPath</span>(mPath, mPaint)<span class="com
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Why"><span class="toc-number">1.</span> <span class="toc-text">1、Why</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、moveTo"><span class="toc-number">2.</span> <span class="toc-text">2、moveTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、lineTo"><span class="toc-number">3.</span> <span class="toc-text">3、lineTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、quadTo"><span class="toc-number">4.</span> <span class="toc-text">4、quadTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、cubicTo"><span class="toc-number">5.</span> <span class="toc-text">5、cubicTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、arcTo"><span class="toc-number">6.</span> <span class="toc-text">6、arcTo</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
