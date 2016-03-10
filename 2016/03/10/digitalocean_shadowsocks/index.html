@@ -4,18 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>安卓Webview缓存网页数据(无网络正常显示) | 钟买能个人博客</title>
+    <title>迈向自由之——在Digital Ocean上搭建Shadowsocks | 钟买能个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="钟买能">
     
-    <meta name="description" content="一、需求经历
+    <meta name="description" content="前言
 
-最近的项目是一个原生 +webview 显示的 APP，一开始的时候，网站那边要求我们安卓给他做缓存。后来由于某些因素，这个需求取消了。
-由于需求取消，我也没想过怎么去做这个缓存，由于使用 webview 比较少，最这个不是很熟悉。
-二、使用场景结合
-
-后来碰巧又和同事 A 聊到了这">
+之前一直在用云梯的 VPN，最近过期了。没有 VPN 的日子真是寸步难行。
+突然想起 github 的学生账号大礼包里面有 DigitalOcean 的现金券，不用白不用，干脆自己搭建 VPN 好了。
+想法是好的，但人品比较不好。折腾了 3 天最终以放弃告终。原因不明。
+VPN 没弄到，试试">
     
     
     
@@ -77,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/12/13/webview_cache/" title="安卓Webview缓存网页数据(无网络正常显示)" itemprop="url">安卓Webview缓存网页数据(无网络正常显示)</a>
+      <a href="/2016/03/10/digitalocean_shadowsocks/" title="迈向自由之——在Digital Ocean上搭建Shadowsocks" itemprop="url">迈向自由之——在Digital Ocean上搭建Shadowsocks</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://hackeris.me" title="钟买能">钟买能</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-12-12T17:09:40.000Z" itemprop="datePublished">Dec 13 2014</time>
-    Updated:<time datetime="2014-12-12T18:44:57.000Z" itemprop="dateModified">Dec 13 2014</time>
+    <time datetime="2016-03-10T08:07:19.000Z" itemprop="datePublished">Mar 10 2016</time>
+    Updated:<time datetime="2016-03-10T08:09:40.000Z" itemprop="dateModified">Mar 10 2016</time>
     
   </p>
 </header>
@@ -94,26 +93,93 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="# 一、需求经历 "><span class="toc-number">1.</span> <span class="toc-text">一、需求经历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 二、使用场景结合 "><span class="toc-number">2.</span> <span class="toc-text">二、使用场景结合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 三、实现 "><span class="toc-number">3.</span> <span class="toc-text">三、实现</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 前言 "><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 注册 DigitalOcean"><span class="toc-number">2.</span> <span class="toc-text">注册 DigitalOcean</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH 到服务器 "><span class="toc-number">2.1.</span> <span class="toc-text">SSH 到服务器</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 安装与配置 Shadowsocks"><span class="toc-number">3.</span> <span class="toc-text">安装与配置 Shadowsocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shadowsocks 的使用 "><span class="toc-number">4.</span> <span class="toc-text">Shadowsocks 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 最后 "><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol>
 		</div>
 		
-		<h4 id=" 一、需求经历 ">一、需求经历</h4>
+		<h3 id=" 前言 ">前言</h3>
 <hr>
-<p>最近的项目是一个原生 +webview 显示的 APP，一开始的时候，网站那边要求我们安卓给他做缓存。后来由于某些因素，这个需求取消了。</p>
-<p>由于需求取消，我也没想过怎么去做这个缓存，由于使用 webview 比较少，最这个不是很熟悉。</p>
-<h4 id=" 二、使用场景结合 ">二、使用场景结合</h4>
+<p>之前一直在用云梯的 VPN，最近过期了。没有 VPN 的日子真是寸步难行。</p>
+<p>突然想起 github 的学生账号大礼包里面有 DigitalOcean 的现金券，不用白不用，干脆自己搭建 VPN 好了。</p>
+<p>想法是好的，但人品比较不好。折腾了 3 天最终以放弃告终。原因不明。</p>
+<p>VPN 没弄到，试试 Shadowsocks ？ 话说 Shadowsocks 用起来比 VPN 更方便、易用，不需要连接半天，偶尔还会失败，连上了之后 QQ 啥的还要掉线。</p>
+<p>结果，Shadowsocks 三分钟搞定，OK！ 成功看到长城外的世界。</p>
+<h3 id=" 注册 DigitalOcean">注册 DigitalOcean</h3>
 <hr>
-<p>后来碰巧又和同事 A 聊到了这个话题，原生 APP 和 webview 加载有什么不一样，同事 A 说一打开 APP 的时候，webview 需要去加载，若没有网络的话，就没东西显示，影响用户体验，而原生 APP，就算没有网络，也可以显示内容。</p>
-<p>说到这里，我认真思考一番，我们做个缓存，不就得了？由于之前接触过 HTML5 的开发，印象中是有这个一个机制去把这个事情实现。</p>
-<h4 id=" 三、实现 ">三、实现</h4>
-<hr>
-<p>对于 H5 的应用有一个 <code>应用程序缓存（Application Cache）</code> 。</p>
-<p>这个实现起来非常轻松。</p>
-<p>只要在网站的目录下配置一个扩展名为：<code>.appcache</code> 的 Manifest 文件，注明哪些文件需缓存，哪些文件必须经过网络去加载，然后在 <code>&lt;html&gt;</code> 标签中加入 <code>&lt;html manifest=&quot;demo.appcache&quot;&gt;</code> 即可完成缓存的实现。</p>
-<p>这个时候，我们用 webview 去加载这个网站，断网，再打开 APP，网页一样可以显示出来，里面的 js 功能还可以用的哦（这是废话啦）。</p>
-<p>参考：</p>
+<p>还没注册的小伙伴可以<a href="https://m.do.co/c/b8244d21d933" target="_blank">点击这里注册</a>，<a href="https://m.do.co/c/b8244d21d933" target="_blank">点击这里注册</a>，<a href="https://m.do.co/c/b8244d21d933" target="_blank">点击这里注册</a>。是的，如果你点击我的链接进去注册，我是可以获得一丢丢佣金的，支持支持可好？</p>
+<p>绑定信用卡啥的就不说了。</p>
+<p>我买了一台新加坡和一台旧金山的，有小伙伴说旧金山的速度比较快。但我用旧金山的半天才有响应。可能是我人品问题。最终我还是用新加坡的：</p>
 <blockquote>
-<p><a href="http://www.w3school.com.cn/html5/html_5_app_cache.asp" target="_blank">http://www.w3school.com.cn/html5/html_5_app_cache.asp</a></p>
+<p>512MB Ram 20GB SSD Disk Singapore 1 Ubuntu 14.04.3 x64</p>
+</blockquote>
+<h4 id="SSH 到服务器 ">SSH 到服务器</h4>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">ssh</span> <span class="tag">root</span><span class="at_rule">@<span class="keyword">你的服务器 ip</span></span>
+</pre></td></tr></table></figure>
+
+<p>初始密码会发到你邮箱。</p>
+<p>如果没有，在 DigitalOcean 选中你的服务器，Access  ——  Reset Root Password，密码会再次发送到你邮箱。</p>
+<p>第一次登陆需要修改密码。</p>
+<h3 id=" 安装与配置 Shadowsocks">安装与配置 Shadowsocks</h3>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">sudo</span> apt-get update
+</pre></td></tr></table></figure>
+
+<p>更新 apt-get</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>apt<span class="attribute">-get</span> install python<span class="attribute">-pip</span>
+</pre></td></tr></table></figure>
+
+<p>安装 pip 包管理工具</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>pip <span class="keyword">install</span> shadowsocks
+</pre></td></tr></table></figure>
+
+<p>安装 shadowsocks</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>vi /etc/shadowsocks<span class="preprocessor">.json</span>
+</pre></td></tr></table></figure>
+
+<p>进入 vi 模式修改配置文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>{
+    "<span class="attribute">server</span>":<span class="value"><span class="string">" 服务器 ip"</span></span>,
+    "<span class="attribute">server_port</span>":<span class="value">端口</span>,
+    "<span class="attribute">local_address</span>":<span class="value"><span class="string">"127.0.0.1"</span></span>,
+    "<span class="attribute">local_port</span>":<span class="value"><span class="number">1080</span></span>,
+    "<span class="attribute">password</span>":<span class="value"><span class="string">" 连接密码 "</span></span>,
+    "<span class="attribute">timeout</span>":<span class="value"><span class="number">300</span></span>,
+    "<span class="attribute">method</span>":<span class="value"><span class="string">"aes-256-cfb"</span></span>,
+    "<span class="attribute">fast_open</span>":<span class="value"><span class="literal">false</span>
+</span>}
+</pre></td></tr></table></figure>
+
+<p>按<code>i</code>进入编辑模式，<code>esc</code>退出编辑模式，修改完成后，退出编辑模式，输入<code>:wq</code>保存退出。<code>:q!</code>不保存退出。 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ssserver <span class="attribute">-c</span> /etc/shadowsocks<span class="built_in">.</span>json <span class="attribute">-d</span> start
+</pre></td></tr></table></figure>
+
+<p>应用配置文件启动服务。若需停止则把 start 换成 stop</p>
+<p>大功告成！！！梯子已准备完毕！！</p>
+<h3 id="Shadowsocks 的使用 ">Shadowsocks 的使用</h3>
+<hr>
+<p>下载一个 Shadowsocks 客户端，添加对应的服务器即可。</p>
+<p>我用的是这个（mac）：<a href="http://pan.baidu.com/s/1c0cwlO0" target="_blank">点这里到百度网盘下载</a></p>
+<h3 id=" 最后 ">最后</h3>
+<hr>
+<p>还没注册 DigitalOcean 的小伙伴可以<a href="https://m.do.co/c/b8244d21d933" target="_blank">点击这里注册 ^_^</a></p>
+<blockquote>
+<p>我热爱的是真爱和自由</p>
 </blockquote>
   
 	</div>
@@ -132,20 +198,20 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/安卓/">安卓</a><a href="/tags/android/">android</a><a href="/tags/html5/">html5</a><a href="/tags/生活/">生活</a><a href="/tags/工作/">工作</a>
+  <span></span> <a href="/tags/科学上网/">科学上网</a><a href="/tags/DigitalOcean/">DigitalOcean</a><a href="/tags/Shadowsocks/">Shadowsocks</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/安卓网络开发/">安卓网络开发</a>►<a class="article-category-link" href="/categories/安卓网络开发/安卓开发杂锦/">安卓开发杂锦</a>
+  <a class="article-category-link" href="/categories/科学上网/">科学上网</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hackeris.me/2014/12/13/webview_cache/" data-title="安卓Webview缓存网页数据(无网络正常显示) | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
+  <div data-url="http://hackeris.me/2016/03/10/digitalocean_shadowsocks/" data-title="迈向自由之——在Digital Ocean上搭建Shadowsocks | 钟买能个人博客" data-tsina="2162115292" class="share clearfix">
   </div>
 
 </div>
@@ -154,19 +220,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/12/13/in_the_end_2014/" title="写在2014的最后">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  写在2014的最后</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/10/25/theory_and_thinking/"  title="谈谈“理论和空想”">
+<a href="/2016/03/01/with_xt10_haixinsha_night/"  title="捧着 X T10 ，体验一番 16 50mm 里的花城广场">
  <strong>NEXT:</strong><br/> 
- <span>谈谈“理论和空想”
+ <span>捧着 X T10 ，体验一番 16 50mm 里的花城广场
 </span>
 </a>
 </div>
@@ -183,7 +241,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="# 一、需求经历 "><span class="toc-number">1.</span> <span class="toc-text">一、需求经历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 二、使用场景结合 "><span class="toc-number">2.</span> <span class="toc-text">二、使用场景结合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="# 三、实现 "><span class="toc-number">3.</span> <span class="toc-text">三、实现</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="# 前言 "><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 注册 DigitalOcean"><span class="toc-number">2.</span> <span class="toc-text">注册 DigitalOcean</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH 到服务器 "><span class="toc-number">2.1.</span> <span class="toc-text">SSH 到服务器</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="# 安装与配置 Shadowsocks"><span class="toc-number">3.</span> <span class="toc-text">安装与配置 Shadowsocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shadowsocks 的使用 "><span class="toc-number">4.</span> <span class="toc-text">Shadowsocks 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="# 最后 "><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol>
   </div>
 
 <div id="asidepart">
