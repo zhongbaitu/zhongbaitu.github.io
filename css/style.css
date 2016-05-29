@@ -86,7 +86,7 @@ body{background:#eee;font:14px "Helvetica Neue",Helvetica,Arial,sans-serif}
 .article-meta-no-image{zoom:1;line-height:80px;padding:0 20px}
 .article-meta-no-image:before,.article-meta-no-image:after{content:"";display:table}
 .article-meta-no-image:after{clear:both}
-.article-meta-have-image{background:rgba(0,0,0,0.6);zoom:1;padding:6px 20px 6px 20px;position:absolute;bottom:-640px}
+.article-meta-have-image{background:rgba(0,0,0,0.6);zoom:1;padding:6px 20px 6px 20px;position:absolute;bottom:-405px}
 .article-meta-have-image:before,.article-meta-have-image:after{content:"";display:table}
 .article-meta-have-image:after{clear:both}
 .article-date{display:inline-block;vertical-align:middle}
