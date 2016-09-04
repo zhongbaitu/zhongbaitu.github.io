@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android中视频（Mp4）转Gif图的一些尝试和最终解决方案 | 钟买能的独立博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta name="author" content="钟买能">
+  
+  <meta name="description" content="近期在做的一个 side project 是一个辅助 Android 开发者 debug 以及帮助测试 MM（偏向于黑盒测试）反馈问题（Bug）的这样的一个工具集合。
+工具集里实现了一个录屏功能，主要用途是提供给测试人员或内部测试时可以录制 Bug 的重现，从而方便在线发给开发人员查看是一个怎样的情">
+  
+  
+  
+  
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="Android中视频（Mp4）转Gif图的一些尝试和最终解决方案">
+<meta name="og:url" content="http://hackeris.me/2016/09/04/android_mp4_to_gif/">
+<meta name="og:image" content="http://7bv9ty.com1.z0.glb.clouddn.com/dabaiwithme.jpg">
+<meta name="og:site_name" content="钟买能的独立博客">
+<meta name="og:description" content="近期在做的一个 side project 是一个辅助 Android 开发者 debug 以及帮助测试 MM（偏向于黑盒测试）反馈问题（Bug）的这样的一个工具集合。
+工具集里实现了一个录屏功能，主要用途是提供给测试人员或内部测试时可以录制 Bug 的重现，从而方便在线发给开发人员查看是一个怎样的情况，而不用拿着手机去特意找到开发人员再一一道来。
+实现方式：使用MediaProjection（AP">
+<meta name="twitter:card" content="summary">
+  
+  
+  <link rel="icon" href="css/images/logo.jpg">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '[object Object]']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+  <link rel="icon" href="/css/images/logo.jpg">
+  
+  
+  <link rel="apple-touch-icon" href="/css/images/logo.jpg">
+  <link rel="apple-touch-icon-precomposed" href="/css/images/logo.jpg">
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">在美好的瞬间停留</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">然后继续对世界上瘾.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://hackeris.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-android_mp4_to_gif" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="item" class="article-inner" 
+  
+  >
+    
+      
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="http://7bv9ty.com1.z0.glb.clouddn.com/dabaiwithme.jpg" rel="gallery_84x4mtmxqewwish9">
+        <img src="http://7bv9ty.com1.z0.glb.clouddn.com/dabaiwithme.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+    
+      
+      <header class="article-header">
+        
+          
+  
+    <h1 class="article-title-no-image" itemprop="name">
+      Android中视频（Mp4）转Gif图的一些尝试和最终解决方案
+    </h1>
+  
+
+
+
+
+        
+
+          <div 
+              
+                class="article-meta-no-image"
+              
+          >
+            
+              <a href="/2016/09/04/android_mp4_to_gif/" class="article-date">
+  <time datetime="2016-09-04T13:43:12.000Z" itemprop="datePublished">Sep 4 2016</time>
+</a>
+            
+            
+            
+  
+     <div class="article-category">
+     <a class="article-category-link" href="/categories/安卓开发杂锦/">安卓开发杂锦</a>
+  
+  
+
+  </div>
+
+          </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody" name="article_begin" >
+
+      
+        <p>近期在做的一个 side project 是一个辅助 Android 开发者 debug 以及帮助测试 MM（偏向于黑盒测试）反馈问题（Bug）的这样的一个工具集合。</p>
+<p>工具集里实现了一个录屏功能，主要用途是提供给测试人员或内部测试时可以录制 Bug 的重现，从而方便在线发给开发人员查看是一个怎样的情况，而不用拿着手机去特意找到开发人员再一一道来。</p>
+<p>实现方式：使用<code>MediaProjection</code>（API level 21）来实现录屏，<code>MediaRecorder</code>保存录制视频。保存的格式为<code>MPEG_4</code>，即我们平时说的 MP4。</p>
+<p>原本以为本功能就到此结束，但再细想，把视频转换成 gif 是不是在用途上更方便一些呢？ 例如公司项目的 bug list 用禅道作管理，转成 gif 后就可以直接往禅道上一贴，登 bug。（禅道不支持上传视频）</p>
+<p>转 gif 的一些尝试：</p>
+<p>一、使用 MediaMetadataRetriever 提取某一时刻的图片，然后把很多某一时刻的图片串联起来编码成 gif。看来其也正是 gif 的原理，但实现出来的效果极差，无法准确提取到准确的图片，导致合成的 gif 图也无法连贯播放，播放起来也跳帧跳得很厉害。</p>
+<p>二、使用<a href="https://github.com/wseemann/FFmpegMediaMetadataRetriever" target="_blank">FFMpegMediaMetadataRetriever</a>：</p>
+<blockquote>
+<p>FFmpegMediaMetadataRetriever is a reimplementation of Android’s MediaMetadataRetriever class. The FFmpegMediaMetadataRetriever class provides a unified interface for retrieving frame and meta data from an input media file and uses FFmpeg as its backend.</p>
+</blockquote>
+<p>使用 FFmpeg 作为背后的技术支持，听起来挺靠谱的，使用方式和使用 MediaMetadataRetriever 差不多，但一试，效果也是差不多烂~。</p>
+<p>看来是不能用这个方法来做这个事情呀。</p>
+<p>三、上面方法二竟然都用上 FFmpeg 了，那我也别怕用牛刀杀猪吧。直接用 FFmpeg 省事多了。</p>
+<p>FFmpeg：</p>
+<blockquote>
+<p>A complete, cross-platform solution to record, convert and stream audio and video.</p>
+</blockquote>
+<p>一个哥们在 github 上开源了在 Android 上的移植：</p>
+<blockquote>
+<p><a href="https://github.com/dxjia/ffmpeg-commands-executor-library" target="_blank">https://github.com/dxjia/ffmpeg-commands-executor-library</a></p>
+</blockquote>
+<p>站在巨人的肩膀上，一句代码运行一个命令搞定：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>FFmpegNativeHelper<span class="preprocessor">.runCommand</span>(<span class="string">"ffmpeg -i input.mp4 output.gif"</span>)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<hr>
+<p>后记：</p>
+<p>有时觉得遇到一些坑，或者遇到一些网上解决方法比较少的问题，当自己解决了的时候，写一写、记录一下问题的解决过程或者方案也是挺有必要的。</p>
+<p>1、防止下次还是遇到相同的问题，而那时候已经忘记了当时是怎么解决的。 </p>
+<p>2、“我”每次遇到问题的时候，几乎都是向搜索引擎伸出求助之手，那当“别人”遇到问题的时候，是否也是一样呢？ 如果我们提供一些资源（解决方案）给搜索引擎供他人搜索、参考之用，是不是会给别人带来一些方便，节省一些碰壁时间，从而有更多时间去做一些更有意义价值的事情、创造更多更高的价值。</p>
+
+        <!-- 代替锚点，800是banner的高度，不知道怎么在css获取-->
+        <script type="text/javascript">
+          document.body.scrollTop=800;
+        </script>
+      
+    </div>
+
+
+
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/03/yue_model_7_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">记第一次人像夜间外拍 —— 灯火阑珊处</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-title="Android中视频（Mp4）转Gif图的一些尝试和最终解决方案"" data-url=""</div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"zhongsir"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/git版本控制/">git版本控制</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java杂锦/">java杂锦</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/struts/">struts</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓JNI/NDK开发/">安卓JNI/NDK开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓前端开发/">安卓前端开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓开发杂锦/">安卓开发杂锦</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓网络开发/">安卓网络开发</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/摄影/">摄影</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活点滴/">生活点滴</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/电脑常识杂锦/">电脑常识杂锦</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/科学上网/">科学上网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/DigitalOcean/" style="font-size: 10.00px;">DigitalOcean</a><a href="/tags/Git权威指南/" style="font-size: 11.43px;">Git权威指南</a><a href="/tags/JNI/" style="font-size: 10.00px;">JNI</a><a href="/tags/NDK/" style="font-size: 10.00px;">NDK</a><a href="/tags/RxAndroid/" style="font-size: 11.43px;">RxAndroid</a><a href="/tags/RxJava/" style="font-size: 11.43px;">RxJava</a><a href="/tags/Shadowsocks/" style="font-size: 10.00px;">Shadowsocks</a><a href="/tags/X-T10/" style="font-size: 11.43px;">X-T10</a><a href="/tags/android/" style="font-size: 15.71px;">android</a><a href="/tags/git/" style="font-size: 12.86px;">git</a><a href="/tags/github/" style="font-size: 12.86px;">github</a><a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a><a href="/tags/html5/" style="font-size: 10.00px;">html5</a><a href="/tags/java/" style="font-size: 10.00px;">java</a><a href="/tags/java ee/" style="font-size: 11.43px;">java ee</a><a href="/tags/struts/" style="font-size: 11.43px;">struts</a><a href="/tags/兼职/" style="font-size: 11.43px;">兼职</a><a href="/tags/函数响应式编程/" style="font-size: 11.43px;">函数响应式编程</a><a href="/tags/大学/" style="font-size: 14.29px;">大学</a><a href="/tags/安卓/" style="font-size: 18.57px;">安卓</a><a href="/tags/工作/" style="font-size: 11.43px;">工作</a><a href="/tags/年度总结/" style="font-size: 10.00px;">年度总结</a><a href="/tags/思想/" style="font-size: 11.43px;">思想</a><a href="/tags/感悟/" style="font-size: 17.14px;">感悟</a><a href="/tags/摄影/" style="font-size: 11.43px;">摄影</a><a href="/tags/毕设/" style="font-size: 11.43px;">毕设</a><a href="/tags/生活/" style="font-size: 20.00px;">生活</a><a href="/tags/科学上网/" style="font-size: 10.00px;">科学上网</a><a href="/tags/翻墙/" style="font-size: 10.00px;">翻墙</a><a href="/tags/翻译/" style="font-size: 12.86px;">翻译</a><a href="/tags/青春/" style="font-size: 12.86px;">青春</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07">July 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05">May 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02">February 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">January 2014</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/09/04/android_mp4_to_gif/">Android中视频（Mp4）转Gif图的一些尝试和最终解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/03/yue_model_7_1/">记第一次人像夜间外拍 —— 灯火阑珊处</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/02/jni_mark_1/">Jni/Ndk 开发学习记录（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/05/new_theme_tianyaruobilin/">博客新主题—天涯若比邻</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/09/talking_startup/">不想开一家餐厅的程序员不是一个好的摄影师</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 钟买能<br>
+      Theme 天涯若比邻. Redesigned by @钟买能. Base on the theme of landscape.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
+</body>
+</html>
