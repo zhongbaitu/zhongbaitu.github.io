@@ -3,23 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/11 | 钟买能的独立博客</title>
+  <title>Java多线程并发编程   Volatile关键字 | 钟买能的独立博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
   <meta name="author" content="钟买能">
   
-  <meta name="description" content="爱家人，爱朋友，爱生活，爱互联网，爱开发，爱摄影、爱设计，爱运动。Love. To love. To be love.">
+  <meta name="description" content="volatile 关键字是一个神秘的关键字，也许在 J2EE 上的 JAVA 程序员会了解多一点，但在 Android 上的 JAVA 程序员大多不了解这个关键字。只要稍了解不当就好容易导致一些并发上的错误发生，例如好多人把 volatile 理解成变量的锁。（并不是）
+
+volatile 的特性：">
   
   
   
   
   <meta name="og:type" content="blog">
-<meta name="og:title">
-<meta name="og:url" content="http://hackeris.me/archives/2016/11/">
-<meta name="og:image">
+<meta name="og:title" content="Java多线程并发编程   Volatile关键字">
+<meta name="og:url" content="http://hackeris.me/2017/03/26/concurrent_series_2/">
+<meta name="og:image" content="http://7bv9ty.com1.z0.glb.clouddn.com/concurrent_series_2.jpg">
 <meta name="og:site_name" content="钟买能的独立博客">
-<meta name="og:description">
+<meta name="og:description" content="volatile 关键字是一个神秘的关键字，也许在 J2EE 上的 JAVA 程序员会了解多一点，但在 Android 上的 JAVA 程序员大多不了解这个关键字。只要稍了解不当就好容易导致一些并发上的错误发生，例如好多人把 volatile 理解成变量的锁。（并不是）
+
+volatile 的特性：
+具备可见性
+保证不同线程对被 volatile 修饰的变量的可见性。
+有一被 volatile 修">
 <meta name="twitter:card" content="summary">
   
   
@@ -85,19 +92,22 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-travel_thailand_2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-concurrent_series_2" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="item" class="article-inner" 
   
-    style="background-image:url(http://7bv9ty.com1.z0.glb.clouddn.com/IMG_20161113_081550%E5%89%AF%E6%9C%AC.jpg);background-repeat:no-repeat;height:450px;background-size:cover"
-    
   >
     
-        <script type="text/javascript">
-          var div = document.getElementById("item");
-          div.style.height=800px;
-        </script>
+      
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="http://7bv9ty.com1.z0.glb.clouddn.com/concurrent_series_2.jpg" rel="gallery_yu4pdjcjz7f4xez0">
+        <img src="http://7bv9ty.com1.z0.glb.clouddn.com/concurrent_series_2.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
     
     
       
@@ -105,8 +115,8 @@
         
           
   
-    <h1 itemprop="name">
-      <a class="article-title-have-image" href="/2016/11/21/travel_thailand_2/">泰国游（二）之 更自由的旅游方式——清迈自驾游</a>
+    <h1 class="article-title-no-image" itemprop="name">
+      Java多线程并发编程   Volatile关键字
     </h1>
   
 
@@ -117,19 +127,19 @@
 
           <div 
               
-                class="article-meta-have-image"
+                class="article-meta-no-image"
               
           >
             
-               <a href="/2016/11/21/travel_thailand_2/" class="article-date-have-image">
-  <time datetime="2016-11-20T16:13:17.000Z" itemprop="datePublished">Nov 21 2016</time>
+              <a href="/2017/03/26/concurrent_series_2/" class="article-date">
+  <time datetime="2017-03-26T12:56:43.000Z" itemprop="datePublished">Mar 26 2017</time>
 </a>
             
             
             
   
-    <div class="article-category-have-image">
-    <a class="article-category-have-image-link" href="/categories/旅游/">旅游</a>
+     <div class="article-category">
+     <a class="article-category-link" href="/categories/java多线程/">java多线程</a>
   
   
 
@@ -141,75 +151,157 @@
     <div class="article-entry" itemprop="articleBody" name="article_begin" >
 
       
-        
-      
-    </div>
+        <p>volatile 关键字是一个神秘的关键字，也许在 J2EE 上的 JAVA 程序员会了解多一点，但在 Android 上的 JAVA 程序员大多不了解这个关键字。只要稍了解不当就好容易导致一些并发上的错误发生，例如好多人把 volatile 理解成变量的锁。（并不是）</p>
+<hr>
+<h3 id="volatile 的特性：">volatile 的特性：</h3>
+<h4 id=" 具备可见性 ">具备可见性</h4>
+<p>保证不同线程对被 volatile 修饰的变量的可见性。</p>
+<p>有一被 volatile 修饰的变量 i，在一个线程中修改了此变量 i，对于其他线程来说 i 的修改是立即可见的。</p>
+<p>如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="keyword">volatile</span> <span class="keyword">int</span> i = <span class="number">0</span>；<span class="comment">// 语句 1</span>
+i++; <span class="comment">// 语句 2</span>
+</pre></td></tr></table></figure>
+
+<p>语句 2 执行完后，i 最新的值会立即被强制更新到主内存（共享内存），并通知其他缓存了 i 的线程，令其他线程的工作内存里的 i 失效，从而需重新到主内存读取最新的值。</p>
+<h4 id=" 具备有序性 ">具备有序性</h4>
+<p>被 volatile 修饰的变量，不会被优化排序。</p>
+<p>解决的问题详见：<a href="http://hackeris.me/2017/03/13/concurrent_series_1/">Java 多线程并发编程 并发三大要素</a> 的 <code>三、有序性</code>。</p>
+<p>当编译器在给程序优化排序时，若遇到 volatile 变量的读操作或者写操作，则会保证在其前面的操作全部进行完成，且结果对后面的操作可见；并且保证在其后面的操作没有进行。</p>
+<h4 id=" 不具备原子性 ">不具备原子性</h4>
+<p>volatile 不具备原子性，所以它是线程不安全的。</p>
+<p>实验：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="code"><pre><span class="comment">// 一个单例的实现</span>
+<span class="keyword">public</span> <span class="keyword">class</span> SingletonTest {
+
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> SingletonTest mInstance  = <span class="keyword">null</span>;
+
+    <span class="keyword">private</span> <span class="title">SingletonTest</span>() {}
+
+    <span class="keyword">public</span> <span class="keyword">static</span> SingletonTest <span class="title">getInstance</span>() {
+
+        <span class="keyword">if</span> (mInstance == <span class="keyword">null</span>) {
+            mInstance = <span class="keyword">new</span> SingletonTest();
+            System.<span class="keyword">out</span>.println(<span class="string">" 初始化完成 "</span>);
+        }
+
+        <span class="keyword">return</span> mInstance;
+    }
+}
 
 
+<span class="comment">// 测试代码</span>
+<span class="keyword">public</span> <span class="keyword">class</span> Test {
 
-  </div>
-  
-</article>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] var0) {
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++){
+            ThreadTest test = <span class="keyword">new</span> ThreadTest();
+            test.start();
+        }
+    }
 
+    <span class="keyword">static</span> class ThreadTest extends Thread{
 
+        @Override
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+            super.run();
 
+            SingletonTest.getInstance();
+        }
+    }
 
-  
-    <article id="post-travel_thailand_1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="item" class="article-inner" 
-  
-    style="background-image:url(http://7bv9ty.com1.z0.glb.clouddn.com/IMG_20161112_165641%E5%89%AF%E6%9C%AC.jpg);background-repeat:no-repeat;height:450px;background-size:cover"
-    
-  >
-    
+}
+</pre></td></tr></table></figure>
+
+<p><strong>结果</strong>：<br><strong>每次运行都输出多个 “初始化完成”。</strong></p>
+<hr>
+<h3 id="volatile 的解释 ">volatile 的解释</h3>
+<p>下面这段话摘自《深入理解 Java 虚拟机》：</p>
+<blockquote>
+<p>“观察加入 volatile 关键字和没有加入 volatile 关键字时所生成的汇编代码发现，加入 volatile 关键字时，会多出一个 lock 前缀指令”</p>
+</blockquote>
+<p>被 volatile 修饰的变量进行读和写操作的时候，在相应的汇编程序中都会多一句内存屏障（Memory Barrier）。</p>
+<p>而这个 lock 就是内存屏障。</p>
+<p>内存屏障的作用：</p>
+<p>1、在重新优化排序时保证其后面的指令不会被排到内存屏障的前面，前面的指令也不会排到内存屏障的后面。- <strong>有序性</strong></p>
+<p>2、强制对<strong>写</strong>操作后的结果（立即）刷新到主内存。</p>
+<p>3、刷新结果到主内存时，通知并令其他线程缓存内的值过期 / 失效。</p>
+<p>2 和 3 合起来则是<strong>可见性</strong>。</p>
+<p>说到这里，也许会有好多人困惑，既然可见性可以保证，既然可以做到修改某个变量的值后，会刷新到主内存，并令其他线程缓存失效，为什么不能保证原子性呢？这也是我之前走进的一个困区。</p>
+<p>继续用 i++ 来分析一下，这里面包含的指令：</p>
+<p>从主内存读取到缓存 // 指令 1<br>进行运算 // 指令 2<br>从缓存刷新到主内存 // 指令 3<br>内存屏障 // 指令 4</p>
+<p>虽然指令 4（内存屏障）功能强大，但可惜 // 指令 1、2、3 都不是具备原子性，所以导致 volatile 不具备原子性，线程不安全，不能替代锁的作用。</p>
+<h3 id=" 使用场景 ">使用场景</h3>
+<p>如一些简单的状态标记：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="keyword">volatile</span> <span class="keyword">boolean</span> inited = <span class="keyword">false</span>;
+
+<span class="comment">// 线程 1</span>
+init(); <span class="comment">// 语句 1</span>
+inited = <span class="keyword">true</span>; <span class="comment">// 语句 2</span>
+
+<span class="comment">// 线程 2</span>
+<span class="keyword">while</span>(inited){
+	work(); <span class="comment">// 语句 3</span>
+}
+</pre></td></tr></table></figure>
+
+<p>1、可确保语句 1 和语句 2 的执行顺序。<br>2、可确保执行语句 2 后，线程 2 可立即获取到最新的修改，从而执行语句 3。</p>
+
+        <!-- 代替锚点，800是banner的高度，不知道怎么在css获取-->
         <script type="text/javascript">
-          var div = document.getElementById("item");
-          div.style.height=800px;
+          document.body.scrollTop=800;
         </script>
-    
-    
-      
-      <header class="article-header">
-        
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title-have-image" href="/2016/11/20/travel_thailand_1/">泰国游（一）之 上个夏天还没玩够</a>
-    </h1>
-  
-
-
-
-
-        
-
-          <div 
-              
-                class="article-meta-have-image"
-              
-          >
-            
-               <a href="/2016/11/20/travel_thailand_1/" class="article-date-have-image">
-  <time datetime="2016-11-20T13:38:58.000Z" itemprop="datePublished">Nov 20 2016</time>
-</a>
-            
-            
-            
-  
-    <div class="article-category-have-image">
-    <a class="article-category-have-image-link" href="/categories/旅游/">旅游</a>
-  
-  
-
-  </div>
-
-          </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody" name="article_begin" >
-
-      
-        
       
     </div>
 
@@ -217,13 +309,39 @@
 
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/13/concurrent_series_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java多线程并发编程   并发三大要素</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-title="Java多线程并发编程   Volatile关键字"" data-url=""</div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"zhongsir"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
 
 
-  
-  
 </section>
         
           <aside id="sidebar">
