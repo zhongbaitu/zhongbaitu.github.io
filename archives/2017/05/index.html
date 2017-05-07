@@ -3,45 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>按功能建立包结构（Package） | 钟买能的独立博客</title>
+  <title>Archives: 2017/5 | 钟买能的独立博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
   <meta name="author" content="钟买能">
   
-  <meta name="description" content="陈述观点：按功能建立包结构，而不是按层级建立。
-导读：有人喜欢把 Activity 充当 Controller 使用，也有人喜欢使其扮演 View 角色。这个问题本文不作讨论。所以在本文没有 Activity 的存在，只有 Controller and View。
-一般我们建立包结构的方式有两种：
-">
+  <meta name="description" content="爱家人，爱朋友，爱生活，爱互联网，爱开发，爱摄影、爱设计，爱运动。Love. To love. To be love.">
   
   
   
   
   <meta name="og:type" content="blog">
-<meta name="og:title" content="按功能建立包结构（Package）">
-<meta name="og:url" content="http://hackeris.me/2016/02/22/package_by_feature/">
+<meta name="og:title">
+<meta name="og:url" content="http://hackeris.me/archives/2017/05/">
 <meta name="og:image">
 <meta name="og:site_name" content="钟买能的独立博客">
-<meta name="og:description" content="陈述观点：按功能建立包结构，而不是按层级建立。
-导读：有人喜欢把 Activity 充当 Controller 使用，也有人喜欢使其扮演 View 角色。这个问题本文不作讨论。所以在本文没有 Activity 的存在，只有 Controller and View。
-一般我们建立包结构的方式有两种：
-1、按层级建立包结构
-如下图：
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-1">
+<meta name="og:description">
 <meta name="twitter:card" content="summary">
   
   
@@ -107,12 +85,19 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-package_by_feature" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-thread_base_1" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="item" class="article-inner" 
   
+    style="background-image:url(http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg);background-repeat:no-repeat;height:450px;background-size:cover"
+    
   >
     
-      
+        <script type="text/javascript">
+          var div = document.getElementById("item");
+          div.style.height=800px;
+        </script>
     
     
       
@@ -120,8 +105,8 @@
         
           
   
-    <h1 class="article-title-no-image" itemprop="name">
-      按功能建立包结构（Package）
+    <h1 itemprop="name">
+      <a class="article-title-have-image" href="/2017/05/07/thread_base_1/">Java多线程基础   线程的等待与唤醒</a>
     </h1>
   
 
@@ -132,19 +117,19 @@
 
           <div 
               
-                class="article-meta-no-image"
+                class="article-meta-have-image"
               
           >
             
-              <a href="/2016/02/22/package_by_feature/" class="article-date">
-  <time datetime="2016-02-22T09:14:01.000Z" itemprop="datePublished">Feb 22 2016</time>
+               <a href="/2017/05/07/thread_base_1/" class="article-date-have-image">
+  <time datetime="2017-05-07T10:27:19.000Z" itemprop="datePublished">May 7 2017</time>
 </a>
             
             
             
   
-     <div class="article-category">
-     <a class="article-category-link" href="/categories/安卓开发杂锦/">安卓开发杂锦</a>
+    <div class="article-category-have-image">
+    <a class="article-category-have-image-link" href="/categories/java多线程/">java多线程</a>
   
   
 
@@ -156,145 +141,7 @@
     <div class="article-entry" itemprop="articleBody" name="article_begin" >
 
       
-        <p><code>陈述观点：按功能建立包结构，而不是按层级建立。</code></p>
-<p>导读：有人喜欢把 Activity 充当 Controller 使用，也有人喜欢使其扮演 View 角色。这个问题本文不作讨论。所以在本文没有 Activity 的存在，只有 Controller and View。</p>
-<p>一般我们建立包结构的方式有两种：</p>
-<h4 id="1、按层级建立包结构 ">1、按层级建立包结构</h4>
-<p>如下图：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-</pre></td><td class="code"><pre>├── controller
-│   ├── LoginController<span class="preprocessor">.java</span>
-│   ├── NewsController<span class="preprocessor">.java</span>
-│   └── RegisterController<span class="preprocessor">.java</span>
-├── customView
-│   ├── CustomEditText<span class="preprocessor">.java</span>
-│   ├── CustomTextView<span class="preprocessor">.java</span>
-│   └── FloatingTextView<span class="preprocessor">.java</span>
-├── db
-│   └── DBHelper<span class="preprocessor">.java</span>
-├── model
-│   ├── News<span class="preprocessor">.java</span>
-│   └── User<span class="preprocessor">.java</span>
-├── network
-│   └── NetworkHelper<span class="preprocessor">.java</span>
-├── utils
-│   └── BitmapUtil<span class="preprocessor">.java</span>
-└── view
-    ├── LoginView<span class="preprocessor">.java</span>
-    ├── NewsView<span class="preprocessor">.java</span>
-    └── RegisterView<span class="preprocessor">.java</span>
-</pre></td></tr></table></figure>
-
-<p>简单列举大概结构，每个项目的结构都不一样。</p>
-<p>db、 network、utils  这类可公用的抽出来单独放，OK，没问题。</p>
-<p>model 有些同学会分 ui model、network model、db model，然后再用 mapper 去转换。分法因人、项目而异。model 里的数据结构类经常是很多地方都会使用到的，例如 UserInfo，几乎整个项目、每个页面都需要用到，所以 model 建议也是统一抽出来放。</p>
-<p><strong>重点，现在问题来了</strong></p>
-<p>有些同学喜欢把 Controller or Presenter 放一堆，ui view 放一堆，自定义的 view（无论复不服用）放一堆，如上图。</p>
-<p>也许上图的项目功能甚少，看上去感觉没问题，甚至还觉得挺合理。</p>
-<p>现在我们把问题放大一点，假设项目越来越庞大，ui 界面有 30 个，那么一个 Controller 包下就有 30 个 Controller，一个 view 包下有 30 个 ui view。</p>
-<p>1、如果想快速找到忘记了名字的类，那就坑爹了。（这事我遇过）</p>
-<p>也许你会说，我都记得住他们叫什么名字呀，command + O 就出来了 ^_^</p>
-<p>2、如果是找页面里的一个辅助类、抽象类 or 其他呢？ 还记得住吗？</p>
-<p>例如，有一个页面抽象类，分别有两个页面继承它，毫无疑问它是属于 view 包的，但把它放到 view 包，也毫无疑问是给这个包带来了杂乱的信息。也给上面的情况（忘记了类的名字）带来更麻烦的查找（因为你要用肉眼遍历一次整个包呀亲）。</p>
-<p>3、而如果按层级建立的包结构，protected 关键字会失效，准确来说是“相对失效”。</p>
-<p>例如，LoginView 的一些方法我只想让 LoginController 调用，所以我会用 protected 关键字修饰。此时，如果是按层级建立的包结构，处于与 LoginView 不同包的 LoginController 则无法调用 LoginView 用 protected 关键字修饰的方法。</p>
-<p>按层级建立的包结构，除了能给别人对你的项目架构一目了然之外，也没啥好处了。然而，这个“一目了然”也是没有存在的必要。需要急着告诉别人么？所以说白了，就是没啥用。</p>
-<h4 id="2、_ 按功能建立包结构 ">2、 按功能建立包结构</h4>
-<p>如图：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-</pre></td><td class="code"><pre>├── customView
-│   ├── CustomEditText<span class="preprocessor">.java</span>
-│   └── CustomTextView<span class="preprocessor">.java</span>
-├── db
-│   └── DBHelper<span class="preprocessor">.java</span>
-├── features
-│   ├── login
-│   │   ├── LoginController<span class="preprocessor">.java</span>
-│   │   └── LoginView<span class="preprocessor">.java</span>
-│   ├── news
-│   │   ├── FloatingTextView<span class="preprocessor">.java</span>
-│   │   ├── NewsController<span class="preprocessor">.java</span>
-│   │   └── NewsView<span class="preprocessor">.java</span>
-│   └── register
-│       ├── RegisterController<span class="preprocessor">.java</span>
-│       └── RegisterView<span class="preprocessor">.java</span>
-├── model
-│   ├── News<span class="preprocessor">.java</span>
-│   └── User<span class="preprocessor">.java</span>
-├── network
-│   └── NetworkHelper<span class="preprocessor">.java</span>
-└── utils
-    └── BitmapUtil<span class="preprocessor">.java</span>
-</pre></td></tr></table></figure>
-
-<p>按照功能来分包结构就会清晰多了，继续沿用上述假设的条件，我们的 APP 有 30 个页面。那我们会分 30 个功能包？</p>
-<p>答案是 NO！注意我们是按功能分，而不是按页面分。而一个功能是由几个页面组成这种事情也是常见的。</p>
-<p>例如信息编辑页面，信息编辑页面里都会集成一些二级页面，甚至三级页面，如填写描述、选择分类、标签等等等。</p>
-<p>所以一个编辑功能，就会有 4-5 个页面（具体看产品设计）。30 个页面分摊下来，也许就是 7-9 个功能，也就是说会分出来 7-9 个功能包。</p>
-<p><strong>“按层级建立包结构”的问题在“按功能建立的包结构”的表现：</strong></p>
-<p>1、在忘记 X 类名字的情况下查找：</p>
-<blockquote>
-<p>遍历 7-9 个元素比遍历 30 个元素快吧？找到对应的包，就一目了然了。</p>
-</blockquote>
-<p>2、辅助类、抽象类、XX 类的存放</p>
-<blockquote>
-<p>都已经按功能分了，直接放一起就好</p>
-</blockquote>
-<p>3、使用 protected 关键字修饰方法</p>
-<blockquote>
-<p>同一个功能的类都在同一个包，使用 protected 修饰仅供本包类调用的方法。完全符合设计规范！</p>
-</blockquote>
-<p>在曾经的一个团队里，我们有个默认的规矩，就是我做的功能（我们按功能分工），别的小伙伴不能动、不能改。<strong>也就是说，我新建的包（仅对功能包而言，工具等例外），有需要就要和我沟通，我亲自改或提供接口给其调用。</strong>   </p>
-<p>对小团队开发还是挺管用的，几十号人的庞大开发队伍就忽略吧。</p>
-<p>你有更好用的方法吗？ 分享分享，我们讨论讨论？</p>
-<p>参考文献：<a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d#.dsjwgf30g" target="_blank">Package by features, not layers</a></p>
-
-        <!-- 代替锚点，800是banner的高度，不知道怎么在css获取-->
-        <script type="text/javascript">
-          document.body.scrollTop=800;
-        </script>
+        
       
     </div>
 
@@ -302,31 +149,13 @@
 
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2016/03/01/with_xt10_haixinsha_night/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          捧着 X T10 ，体验一番 16 50mm 里的花城广场
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/12/31/bye2015/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Bye 2015，这一年走过的风景</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
 
+
+  
+  
 </section>
         
           <aside id="sidebar">

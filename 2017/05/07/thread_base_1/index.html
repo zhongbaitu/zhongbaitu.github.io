@@ -9,7 +9,10 @@
   
   <meta name="author" content="钟买能">
   
-  <meta name="description" content="本篇我们来研究一下wait() notify() notifyAll() 。
+  <meta name="description" content="题图：花啡，豆是买咖啡机送的，花是上周阳朔旅游买的桂花，给它起了个名字，叫 Sunday。
+咖啡味淡了一点点，多了一份桂花的清香。
+
+本篇我们来研究一下wait() notify() notifyAll() 。
 DEMO1： wait() 与 notify()
 1
 2
@@ -20,39 +23,20 @@ DEMO1： wait() 与 notify()
 7
 8
 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32">
+1">
   
   
   
   
   <meta name="og:type" content="blog">
 <meta name="og:title" content="Java多线程基础   线程的等待与唤醒">
-<meta name="og:url" content="http://hackeris.me/2017/04/09/thread_base_1/">
+<meta name="og:url" content="http://hackeris.me/2017/05/07/thread_base_1/">
 <meta name="og:image" content="http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg">
 <meta name="og:site_name" content="钟买能的独立博客">
-<meta name="og:description" content="本篇我们来研究一下wait() notify() notifyAll() 。
+<meta name="og:description" content="题图：花啡，豆是买咖啡机送的，花是上周阳朔旅游买的桂花，给它起了个名字，叫 Sunday。
+咖啡味淡了一点点，多了一份桂花的清香。
+
+本篇我们来研究一下wait() notify() notifyAll() 。
 DEMO1： wait() 与 notify()
 1
 2
@@ -79,30 +63,7 @@ DEMO1： wait() 与 notify()
 23
 24
 25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-4">
+26">
 <meta name="twitter:card" content="summary">
   
   
@@ -177,7 +138,7 @@ DEMO1： wait() 与 notify()
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg" rel="gallery_3nsd5ikjvfbaczgb">
+      <a class="article-gallery-img fancybox" href="http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg" rel="gallery_zvmiwpii0vmf5k17">
         <img src="http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg" itemprop="image">
       </a>
     
@@ -207,8 +168,8 @@ DEMO1： wait() 与 notify()
               
           >
             
-              <a href="/2017/04/09/thread_base_1/" class="article-date">
-  <time datetime="2017-04-09T10:27:19.000Z" itemprop="datePublished">Apr 9 2017</time>
+              <a href="/2017/05/07/thread_base_1/" class="article-date">
+  <time datetime="2017-05-07T10:27:19.000Z" itemprop="datePublished">May 7 2017</time>
 </a>
             
             
@@ -227,7 +188,10 @@ DEMO1： wait() 与 notify()
     <div class="article-entry" itemprop="articleBody" name="article_begin" >
 
       
-        <p>本篇我们来研究一下<code>wait()</code> <code>notify()</code> <code>notifyAll()</code> 。</p>
+        <p>题图：花啡，豆是买咖啡机送的，花是上周阳朔旅游买的桂花，给它起了个名字，叫 Sunday。</p>
+<p>咖啡味淡了一点点，多了一份桂花的清香。</p>
+<hr>
+<p>本篇我们来研究一下<code>wait()</code> <code>notify()</code> <code>notifyAll()</code> 。</p>
 <p>DEMO1： wait() 与 notify()</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre>1
 2
@@ -597,19 +561,10 @@ db2 回来了
     
 <nav id="article-nav">
   
-    <a href="/2017/04/22/concurrent_series_4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Java多线程并发编程 — 互斥锁Reentrant Lock
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/09/concurrent_series_3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/04/22/concurrent_series_4/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java多线程并发编程   Synchronized关键字</div>
+      <div class="article-nav-title">Java多线程并发编程 — 互斥锁Reentrant Lock</div>
     </a>
   
 </nav>
@@ -617,23 +572,6 @@ db2 回来了
   
 </article>
 
-
-  <!-- 多说评论框 start -->
-    <div class="ds-thread" data-title="Java多线程基础   线程的等待与唤醒"" data-url=""</div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"zhongsir"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] 
-       || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-  <!-- 多说公共JS代码 end -->
 
 
 </section>
@@ -662,7 +600,7 @@ db2 回来了
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04">April 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10">October 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07">July 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05">May 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02">February 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">January 2014</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10">October 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07">July 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06">June 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05">May 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02">February 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">January 2014</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -674,11 +612,11 @@ db2 回来了
       <ul>
         
           <li>
-            <a href="/2017/04/22/concurrent_series_4/">Java多线程并发编程 — 互斥锁Reentrant Lock</a>
+            <a href="/2017/05/07/thread_base_1/">Java多线程基础   线程的等待与唤醒</a>
           </li>
         
           <li>
-            <a href="/2017/04/09/thread_base_1/">Java多线程基础   线程的等待与唤醒</a>
+            <a href="/2017/04/22/concurrent_series_4/">Java多线程并发编程 — 互斥锁Reentrant Lock</a>
           </li>
         
           <li>
