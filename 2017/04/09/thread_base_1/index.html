@@ -3,23 +3,106 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: 安卓前端开发 | 钟买能的独立博客</title>
+  <title>Java多线程基础   线程的等待与唤醒 | 钟买能的独立博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
   <meta name="author" content="钟买能">
   
-  <meta name="description" content="爱家人，爱朋友，爱生活，爱互联网，爱开发，爱摄影、爱设计，爱运动。Love. To love. To be love.">
+  <meta name="description" content="本篇我们来研究一下wait() notify() notifyAll() 。
+DEMO1： wait() 与 notify()
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32">
   
   
   
   
   <meta name="og:type" content="blog">
-<meta name="og:title">
-<meta name="og:url" content="http://hackeris.me/categories/安卓前端开发/">
-<meta name="og:image">
+<meta name="og:title" content="Java多线程基础   线程的等待与唤醒">
+<meta name="og:url" content="http://hackeris.me/2017/04/09/thread_base_1/">
+<meta name="og:image" content="http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg">
 <meta name="og:site_name" content="钟买能的独立博客">
-<meta name="og:description">
+<meta name="og:description" content="本篇我们来研究一下wait() notify() notifyAll() 。
+DEMO1： wait() 与 notify()
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+4">
 <meta name="twitter:card" content="summary">
   
   
@@ -85,17 +168,22 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-waveloadingview" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-thread_base_1" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="item" class="article-inner" 
   
   >
     
-        <script type="text/javascript">
-          var div = document.getElementById("item");
-          div.style.height=800px;
-        </script>
+      
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg" rel="gallery_3nsd5ikjvfbaczgb">
+        <img src="http://7bv9ty.com1.z0.glb.clouddn.com/thread_base_1.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
     
     
       
@@ -103,8 +191,8 @@
         
           
   
-    <h1 itemprop="name">
-      <a class="article-title-no-image" href="/2014/10/15/waveloadingview/">自定义水波浪加载View</a>
+    <h1 class="article-title-no-image" itemprop="name">
+      Java多线程基础   线程的等待与唤醒
     </h1>
   
 
@@ -119,15 +207,15 @@
               
           >
             
-              <a href="/2014/10/15/waveloadingview/" class="article-date">
-  <time datetime="2014-10-15T15:45:20.000Z" itemprop="datePublished">Oct 15 2014</time>
+              <a href="/2017/04/09/thread_base_1/" class="article-date">
+  <time datetime="2017-04-09T10:27:19.000Z" itemprop="datePublished">Apr 9 2017</time>
 </a>
             
             
             
   
      <div class="article-category">
-     <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
+     <a class="article-category-link" href="/categories/java多线程/">java多线程</a>
   
   
 
@@ -139,73 +227,366 @@
     <div class="article-entry" itemprop="articleBody" name="article_begin" >
 
       
-        
-      
-    </div>
+        <p>本篇我们来研究一下<code>wait()</code> <code>notify()</code> <code>notifyAll()</code> 。</p>
+<p>DEMO1： wait() 与 notify()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> {</span>
+
+    <span class="keyword">static</span> class ThreadOne extends Thread {
+
+        <span class="keyword">private</span> Callback mCallback;
+
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+            work();
+            <span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) {
+                mCallback.onResult(<span class="keyword">false</span>);
+            }
+        }
+
+        <span class="comment">// 耗时 3s</span>
+        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">work</span>() {
+            System.out.println(<span class="string">" 正在查询数据库 1"</span>);
+            <span class="keyword">long</span> startTime = System.currentTimeMillis();
+            <span class="keyword">while</span> (<span class="keyword">true</span>) {
+                <span class="keyword">if</span> (System.currentTimeMillis() - startTime &lt; <span class="number">3000</span>) {
+                    <span class="keyword">continue</span>;
+                }
+                <span class="keyword">break</span>;
+            }
+        }
+
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCallback</span>(Callback callback) {
+            mCallback = callback;
+        }
+
+        <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callback</span> {</span>
+            <span class="keyword">void</span> onResult(<span class="keyword">boolean</span> result);
+        }
+    }
+
+    <span class="keyword">static</span> class ThreadTest extends Thread {
+
+        <span class="keyword">private</span> Object mLock = <span class="keyword">new</span> Object();
+
+        <span class="keyword">private</span> ThreadOne mThreadOne;
+
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+            workOne();
+            System.out.println(<span class="string">" 根据结果继续做其他事情 "</span>);
+        }
+
+        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">workOne</span>() {
+            mThreadOne = <span class="keyword">new</span> ThreadOne();
+            mThreadOne.setCallback(<span class="keyword">new</span> ThreadOne.Callback() {
+                <span class="annotation">@Override</span>
+                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResult</span>(<span class="keyword">boolean</span> result) {
+                    System.out.println(<span class="string">" 查询数据库 1 结束，:"</span> + (result ? <span class="string">" 有数据 "</span> : <span class="string">" 无数据 "</span>));
+                    <span class="keyword">synchronized</span> (mLock) {
+                        mLock.notify();
+                        System.out.println(<span class="string">"--ThreadTest 结束等待 --"</span>);
+                    }
+                }
+            });
+            mThreadOne.start();
+            <span class="keyword">try</span> {
+                <span class="keyword">synchronized</span> (mLock) {
+                    System.out.println(<span class="string">"--ThreadTest 进入等待 --"</span>);
+                    mLock.wait();
+                }
+            } <span class="keyword">catch</span> (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] var0) {
+        ThreadTest threadTest = <span class="keyword">new</span> ThreadTest();
+        threadTest.start();
+    }
+}
+</pre></td></tr></table></figure>
+
+<p>DEMO1 输出：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="literal">-</span><span class="literal">-</span><span class="comment">ThreadTest 进入等待</span><span class="literal">-</span><span class="literal">-</span>
+<span class="comment">正在查询数据库 1</span>
+<span class="comment">查询数据库 1 结束，: 无数据</span>
+<span class="literal">-</span><span class="literal">-</span><span class="comment">ThreadTest 结束等待</span><span class="literal">-</span><span class="literal">-</span>
+<span class="comment">根据结果继续做其他事情</span>
+</pre></td></tr></table></figure>
+
+<p>注意：<br>使用 wait() 和 notify() 必须在获得同步锁后才能调用，若直接调用会报 java.lang.IllegalMonitorStateException 错误，因为状态由同步锁保护。</p>
+<p>wait() 不同于 sleep() 的是 wait() 会释放同步锁。</p>
+<p>因为 wait() 和 notify() 是基于同步锁实现的，每个对象都有自己的同步锁，所以 wait() 和 notify() 是 Object 的方法，而不是 Thread。</p>
+<p>DEMO2，wait() 与 notifyAll()：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> {</span>
+
+    <span class="keyword">private</span> <span class="keyword">static</span> Object mLock = <span class="keyword">new</span> Object();
+
+    <span class="keyword">static</span> class MyThread extends Thread {
+
+        String mName;
+        Callback mCallback;
+
+        <span class="keyword">public</span> <span class="title">MyThread</span>(String name){
+            mName = name;
+        }
+
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+            work();
+            <span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) {
+                mCallback.onResult(<span class="keyword">false</span>);
+            }
+        }
+
+        <span class="comment">// 耗时 3s</span>
+        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">work</span>() {
+            System.out.println(mName + <span class="string">" 等待 "</span>);
+            <span class="keyword">try</span> {
+                <span class="keyword">synchronized</span> (mLock) {
+                    mLock.wait();
+                }
+            } <span class="keyword">catch</span> (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCallback</span>(Callback callback) {
+            mCallback = callback;
+        }
+
+        <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callback</span> {</span>
+            <span class="keyword">void</span> onResult(<span class="keyword">boolean</span> result);
+        }
+    }
+
+    <span class="keyword">static</span> class ThreadTest extends Thread {
 
 
 
-  </div>
-  
-</article>
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+            work(<span class="string">"db1"</span>);
+            work(<span class="string">"db2"</span>);
+            work(<span class="string">"db3"</span>);
 
+            <span class="keyword">try</span> {
+                sleep(<span class="number">2000</span>);
+            } <span class="keyword">catch</span> (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+            <span class="keyword">synchronized</span> (mLock) {
+                System.out.println(<span class="string">" 唤醒全部 "</span>);
+                mLock.notifyAll();
+            }
+        }
 
+        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">work</span>(String name) {
+            <span class="keyword">final</span> MyThread myThread = <span class="keyword">new</span> MyThread(name);
+            myThread.setCallback(<span class="keyword">new</span> MyThread.Callback() {
+                <span class="annotation">@Override</span>
+                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResult</span>(<span class="keyword">boolean</span> result) {
+                    System.out.println(myThread.mName + <span class="string">" 回来了 "</span>);
+                }
+            });
+            myThread.start();
+        }
+    }
 
-  
-    <article id="post-android_path" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="item" class="article-inner" 
-  
-  >
-    
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] var0) {
+        ThreadTest threadTest = <span class="keyword">new</span> ThreadTest();
+        threadTest.start();
+    }
+}
+</pre></td></tr></table></figure>
+
+<p>DEMO2 输出：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>db1 等待
+db3 等待
+db2 等待
+唤醒全部
+db3 回来了
+db1 回来了
+db2 回来了
+</pre></td></tr></table></figure>
+
+<p>同一个对象的 wait() 方法可多次在不同的线程中调用，可让不同的线程进入等待（阻塞），可以一个一个 notify()，也可以调用 notifyAll() 一次性全部唤醒。</p>
+
+        <!-- 代替锚点，800是banner的高度，不知道怎么在css获取-->
         <script type="text/javascript">
-          var div = document.getElementById("item");
-          div.style.height=800px;
+          document.body.scrollTop=800;
         </script>
-    
-    
-      
-      <header class="article-header">
-        
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title-no-image" href="/2014/10/15/android_path/">关于Path的几个"to"详解</a>
-    </h1>
-  
-
-
-
-
-        
-
-          <div 
-              
-                class="article-meta-no-image"
-              
-          >
-            
-              <a href="/2014/10/15/android_path/" class="article-date">
-  <time datetime="2014-10-15T15:37:35.000Z" itemprop="datePublished">Oct 15 2014</time>
-</a>
-            
-            
-            
-  
-     <div class="article-category">
-     <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
-  
-  
-
-  </div>
-
-          </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody" name="article_begin" >
-
-      
-        
       
     </div>
 
@@ -213,215 +594,48 @@
 
   </div>
   
-</article>
-
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-androidroundimageview" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="item" class="article-inner" 
-  
-  >
-    
-        <script type="text/javascript">
-          var div = document.getElementById("item");
-          div.style.height=800px;
-        </script>
-    
-    
-      
-      <header class="article-header">
+    <a href="/2017/04/22/concurrent_series_4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title-no-image" href="/2014/05/31/androidroundimageview/">安卓自定义圆形Image View</a>
-    </h1>
-  
-
-
-
-
+          Java多线程并发编程 — 互斥锁Reentrant Lock
         
-
-          <div 
-              
-                class="article-meta-no-image"
-              
-          >
-            
-              <a href="/2014/05/31/androidroundimageview/" class="article-date">
-  <time datetime="2014-05-30T16:31:59.000Z" itemprop="datePublished">May 31 2014</time>
-</a>
-            
-            
-            
-  
-     <div class="article-category">
-     <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
+      </div>
+    </a>
   
   
+    <a href="/2017/04/09/concurrent_series_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java多线程并发编程   Synchronized关键字</div>
+    </a>
+  
+</nav>
 
-  </div>
-
-          </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody" name="article_begin" >
-
-      
-        
-      
-    </div>
-
-
-
-  </div>
   
 </article>
 
 
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-title="Java多线程基础   线程的等待与唤醒"" data-url=""</div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"zhongsir"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
 
 
-  
-    <article id="post-android-notifications" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="item" class="article-inner" 
-  
-  >
-    
-        <script type="text/javascript">
-          var div = document.getElementById("item");
-          div.style.height=800px;
-        </script>
-    
-    
-      
-      <header class="article-header">
-        
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title-no-image" href="/2014/02/01/android-notifications/">Android——Notifications笔记</a>
-    </h1>
-  
-
-
-
-
-        
-
-          <div 
-              
-                class="article-meta-no-image"
-              
-          >
-            
-              <a href="/2014/02/01/android-notifications/" class="article-date">
-  <time datetime="2014-02-01T15:23:16.000Z" itemprop="datePublished">Feb 1 2014</time>
-</a>
-            
-            
-            
-  
-     <div class="article-category">
-     <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
-  
-  
-
-  </div>
-
-          </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody" name="article_begin" >
-
-      
-        NotificationNotification.BuilderNotificationCompat.Builder
-一开始给这三个类给搞糊涂了。
-官网是这样解释的：
-
-Notification：A class that represents how a persistent n
-      
-    </div>
-
-
-
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-adnroid-viewpager" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="item" class="article-inner" 
-  
-  >
-    
-        <script type="text/javascript">
-          var div = document.getElementById("item");
-          div.style.height=800px;
-        </script>
-    
-    
-      
-      <header class="article-header">
-        
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title-no-image" href="/2014/01/24/adnroid-viewpager/">Adnroid——View Pager制作App第一次使用时出现的导航介绍</a>
-    </h1>
-  
-
-
-
-
-        
-
-          <div 
-              
-                class="article-meta-no-image"
-              
-          >
-            
-              <a href="/2014/01/24/adnroid-viewpager/" class="article-date">
-  <time datetime="2014-01-24T15:13:28.000Z" itemprop="datePublished">Jan 24 2014</time>
-</a>
-            
-            
-            
-  
-     <div class="article-category">
-     <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
-  
-  
-
-  </div>
-
-          </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody" name="article_begin" >
-
-      
-        
-      
-    </div>
-
-
-
-  </div>
-  
-</article>
-
-
-
-
-  
-  
 </section>
         
           <aside id="sidebar">
