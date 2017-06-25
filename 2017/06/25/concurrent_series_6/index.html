@@ -3,48 +3,61 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android——Notifications笔记 | 钟买能的独立博客</title>
+  <title>Java多线程并发编程 — 读写锁 Reentrant Read Write Lock | 钟买能的独立博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
   <meta name="author" content="钟买能">
   
-  <meta name="description" content="NotificationNotification.BuilderNotificationCompat.Builder
-一开始给这三个类给搞糊涂了。
-官网是这样解释的：
-
-Notification：A class that represents how a persistent notification is to be presented to the user using the NotificationManager.The Notification.Builder has been added to make it easier to construct Notifications.
-
-
-构建 Notifications 主要用的类，发现好多方法都给移除给 NotificationCompat.Builder 替代了
-
-
-Notification.Builder：Builder class for Notification objects. Provides a convenient way to set the various fields of a Notification and generate content views using the platform’s notification layout template.If your app supports versions of Android as old as API level 4, you can instead use NotificationCompat.Builder, available in the Android Support library.
-
-
-Notification.Builder 是为了让开发者更容易构建出 Notifications 而诞生的。
-
-
-NotificationCompat.BuilderBuilder class for NotificationCompat objects. Allows easier control over all the flags, as well as help constructing the typical notification layouts.
-
-
-NotificationCompat.Builder，由上面的加粗可以看出，NotificationCompat.Builder 是解决 Notification.Builder 的兼容问题而诞生的。compat：兼容性
-
-把这三个搞清楚之后，我直接用 NotificationCompat.Builder 来构建 Notifications。">
+  <meta name="description" content="ReentrantReadWriteLock 实现 interface ReadWriteLock：
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+public interface ReadWriteLock {
+    /**
+     * Returns the loc">
   
   
   
   
   <meta name="og:type" content="blog">
-<meta name="og:title" content="Android——Notifications笔记">
-<meta name="og:url" content="http://hackeris.me/2014/02/01/android-notifications/">
-<meta name="og:image" content="http://segmentfault.com/img/bVbQMt">
+<meta name="og:title" content="Java多线程并发编程 — 读写锁 Reentrant Read Write Lock">
+<meta name="og:url" content="http://hackeris.me/2017/06/25/concurrent_series_6/">
+<meta name="og:image" content="http://7bv9ty.com1.z0.glb.clouddn.com/concurrent_series_6.jpg">
 <meta name="og:site_name" content="钟买能的独立博客">
-<meta name="og:description" content="NotificationNotification.BuilderNotificationCompat.Builder
-一开始给这三个类给搞糊涂了。
-官网是这样解释的：
-
-Notification：A class that represents how a persistent notification is to be presented to the user using the Notific">
+<meta name="og:description" content="ReentrantReadWriteLock 实现 interface ReadWriteLock：
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+public interface ReadWriteLock {
+    /**
+     * Returns the lock used for reading.
+     *
+     * @return the lock">
 <meta name="twitter:card" content="summary">
   
   
@@ -110,12 +123,22 @@ Notification：A class that represents how a persistent notification is to be pr
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-android-notifications" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-concurrent_series_6" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="item" class="article-inner" 
   
   >
     
       
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="http://7bv9ty.com1.z0.glb.clouddn.com/concurrent_series_6.jpg" rel="gallery_8jz885kjusoguuaw">
+        <img src="http://7bv9ty.com1.z0.glb.clouddn.com/concurrent_series_6.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
     
     
       
@@ -124,7 +147,7 @@ Notification：A class that represents how a persistent notification is to be pr
           
   
     <h1 class="article-title-no-image" itemprop="name">
-      Android——Notifications笔记
+      Java多线程并发编程 — 读写锁 Reentrant Read Write Lock
     </h1>
   
 
@@ -139,15 +162,15 @@ Notification：A class that represents how a persistent notification is to be pr
               
           >
             
-              <a href="/2014/02/01/android-notifications/" class="article-date">
-  <time datetime="2014-02-01T15:23:16.000Z" itemprop="datePublished">Feb 1 2014</time>
+              <a href="/2017/06/25/concurrent_series_6/" class="article-date">
+  <time datetime="2017-06-25T09:03:34.000Z" itemprop="datePublished">Jun 25 2017</time>
 </a>
             
             
             
   
      <div class="article-category">
-     <a class="article-category-link" href="/categories/安卓前端开发/">安卓前端开发</a>
+     <a class="article-category-link" href="/categories/java多线程/">java多线程</a>
   
   
 
@@ -159,30 +182,8 @@ Notification：A class that represents how a persistent notification is to be pr
     <div class="article-entry" itemprop="articleBody" name="article_begin" >
 
       
-        <p>Notification<br>Notification.Builder<br>NotificationCompat.Builder</p>
-<p>一开始给这三个类给搞糊涂了。</p>
-<p>官网是这样解释的：</p>
-<blockquote>
-<p>Notification：<br>A class that represents how a persistent notification is to be presented to the user using the NotificationManager.<br>The Notification.Builder has been added to make it easier to construct Notifications.</p>
-</blockquote>
-<ul>
-<li>构建 Notifications 主要用的类，发现好多方法都给移除给 NotificationCompat.Builder 替代了</li>
-</ul>
-<blockquote>
-<p>Notification.Builder：<br>Builder class for Notification objects. Provides a convenient way to set the various fields of a Notification and generate content views using the platform’s notification layout template.If your app supports versions of Android as old as API level 4, you can instead use NotificationCompat.Builder, available in the Android Support library.</p>
-</blockquote>
-<ul>
-<li>Notification.Builder 是为了让开发者更容易构建出 Notifications 而诞生的。</li>
-</ul>
-<blockquote>
-<p>NotificationCompat.Builder<br>Builder class for NotificationCompat objects. Allows easier control over all the flags, as well as help constructing the typical notification layouts.</p>
-</blockquote>
-<ul>
-<li>NotificationCompat.Builder，由上面的加粗可以看出，NotificationCompat.Builder 是解决 Notification.Builder 的兼容问题而诞生的。compat：兼容性</li>
-</ul>
-<p>把这三个搞清楚之后，我直接用 NotificationCompat.Builder 来构建 Notifications。</p>
-<p><a id="more"></a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+        <p>ReentrantReadWriteLock 实现 interface ReadWriteLock：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -197,89 +198,29 @@ Notification：A class that represents how a persistent notification is to be pr
 13
 14
 15
-16
-17
-18
-19
-20
-21
-22
-23
-</pre></td><td class="code"><pre>NotificationCompat<span class="preprocessor">.Builder</span> mBuilder =           //Notification 的兼容类
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ReadWriteLock</span> {</span>
+    <span class="javadoc">/**
+     * Returns the lock used for reading.
+     *
+     *<span class="javadoctag"> @return</span> the lock used for reading
+     */</span>
+    Lock readLock();
 
-                new NotificationCompat<span class="preprocessor">.Builder</span>(this)
-
-                <span class="preprocessor">.setSmallIcon</span>(R<span class="preprocessor">.drawable</span><span class="preprocessor">.ic</span>_launcher)   // 若没有设置 largeicon，此为左边的大 icon，设置了 largeicon，则为右下角的小 icon，无论怎样，都影响 Notifications area 显示的图标
-
-                <span class="preprocessor">.setContentTitle</span>(<span class="string">"My notification"</span>) // 标题
-
-                <span class="preprocessor">.setContentText</span>(<span class="string">"Hello World!"</span>)         // 正文
-
-                <span class="preprocessor">.setNumber</span>(<span class="number">3</span>)                       // 设置信息条数
-
-//              <span class="preprocessor">.setContentInfo</span>(<span class="string">"3"</span>)        // 作用同上，设置信息的条数
-
-                <span class="preprocessor">.setLargeIcon</span>(smallicon)           //largeicon，
-
-                <span class="preprocessor">.setDefaults</span>(Notification<span class="preprocessor">.DEFAULT</span>_SOUND)// 设置声音，此为默认声音
-
-                <span class="preprocessor">.setVibrate</span>(vT) // 设置震动，此震动数组为：long vT[]={<span class="number">300</span>,<span class="number">100</span>,<span class="number">300</span>,<span class="number">100</span>}<span class="comment">; 还可以设置灯光.setLights(argb, onMs, offMs)</span>
-
-                <span class="preprocessor">.setOngoing</span>(true)      //true 使 notification 变为 ongoing，用户不能手动清除，类似 QQ,false 或者不设置则为普通的通知
-
-                <span class="preprocessor">.setAutoCancel</span>(true)<span class="comment">;             // 点击之后自动消失</span>
+    <span class="javadoc">/**
+     * Returns the lock used for writing.
+     *
+     *<span class="javadoctag"> @return</span> the lock used for writing
+     */</span>
+    Lock writeLock();
+}
 </pre></td></tr></table></figure>
 
-<p>一个 Notifications 完成，现在已经可以把它显示出来，但我们继续 coding，添加点击通知后的跳转。</p>
-<p>实例化一个 intent</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>Intent resultIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, ResultActivity.<span class="keyword">class</span>);
-</pre></td></tr></table></figure>
-
-<p>实例化一个 TaskStackBuilder , 用于添加动作，就像一个 stack 一样，一个一个压进去</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>TaskStackBuilder stackBuilder = TaskStackBuilder.<span class="operator"><span class="keyword">create</span>(this);</span>
-</pre></td></tr></table></figure>
-
-<p>添加父 stack，添加下一个 intent</p>
-<figure class="highlight stackBuilder.addParentStack(this);"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>
-stackBuilder<span class="preprocessor">.addNextIntent</span>(resultIntent)<span class="comment">;</span>
-
-PendingIntent resultPendingIntent =
-                stackBuilder<span class="preprocessor">.getPendingIntent</span>(
-                    <span class="number">0</span>,
-                    PendingIntent<span class="preprocessor">.FLAG</span>_UPDATE_CURRENT
-                )<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>把刚才的 pending 添加进去</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>mBuilder<span class="preprocessor">.setContentIntent</span>(resultPendingIntent)<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>获得 NotificationManager</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="attribute">NotificationManager mNotificationManager </span>=<span class="string">
-            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);</span>
-</pre></td></tr></table></figure>
-
-<p>mBuilder.build() 会返回一个 Notifications 对象，1000 为 Notifications 的 id，可变动。就可以 notify 出来了。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>mNotificationManager<span class="preprocessor">.notify</span>(<span class="number">1000</span>, mBuilder<span class="preprocessor">.build</span>())<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>效果：<a href="http://segmentfault.com/img/bVbQMt/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbQMt" alt=" 请输入图片描述 "></a></p>
-<p>接下来是构建一个进度条 Notifications</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>所以 ReentrantReadWriteLock 并非是真的一个“锁”，而是一个读锁和写锁的管理器，而真正实现锁功能的是 ReentrantReadWriteLock 的静态内部类 ReadLock 和 WriteLock。ReadLock 和 WriteLock 都是直接实现 interface Lock。</p>
+<p>当多线程共享同一个数据源时，为了避免数据上的错乱，我们需要在读数据的时候防止写入操作，在写入的时候也不能进行读操作。怎么实现这一业务？synchronized、ReentrantLock 都可以实现，在读、写操作的方法都加上锁的保护，则可实现读写互斥。但这种做法会使并发大大折扣，例如在某一时间段只有大量读操作并没有写操作，但此时读操作也要进行排队，此时 ReentrantReadWriteLock 的价值就能发挥得淋漓尽致。</p>
+<p>ReentrantReadWriteLock 的作用：支持同时多读，读的时候不能写，写的时候不能读。</p>
+<p>看看具体的 DEMO1，一个支持多用户的银行账号（夫妻共用）的存款和查询的需求：<br>1，可多用户同时查询余额（读操作）<br>2，当有用户在查询余额时（读操作），该账号不能进行存取款操作（写入操作）<br>3，当有用户在存取款时（写入操作），该账号不能进行查询余额操作（读操作）</p>
+<p>具体实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -305,43 +246,183 @@ PendingIntent resultPendingIntent =
 24
 25
 26
-</pre></td><td class="code"><pre>        <span class="keyword">new</span> Thread(
-            <span class="keyword">new</span> Runnable() {
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> {</span>
 
+    <span class="keyword">static</span> class User {
+        <span class="keyword">int</span> mID;
+        BankAccount mBankAccount;
+
+        <span class="keyword">public</span> <span class="title">User</span>(<span class="keyword">int</span> ID, BankAccount bankAccount) {
+            mID = ID;
+            mBankAccount = bankAccount;
+        }
+
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveMoney</span>(<span class="keyword">final</span> <span class="keyword">int</span> cash) {
+            <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
                 <span class="annotation">@Override</span>
                 <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
-                    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++){
-                        mBuilder.setProgress(<span class="number">100</span>, i, <span class="keyword">false</span>); <span class="comment">// 最后一个参数设置  determinate 还是  indeterminate ，</span>
-                        <span class="comment">//false 的进度条是可以看到增加的，true 是无限循环的，但设置为 true 的时候，前面连个参数可以忽略设置为 0,0 或者任意</span>
-
-                        mNotificationManager.notify(<span class="number">1000</span>, mBuilder.build());
-
-                        <span class="keyword">try</span> {
-                            Thread.sleep(<span class="number">50</span>);
-                        } <span class="keyword">catch</span> (InterruptedException e) {
-                            <span class="comment">// TODO Auto-generated catch block</span>
-                            e.printStackTrace();
-                        }
-                    }
-
-                    mBuilder.setContentText(<span class="string">"OK"</span>)
-                    .setDefaults(Notification.DEFAULT_ALL)   <span class="comment">// 设置后不会出现当进度完成之后奔溃，不设置会奔溃，原因不明。求大神指点</span>
-                    .setProgress(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">false</span>);
-                    mNotificationManager.notify(<span class="number">1000</span>, mBuilder.build());
-
+                    mBankAccount.saveMoney(mID, cash);
                 }
             }).start();
+        }
+
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkBalance</span>() {
+            <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
+                <span class="annotation">@Override</span>
+                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
+                    mBankAccount.checkBalance(mID);
+                }
+            }).start();
+        }
+    }
+
+    <span class="javadoc">/**
+     * 支持多用户的银行账号（夫妻共用）
+     */</span>
+    <span class="keyword">static</span> class BankAccount {
+
+        <span class="keyword">int</span> mBalance;
+        ReentrantReadWriteLock mReentrantReadWriteLock = <span class="keyword">new</span> ReentrantReadWriteLock();
+        ReentrantReadWriteLock.WriteLock mWriteLock = mReentrantReadWriteLock.writeLock();
+        ReentrantReadWriteLock.ReadLock mReadLock = mReentrantReadWriteLock.readLock();
+
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveMoney</span>(<span class="keyword">int</span> id, <span class="keyword">int</span> cash) {
+            mWriteLock.lock();
+            <span class="keyword">try</span> {
+                mBalance = mBalance + cash;
+                System.out.println(<span class="string">" 用户 "</span> + id + <span class="string">" 正在进行存钱操作 "</span>);
+                Thread.sleep(<span class="number">2000</span>);
+                System.out.println(<span class="string">" 用户 "</span> + id + <span class="string">" 存钱完成，存入 "</span> + cash + <span class="string">" 元 "</span>);
+            } <span class="keyword">catch</span> (Exception e) {
+                e.printStackTrace();
+            } <span class="keyword">finally</span> {
+                mWriteLock.unlock();
+            }
+        }
+
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkBalance</span>(<span class="keyword">int</span> id) {
+            mReadLock.lock();
+            <span class="keyword">try</span> {
+                System.out.println(<span class="string">" 用户 "</span> + id + <span class="string">" 正在进行查询余额操作 "</span>);
+                Thread.sleep(<span class="number">2000</span>);
+                System.out.println(<span class="string">" 余额："</span> + mBalance);
+            } <span class="keyword">catch</span> (Exception e) {
+                e.printStackTrace();
+            } <span class="keyword">finally</span> {
+                mReadLock.unlock();
+            }
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] var0) {
+        BankAccount bankAccount = <span class="keyword">new</span> BankAccount();
+        User user1 = <span class="keyword">new</span> User(<span class="number">1</span>, bankAccount);
+        User user2 = <span class="keyword">new</span> User(<span class="number">2</span>, bankAccount);
+
+        user1.saveMoney(<span class="number">1000000</span>);
+
+        <span class="comment">// 同时查询余额</span>
+        user1.checkBalance();
+        user2.checkBalance();
+
+        <span class="comment">// 同时存款</span>
+        user1.saveMoney(<span class="number">2000000</span>);
+        user2.saveMoney(<span class="number">6000</span>);
+
+        user1.checkBalance();
+    }
+}
 </pre></td></tr></table></figure>
 
-<p>效果：<br><a href="http://segmentfault.com/img/bVbQMu/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbQMu" alt=" 请输入图片描述 "></a></p>
-<p>若</p>
+<p>DEMO1 的输出：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>mBuilder.setProgress(<span class="number">0</span>, <span class="number">0</span>, <span class="literal">true</span>);
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>用户 1 正在进行存钱操作
+用户 1 存钱完成，存入 1000000 元
+用户 1 正在进行查询余额操作
+用户 2 正在进行查询余额操作
+余额：1000000
+余额：1000000
+用户 1 正在进行存钱操作
+用户 1 存钱完成，存入 2000000 元
+用户 2 正在进行存钱操作
+用户 2 存钱完成，存入 6000 元
+用户 1 正在进行查询余额操作
+余额：3006000
 </pre></td></tr></table></figure>
 
-<p>则：<br><a href="http://segmentfault.com/img/bVbQMv/view" title=" 点击查看原图 " target="_blank"><img src="http://segmentfault.com/img/bVbQMv" alt=" 请输入图片描述 "></a></p>
-<p>还有好多功能没有写上去。例如 setstyle，震动到用户进行一些动作才停止等等功能，有空再补上。</p>
-<p>还有自定义 Notifications 没搞。先搁置，接下来学 service。加油</p>
+<p>当两个用户同时查询余额时，可同时进行。<br>当两个用户同时存款时，不能同时进行，要进行队列排队。</p>
+<p>可见，我们可以用 ReentrantReadWriteLock 进行一些读写需要互斥的一些业务上，特别适合在“大量读小量写”的业务，可以增大吞吐率。</p>
 
         <!-- 代替锚点，800是banner的高度，不知道怎么在css获取-->
         <script type="text/javascript">
@@ -357,19 +438,10 @@ PendingIntent resultPendingIntent =
     
 <nav id="article-nav">
   
-    <a href="/2014/02/02/android-processesthreadasynctask/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android——Processes,Thread,Async Task（未完，待续。）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/01/28/android_SaveInstanceState/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/06/10/concurrent_series_5/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android保存当前活动状态</div>
+      <div class="article-nav-title">Java多线程通信 — Condition With Reentrant Lock</div>
     </a>
   
 </nav>
